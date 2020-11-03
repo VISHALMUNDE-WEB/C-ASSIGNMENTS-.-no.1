@@ -1,0 +1,180 @@
+c programming :
+=================
+History of C programming language :
+====================================
+1) the c programming language is a structure oriented programming language, developed at bell 
+   laboratories in 1972 by Dennis Richie.
+
+2) C programming language features were derived from an earlier language called "B" (basic combined 
+   programming language - BCPL).
+
+3) C language was invented for implementing UNIX operating system.
+
+4) in 1978, dennis ritchie and brain kernighan published the first edition "the C programming language"
+   and commonly known as k&R C.
+
+5) in 1983, the american national standards institute (ANSI) established a committee to provide a modern,
+   comprehensive definition of C.the resulting definition the ANSI standard or "ANSI C", was completed 
+   late 1988.
+===========================================================================================================
+
+Features of C programming language :
+====================================
+
+1) Realiability
+2) portability
+3) flexibility
+4) interactivity
+5) modularity
+6) efficiency and effectiveness
+======================================
+
+Below some examples of uses of  C programming language :
+========================================================
+
+1) developing system applications that forms a major portion of 
+   operating system such as windows unix and linux.
+
+2) graphic packages.
+
+3) word procssors.
+
+4) compiler and assemblers.
+
+5) network drivers.
+
+6) interpretors.
+
+7) spread sheets.
+=======================================================================
+
+Which level is C language belonging to?
+=======================================
+
+Levels of programming languages :
+=================================
+
+a) high level languages.
+
+b) middle level languages.
+
+c) low level languages.
+===========================
+
+a) high level languages:
+    
+   high level languages provide almost everything that the 
+   programmer might need to do as already built into the 
+   language.
+   
+   ex : java,python etc:
+
+b) middle level languages:
+
+   middle level languages dont provide all the built-in functions
+   found in high level languages, but provides all building blocks
+   that we need to produce the result we want.
+
+   ex : C, C++ etc:
+
+c) low level languages:
+
+   low languages provides nothing other than access to the 
+   machines basic instruction set.
+
+   ex : Assembler:
+=========================================================================
+
+C Programming languages standards :
+===================================
+
+1) C89/C90 standard :
+   ---------------- 
+   First standardized specification for C language was developed bt the american national
+   standards institute in 1989. C89 and C90 standards refer to the same programming 
+   language.
+
+2) C99 standard :
+   -------------
+   next revision was published in 1999 that introduced new features like advanced data 
+   types and other changes.
+
+3) C11 and embedded C language :
+   ---------------------------
+   C11 standard adds new features to C programming language and library like type generic
+   macros, anonymous structures, improved unicode support, atomic operations, multi-threading
+   and bounds-checked functions functions. it also makes some portions of the existing C99 
+   library optional and improves compatibility with C++.
+
+   Embedded C includes features not available in C like fixed-point airthemetic, named address 
+   spaces, and basic l/O hardware addressing.
+   in C language
+   it also called as procedure oriented programming language. the C language is reliable simple 
+   and easy to use C has been coded in assembly language.
+====================================================================================================
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
