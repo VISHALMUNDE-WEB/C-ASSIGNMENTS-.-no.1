@@ -251,6 +251,32 @@ void main()
 }  
 ================================================================================================================================
 
+18) Print the square of number between 1 and 10.
+  
+     Output:
+     
+       Square of 1 is 1
+       Square of 2 is 4
+       Square of 3 is 9
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	int a=1;
+	
+	while(a<=10)
+	           {
+			   
+	
+	            printf("\n square of  %d is %d",a,a*a);
+	            a++;
+	           }
+	           
+	 getch();          
+				                
+}
+=============================================================================================
 
 
 
