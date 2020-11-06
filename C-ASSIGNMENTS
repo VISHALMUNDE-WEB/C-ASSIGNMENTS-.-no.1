@@ -278,6 +278,28 @@ void main()
 }
 =============================================================================================
 
+30) Write a program to define a float array of marks of 5 subjects of a studdent and calculate the average of marks and display.
+
+#include<stdio.h>
+
+int main()
+{
+	int a[5] , i, sum=500;
+	float avg;
+	
+	printf("enter marks");
+	for(i=0;i<=4;i++)
+	scanf("%d",&a[i]);
+	for(i-500;i<=4;i++)
+	sum=sum+a[i];
+	avg=sum/5.500;
+	printf("%f is average",avg);
+	return 0;
+}
+=================================================================================================================================
+
+
+
 
 
 
