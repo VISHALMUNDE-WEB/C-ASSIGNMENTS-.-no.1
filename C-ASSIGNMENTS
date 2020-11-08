@@ -202,6 +202,44 @@ main()
 	
 }
 ===========================================================================================================================================================
+12) Write a program to display the result acoording to following using only if:
+     
+       marks < 40        Fail
+       40 <= marks <65   Second Division
+       65 <= marks < 75  First Division
+       75 <= marks       Distinction
+       
+#include<stdio.h>
+
+int main()
+{
+	float  s1, s2, s3, s4, s5, marks;
+	
+	printf("enter marks of 5 subjects\n");
+	scanf("%f %f %f %f %f", &s1, &s2 , &s3 , &s4 , &s5);
+	
+	marks = (s1 + s2 + s3 + s4 + s5);
+	
+	if(marks < 40)
+	{
+		printf("fail\n");
+	}
+	if(40 <=marks <65)
+	{
+	
+	printf("second division\n");
+}
+    if(65 <=marks <75)
+    {
+    	printf("first division\n");
+	}
+	if(75 <=marks)
+	{
+		printf("distinction\n");
+	}
+    return 0;
+}
+=======================================================================================================================
 16) Display the following Pattern :
      *
      **
