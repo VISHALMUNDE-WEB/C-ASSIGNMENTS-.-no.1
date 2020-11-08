@@ -240,6 +240,28 @@ int main()
     return 0;
 }
 =======================================================================================================================
+
+13) Write a program to find the largest of two numbers given by user.
+
+#include<stdio.h>
+
+int main()
+{
+	int  a, b;
+	
+	printf("enter 2 integer numbers\n");
+	scanf("%d%d",&a , &b);
+	
+	printf("largest of %d %d is %d\n", a, b, largest(a, b));
+	
+	return 0;
+}
+
+int largest(int x, int y)
+{
+	return (x>y?x:y);
+}
+=========================================================================================
 16) Display the following Pattern :
      *
      **
