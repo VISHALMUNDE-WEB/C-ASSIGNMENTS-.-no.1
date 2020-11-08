@@ -230,6 +230,28 @@ void main()
    }
 }
 ============================================================================================================================================
+11) Write a function which takes a character in small case and returns the same character in capital case.
+
+#include<stdio.h>
+
+
+int main()
+{
+    char character , capitalcase;
+    printf("\nenter a small character: \n");
+    scanf("%c" ,&character);
+   
+	 if(character>=97&&character<=122)
+     {
+	     capitalcase = character - 32;
+         printf("\nthe given character in capitalcase = %c\n",capitalcase);
+     }
+ else {
+ 	    printf("enter a smallcase character");
+ }
+ return 0;    
+}
+===================================================================================================
 
 17) Print the table of the entered number.
 
