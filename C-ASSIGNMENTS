@@ -413,13 +413,13 @@ void main()
 
 void main()
 {
-	float sub,per,s1,s2,s3,s4,s5;
+        float sub,average,s1,s2,s3,s4,s5;
 	printf("enter 5 subjects marks :");
 	scanf("%f %f %f %f %f", &s1,&s2,&s3,&s4,&s5);
 	sub=s1+s2+s3+s4+s5;
 	
-	per=(sub/500)*100;
-	printf("percentage is %f", per);
+	average=(sub/500)*100;
+	printf("average is %f", average);
 	getch();
 }
 ============================================================================================
