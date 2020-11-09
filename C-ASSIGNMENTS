@@ -521,7 +521,33 @@ int main()
 	printf("%d\n", sum);
 	return 0;
 }
-========================================================================================================
+================================================================================================================================
+
+23) Program to check a number is prime or not
+
+#include<stdio.h>
+#include<conio.h>
+
+int main()
+{
+	int i,n,r=0;
+	printf("enter any nmuber:");
+	scanf("%d" ,&n);
+	
+	for(i=2;i<=n-1;i++)
+	{
+		if(n%i==0)
+		r=1;
+		break;
+	}
+	if(r==0)
+	printf("prime number");
+	else
+	printf("not prime number");
+	getch();
+}
+===================================================================================================================================
+
 30) Write a program to define a float array of marks of 5 subjects of a studdent and calculate the average of marks and display.
 
 #include<stdio.h>
