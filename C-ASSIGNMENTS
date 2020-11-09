@@ -424,6 +424,31 @@ void main()
 }
 ============================================================================================
 
+22) Print the sum of only odd numbers between 1 and 10.
+
+#include<stdio.h>
+
+int main()
+{
+	int start, end, sum = 0;
+	
+	printf("enter star and end value\n");
+	scanf("%d%d", &start, &end);
+	
+	printf("\nsum of odd numbers from %d to %d is", start, end);
+	
+	while(start <= end)
+	{
+		if(start%2 !=0)
+		{
+			sum = sum + start;
+		}
+		start++;
+	}
+	printf("%d\n", sum);
+	return 0;
+}
+========================================================================================================
 30) Write a program to define a float array of marks of 5 subjects of a studdent and calculate the average of marks and display.
 
 #include<stdio.h>
