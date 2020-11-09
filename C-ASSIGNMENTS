@@ -548,6 +548,29 @@ int main()
 }
 ===================================================================================================================================
 
+24) Program to find Sum of digits
+
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	int num, rem, sum =0;
+	
+	printf("enter a int number\n");
+	scanf("%d",&num);
+	
+	while(num)
+	{
+		rem = num % 10;
+		sum = sum + rem;
+		num = num / 10;
+	}
+	printf("the sum of digits is %d",sum);
+	getch();
+}
+========================================================================================================
+
 30) Write a program to define a float array of marks of 5 subjects of a studdent and calculate the average of marks and display.
 
 #include<stdio.h>
