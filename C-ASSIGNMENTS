@@ -115,6 +115,44 @@ C Programming languages standards :
    it also called as procedure oriented programming language. the C language is reliable simple 
    and easy to use C has been coded in assembly language.
 ====================================================================================================
+
+2) Write a c program to find as follows :
+     a) a=30 ,b =20 find a/b,   where a and b are float
+     b) Program to find the area of circle and rectangle.
+     c) Program to print your name with your age.
+
+#include<stdio.h>
+#include<conio.h>
+
+int main()
+{
+	float x =30;
+	float y =20;
+	float z;
+	
+	z=x/y;
+	printf("division is : %f", z);
+	
+	return 0;
+}
+
+    int main()
+    {
+	
+ float pi,radius,area;
+    pi=3,14;
+}
+
+    
+    int main()
+    {
+	
+    printf("\nvishal 20");
+    
+    return 0;
+}
+===========================================================================================================
+
 4) Write a program to define an integer ,character ,float and double values and print all values along with its size.
 
 Assignment.no.4
