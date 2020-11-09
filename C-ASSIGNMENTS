@@ -406,6 +406,25 @@ void main()
 }
 =============================================================================================
 
+19) Write a program to print the values between 1 and 30.
+      Skip valus as 1 5 9 10 15
+
+      Output : 23467811
+      
+ #include<stdio.h>
+
+main()
+{
+	int i;
+	for(i=0;i<=30;i++)
+	{
+		if(i=1 || i==5 || i==9 || i==10 || i==15)
+		continue;
+		printf("%d\n",i);
+	}
+}
+=====================================================================================
+
 20) Write a program to define marks of 5 subjects and print the average of marks.
 
 #include<stdio.h>
