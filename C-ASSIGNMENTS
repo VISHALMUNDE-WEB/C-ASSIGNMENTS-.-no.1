@@ -623,6 +623,30 @@ int main()
 }
 =============================================================================================================================
 
+35) make two pointer variable p1 and p2 which are pointing to x and y variables, x=10 and y=20.
+      create a function which accepts two pointer as a parameter and perform the addition operation on x and y. 
+
+#include<stdio.h>
+
+void show(int *s, int *t)
+{
+	printf("sum : %d\n",*s+*t);
+}
+int main()
+{
+	int x=10;
+	int y=20;
+	
+	int *p1;
+	p1=&x;
+	
+	int *p2;
+	p2=&y;
+	
+	show(p1,p2);
+}
+===========================================================================================================
+
 
 
 
