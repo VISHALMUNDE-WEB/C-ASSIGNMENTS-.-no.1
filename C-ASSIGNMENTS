@@ -153,6 +153,26 @@ int main()
 }
 ===========================================================================================================
 
+3) Write a program to calculate the following :
+      a= 3.5
+      b=2.5
+    1)  a2+b2+2ab   
+    3)  a2 /b2  
+#include<stdio.h> 
+       int  main() 
+    {
+	     float a=3.5;
+	     float b=2.5;
+	  // Q1
+	     printf("a^2 + b^2 + 2ab =%f\n",(a*a)+(b*b)+(2*a*b));
+	 //Q2
+	     printf("a^2 - 2ab + b^2 =%f\n",(a*a)-(2*a*b)+(b*b));
+	 //Q3
+	     printf("a^2/b^2=%f\n",(a*a)/(b*b));
+	  return 0;	
+   }
+ ============================================================================================================
+
 4) Write a program to define an integer ,character ,float and double values and print all values along with its size.
 
 Assignment.no.4
@@ -239,7 +259,43 @@ main()
 	printf("sub of a and b=%d\n");
 	
 }
-===========================================================================================================================================================
+====================================================================================================================
+
+8) Write a program to define a function Calculator() which accepts two integer values and print sum,subtraction,division and multiplication.
+
+#include<stdio.h> 
+     int my_fun()
+   { 
+      printf("addition:%d\n",(num1+num2))
+      printf("multiplication:%d\n",(num1*num2))
+      printf("subtraction:%d\n",(num1-num2))
+      printf(" division:%d\n",(num1/num2))
+   }
+     void main() 
+   { 
+      printf("Enter number : \n");
+      scanf("%d",&num1);
+      printf("Enter number : \n");
+      scanf("%d",&num2);
+      my_fun();
+   }
+===============================================================================================================================================
+
+9) Write a program to define a function which takes a number from user and print the number.
+#include<stdio.h>
+void fun()
+{ int num;
+  printf("Enter you number: ");
+  scanf("%d",&num);
+ printf("Your number %d is luckly number for you ",num);
+}
+int main()
+{
+    fun();
+    return 0;
+}
+===============================================================================================================
+
 11) Write a function which takes a character in small case and returns the same character in capital case.
 
 #include<stdio.h>
@@ -367,7 +423,52 @@ int main()
 		        break;
 	}
 }
-=================================================================================================	     
+=================================================================================================	
+
+15) Write a program to do the following using switch...case
+    Read percentage of a student inside a function and check if the percentage lies in the following range and print the Grade accodingle :
+    Percentage            Grade
+    80<per<=100           A+
+    60<per<=80            A
+    per<60                Fail
+    
+    Output :
+           Enter your Percentage : 67 
+           Percenge : 67 % , Your Grade is : A 
+#include<stdio.h>
+     void percentage(int per)
+
+ 
+{
+	switch(per)
+	{
+		case 80 ... 100:
+		printf("80<=per<=100");
+		break;
+		case 21 ... 40:
+		printf("60<=per<=80");
+		break;
+		case 41 ... 60:
+		printf("per<60");
+		break;
+		
+		default:
+			printf("your grade is :A");
+	}
+}
+ int main()
+ {
+ 	int per;
+ 	printf("Enter your percentage :");
+ 	scanf("%d",&per);
+ 	
+ 	percentage(per);
+ 	printf("\n");
+ 	percentage(67);
+ 
+}
+======================================================================================================================
+
 16) Display the following Pattern :
      *
      **
@@ -569,7 +670,117 @@ void main()
 	printf("the sum of digits is %d",sum);
 	getch();
 }
+=============================================================================================================================
+
+25) Program to find Largest of n numbers
+
+#include<stdio.h>
+void main()
+{
+  int n1,n2;
+     printf("Enter number 1\n");
+     scanf("%u", &n1);
+     printf("Enter number 2\n");
+     scanf("%u", &n2);
+    
+     if(n1<n2)
+     {
+     printf(" You 2th number %d is Largest",n2);
+     }
+     else 
+     {
+     	printf(" You 1th number %d is Largest",n1);
+	 }
+	 
+	 
+ }
+ ===================================================================================================
+ 
+ 26) Program to find Factorial of a number
+ 
+ #include <stdio.h>
+int main()
+{
+    int n,i,f;
+    f=i=1;
+    printf("Enter a Number to Find Factorial: ");
+    scanf("%d",&n);
+    while(i<=n)
+    {
+        f*=i;
+        printf("The %d Factorial 0f %d : %d\n",i,n,f);
+        i++;
+    }
+    printf("\n This is end of the code ");
+    return 0;
+}
 ========================================================================================================
+
+27) Program to find Average of n numbers entered by user
+
+#include<stdio.h>
+void main()
+{
+  int n1,n2,n3,n4,tot,avg;
+     printf("Enter number 1\n");
+     scanf("%u", &n1);
+     printf("Enter number 2\n");
+     scanf("%u", &n2);
+     printf("Enter number 3\n");
+     scanf("%u", &n3);
+     printf("Enter number 4\n");
+     scanf("%u", &n4);
+     tot=n1+n2+n3+n4;
+     avg=tot/4;
+     printf("your Number total will be %u than Average will be %u",tot,avg);     	 
+ }
+ ==============================================================================================================================
+ 
+ 28) Program to display fibonnacci series 0 1 1 2 3 5 8....
+ 
+ #include<stdio.h>
+int main()
+{
+	 int i, n, t1 = 0, t2 = 1, next_Term;
+    
+    printf("Enter the number: ");
+    scanf("%d", &n);
+    
+    printf("Fibonacci Series: ");
+
+    for (i = 1; i <= n; ++i) 
+	{
+        printf("%d, ", t1);
+        next_Term = t1 + t2;
+        t1 = t2;
+        t2 = next_Term;
+    }
+
+}
+===================================================================================================
+
+29) Program to swap 2 numbers
+
+#include<stdio.h>
+int main() {
+      int first, second, temp;
+      printf("Enter first number: ");
+      scanf("%d", &first);
+      
+      printf("Enter second number: ");
+      scanf("%d", &second);
+      
+      temp = first;
+
+      first = second;
+
+      second = temp;
+
+      printf("\nAfter swapping, firstNumber = %d\n", first);
+      printf("After swapping, secondNumber = %d", second);
+      return 0;
+}
+=============================================================================================
 
 30) Write a program to define a float array of marks of 5 subjects of a studdent and calculate the average of marks and display.
 
@@ -623,6 +834,21 @@ int main()
 }
 =============================================================================================================================
 
+32) accept first name and last name from user and print full name
+
+#include<stdio.h>
+   int main()
+    {
+	char full_name[25];
+	
+	printf("Enter Your Full name : ");
+	scanf("%c ",&full_name);
+	gets(full_name);
+	puts(full_name);
+	
+    }
+ ==============================================================================================================
+ 
 35) make two pointer variable p1 and p2 which are pointing to x and y variables, x=10 and y=20.
       create a function which accepts two pointer as a parameter and perform the addition operation on x and y. 
 
@@ -646,6 +872,34 @@ int main()
 	show(p1,p2);
 }
 ===========================================================================================================
+
+36) create a function names as addition() which accepts addressess of of two variables this function does the addition of two numbers.
+
+#include<stdio.h>
+
+void show(int s,int t)
+{
+/*	int a;
+	z=(s+t);*/
+}
+void display(int *s,int *t)
+{
+    int z;
+	z=(*s)+(*t);
+	printf("%d + %d = %d",*s,*t,z);
+}
+int main()
+{
+	int z;
+	int x=20;
+	int y=30;
+	
+	show(x,y);
+	printf("%d %d\n",x,y);
+	display(&x,&y);
+
+}
+================================================================================================================================
 
 
 
