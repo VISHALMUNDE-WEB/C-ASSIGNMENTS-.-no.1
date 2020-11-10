@@ -956,7 +956,31 @@ int main()
 }
 ==============================================================================================================
 
+38) create an array of characters dynamically.using mallocfunction.
 
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int n;
+	printf("Enter no of elements of array :");
+	scanf("%d",&n);
+	char *p=(char*) malloc(n*sizeof(char ));
+	int i;
+	for(i=0;i<n;i++)
+	{
+		fflush(stdin);
+		printf("Enter characters  %d :",i+1);
+		scanf("%c",&p[i]);
+	}
+	for(i=0;i<n;i++)
+	{
+		printf("%c ",p[i]);
+	}
+	
+}
+=============================================================================================================
 
 
 
