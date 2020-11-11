@@ -982,6 +982,61 @@ int main()
 }
 =============================================================================================================
 
+39) create a program to enter your name and age from keyboard and print name and age.
+
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+   char name[10];
+   
+   printf("enter your name and age : ");
+   
+   gets(name);
+   puts(name);
+}
+==========================================================================================================
+
+40) write a program to copy a string to another.
+
+#include<stdio.h>
+#include<string.h>
+
+main()
+{
+	char str1[20]="hello";
+	char str2[20];
+	
+	puts(str1);
+	
+	strcpy(str2,str1);
+	
+	puts(str2);
+}
+==============================================================================================================
+
+41) create a program to input a string from user and find its length.
+
+#include<stdio.h>
+#include<string.h>
+
+main()
+{
+	char name[10];
+	
+	printf("enter your name : ");
+	
+	gets(name);
+	
+	int len=strlen(name);
+	
+	puts(name);
+	
+	printf("lenth of the string is : %d",len);
+}
+=============================================================================================================
+
 
 
 
