@@ -296,6 +296,26 @@ int main()
 }
 ===============================================================================================================
 
+10) Write a program to take a number from user and pass this number to the function named as Square() which returns the square of the number and print square value in main.
+
+#include<stdio.h>
+
+int square(int v)
+
+{
+	printf("%d^2 = %d",v,(v*v));
+}
+
+int main()
+{
+	int m;
+	printf("enter a number you want to square : ");
+	scanf("%d", &m);
+	square(m);
+	printf("end of code");
+}
+==============================================================================================================================================================================
+
 11) Write a function which takes a character in small case and returns the same character in capital case.
 
 #include<stdio.h>
@@ -879,6 +899,33 @@ void reverse(char *p)
 	}
 }
 ====================================================================================================================
+
+34) input a string from user and print only vowels of the string.
+      input : pune
+      output : ue
+ 
+#include<stdio.h>
+
+int main()
+
+{
+	int c = 0;
+	char city[10];
+	
+	printf("enter your city name : ");
+	gets(city);
+	printf("vowels of your city name : ");
+	
+	while (city[c]!= '\0')
+	{
+		if (city[c]=='a' || city[c]=='e' || city[c]=='i' || city[c]=='o' || city[c]=='u')
+		
+		printf("%c",city[c]);
+		c++;
+	}
+	
+}
+======================================================================================================================================
  
 35) make two pointer variable p1 and p2 which are pointing to x and y variables, x=10 and y=20.
       create a function which accepts two pointer as a parameter and perform the addition operation on x and y. 
@@ -1037,6 +1084,67 @@ main()
 }
 =============================================================================================================
 
+ 42) enter username and password and if username is ajay and password is 1234 then print a message welcome ajay.
+
+ #include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	char username[4]="ajay";
+	char name[10];
+	int pass;
+	
+	printf("enter username : ");
+	gets(name);
+	
+	fflush(stdin);
+	
+	printf("enter the password : ");
+	scanf("%d",&pass);
+	
+	int val = strcmp(username,name);
+	
+	if(val==0)
+	{
+		if(pass==1234)
+		{
+			printf("welcome ajay ");
+		}
+		else
+		{
+			printf("invalid password !! ");
+		}
+		
+	}
+		
+		else 
+		{
+			printf("you are not a user !! ");
+		}
+	
+}
+===================================================================================================================================
+
+43)input principle amount =20000,rate of interest =7.5 and no of years=2 ,find simple interest using formula as
+
+     SI = p*r*t/100.
+     
+ #include<stdio.h>
+
+void main()
+{
+	float p=20000,r=7,t=2,si;
+	printf("find the simple interest of : \n");
+	printf("the principle amount is %f , rate of interest is %f and number of years is %f\n",p,r,t);
+	
+	si = p*r*t /100;
+	printf("\tanswer :\n");
+	printf("simple interest = principle * rate of interest * number of years / 100\n");
+	printf("simple interest = %f * %f * %f / 100 = %f\n",p,r,t,si);
+	printf("the simple interest is %f",si);
+}
+======================================================================================================================================
 
 
 
