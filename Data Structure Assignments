@@ -1,1 +1,117 @@
+Q.1 Create a structure Student ( rollno, name), Create a structure variable and Access the members using structure variable.
 
+Ans. #include<stdio.h>
+
+struct student
+{
+	int rollno;
+	char name[20];
+};
+
+int main()
+{
+	struct student s1;
+	
+	s1.rollno=7;
+	strcpy(s1.name,"vishal munde");
+	
+	printf("roll no : %d , name : %s", s1.rollno,s1.name);
+}
+====================================================================================================================================
+
+Q.2 Create a structure pointer which can access the members of the structure Student and print member values.
+
+Ans. #include<stdio.h>
+
+struct student
+{
+	int rollno;
+	char name[30];
+};
+
+int main()
+{
+	struct student *s1,s;
+	s1=&s;
+	s1->rollno=21;
+	strcpy(s1->name,"vishal");
+	
+	printf("roll no : , %d , name : %s",s1->rollno,s1->name);
+	
+}
+=======================================================================================================================================
+
+Q.3 Create an array of structure which is used to store 3 employee records.
+
+Ans. #include<stdio.h>
+#include<conio.h>
+
+struct employee
+{
+	int id;
+	char name[30];
+	char city[30];
+};
+
+int main()
+{
+	struct employee e[7];
+	char nm[25];
+	char cy[20];
+	int i;
+	for(i=0;i<3;i++)
+	{
+		printf("enter id : ");
+		scanf("%d",&e[i].id);
+		
+		fflush(stdin);
+		printf("enter name : ");
+		gets(nm);
+		strcpy(e[i].name,nm);
+		
+		fflush(stdin);
+		printf("enter city : ");
+		gets(cy);
+		strcpy(e[i].city,cy);
+		fflush(stdin);
+	}
+	
+	for(i=0;i<3;i++)
+	{
+		printf("id : %d , name : %s , city : %s\n",e[i].id,e[i].name,e[i].city);
+	}
+}
+==============================================================================================================================
+
+Q.4 Create a float pointer which points to the float array and access all elements of array using float pointer.
+
+Ans. #include<stdio.h>
+
+int main()
+{
+	float num[]={1.2,2.3,3.4,};
+	float *p=num;
+	
+	int i;
+	for(i=0;i<3;i++)
+	{
+		printf("%f\t",*(p+i));
+	}
+}
+===============================================================================================================================
+
+Q.5 Create an integer pointer for which memroy is allocated dynamically.
+
+Ans. #include<stdio.h>
+
+int main()
+{
+	int *p;
+	
+	p=(int*)malloc(sizeof(int));
+	
+	*p=100;
+	
+	printf("value : %d",*p);
+}
+===================================================================================================================================
