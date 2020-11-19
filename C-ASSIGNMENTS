@@ -1146,6 +1146,43 @@ void main()
 }
 ======================================================================================================================================
 
+44) Create a structure Student which includes two fields rollno, name . 
+      Take input from user to assign values to structure members and store details of structure data into a file student.txt
+      Maintain record for 5 students
+      
+#include<stdio.h>
+#include<string.h>
+
+typedef struct students
+{
+	char name[30];
+	int rollno;
+}students;
+
+int main()
+{
+	students s[5];
+	FILE *fp;
+	fp=fopen("C : vishal.file","a");
+	char nm[30];
+	int i;
+	
+	for(i=0;i<5;i++)
+	{
+		printf("enter student no %d name : ",i+1);
+		gets(nm);
+		strcpy(s[i].name,nm);
+		fflush(stdin);
+		printf("enter student no %d Roll no. :",i+1);
+		scanf("%d",&s[i].rollno);
+		fflush(stdin);
+		fprintf(fp,"%s\t%d\n",s[i].name,s[i].rollno);
+	}
+	
+	
+}
+====================================================================================================================
+
 
 
 
