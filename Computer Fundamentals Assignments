@@ -60,6 +60,105 @@ Ans. In computing. Firmware Is a specific class of computer software that provid
      through a special procedure.
 =====================================================================================================
 
+4) Difference between Hard disk, RAM and Cache
+
+   Ans. 1) HARD DISK :
+
+1) ram stands for random access memory.
+
+2) Ram is also known as primary memory. Ram does not contains, mechanical parts, only electronical parts like transistors.
+
+3) Ram has shorter r/w time.
+
+4) In ram each and every element takes same time to be accessed.
+
+5) In a system the ram is smaller than the hard disk.
+   Ram is costlier per unit storage.
+
+6) Ram does not produce noise.
+
+7) Data stored in ram is temporary. It remembers as long as it has electricity, the power is on.
+
+8) Inadequate ram slows down the speed speed of the computer.
+
+       2) RAM :
+
+1) HDD stands for hard disk drive.
+
+2) HDD is also konwn as secondary memory.
+
+3) HDD contains moving mechanical parts,like the arm.
+
+4) HDD has longer r/w time.
+
+5) in HDD different elements take different times to be accesed.
+
+6) in a system the HDD is larger than the ram.
+
+7) HDD is cheaper per unit storage. 
+
+8) HDD can produce noise due to mechanical movements.
+
+9) data stored in HDD is permanent, it reatains data even after shutdown.
+
+10) HDD does not affect the speed of the computer.
+
+       3) CACHE :
+
+1) cache is a smaller and fast memory component in the computer.
+
+2) the size is cache memory is less.
+
+3) it is not expensive.
+
+4) it holds frequently used data by the CPU.
+
+5) it is faster.
+
+6) cache memory increase the accessing speed of CPU.
+
+7) it is generally internal.
+================================================================================================================
+
+5) Discuss different Levels of  Computer language
+
+Levels of computer languages :
+
+Types of languages :
+
+There are three main kinds of programming languages :
+
+1) Machine language
+2) Assembly language
+3) High-level language
+
+1) Machine language: 
+
+it’s the language of machines, consisting of bits
+(1s and 0s) put together into chunks likes bytes, a group of 8 bits, and
+Lots of other larger sizes. It's highly unlikely you will ever have to write
+In machine language, but in the old days, we used to plot 1s and 0s on
+Graph paper and then type them in, to make pictures appear on the
+Computer screen.
+
+2) Assembly language:
+
+Mnemonics
+• Assembly language is a little easier than machine language, but not much it uses more convenient numbers, symbols, and abbreviations to describe the huge strings of 1s and 0s, make it both easier and more memorable to type in instructions.
+• The computer knows that certain strings of numbers are commands, so assembly language lets you use English-like strings instead of numbers to refer to those.
+• Plus, with assembly language you have access to all kinds of resources to organize your programming code.
+• Then you tell a program called an assembler to your instructions, which just means they get turned into 1s and 0s for you.
+
+3) High-level languages:
+
+• The third type of language are the high-level languages. These languages are use English-like statements and symbols, and are the independent of the type of computer you are using.
+• You can even put in lots of English labels and comments to help remember what the instructions are doing.
+• This makes your programs much easier to read and modify. There are far more high-level languages than any other type of computer language, each one tailored for a certain kind of use.
+• Compiler high level language to low level language.
+
+  Examples: java, c++, python Etc
+===================================================================================================================================================================================================================================================  
+
 
 
 
