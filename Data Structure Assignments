@@ -1567,4 +1567,129 @@ void displaynodelist()
 }
 =====================================================================================================================================
 
+Q.19 Create a Link list of 3 nodes and delete the head node.
+
+Ans. #include<stdio.h>
+     #include<stdlib.h>
+
+struct node
+{
+	int data;
+	struct node *nextptr;
+};
+
+struct node *firstnode;
+
+void createnodelist(int numberofnodes);
+
+void deletefirstnode();
+
+void displaynodelist();
+
+int main()
+{
+	int numberofnodes;
+	
+	printf("input the number of nodes : ");
+	scanf("%d", &numberofnodes);
+	
+	createnodelist(numberofnodes);
+	
+	printf("\ndata entered in the list are : \n");
+	displaynodelist();
+	
+	deletefirstnode();
+	
+	printf("\ndata after deletion of first node : \n");
+	displaynodelist();
+	return 0;
+}
+
+void createnodelist(int numberofnodes)
+{
+struct node *newnode;
+struct node *tempnode;
+int nodedata;
+int nodectr;
+
+firstnode = (struct node *)malloc(sizeof(struct node));
+
+if(firstnode == NULL)
+{
+	printf("memory can not be allocated.");
+}
+else
+{
+	printf("input data for node 1 :");
+	scanf("%d",&nodedata);
+	
+	firstnode->data = nodedata;
+	firstnode->nextptr = NULL;
+	
+	tempnode = firstnode;
+	
+	for(nodectr =2; nodectr <= numberofnodes; nodectr++)
+	{
+		newnode = (struct node *)malloc(sizeof(struct node));
+		
+		if(newnode == NULL)
+		{
+			printf("memory can not be allocated.");
+			break;
+		}
+		else 
+		{
+			printf("input data for node %d : ", nodectr);
+			scanf("%d", &nodedata);
+			
+			newnode->data = nodedata;
+			newnode->nextptr = NULL;
+			
+			tempnode->nextptr = newnode;
+			tempnode = tempnode->nextptr;
+		}
+	}
+}
+	
+}
+void deletefirstnode()
+{
+	struct node *tempptr;
+	
+	if(firstnode == NULL)
+	{
+		printf("there are no node in the list.");
+	}
+	else
+	{
+		tempptr = firstnode;
+		
+		firstnode = firstnode->nextptr;
+		
+		printf("\ndata of node 1 which is being deleted is : %d\n", tempptr);
+		
+		free(tempptr);
+	}
+}
+
+void displaynodelist()
+{
+	struct node *tempptr;
+	
+	if(firstnode == NULL)
+	{
+		printf("no data found in the list.");
+	}
+	else
+	
+	tempptr = firstnode;
+	while(tempptr !=NULL)
+	{
+		printf("data = %d\n", tempptr->data);
+		
+		tempptr = tempptr->nextptr;
+	}
+}
+==========================================================================================================================================
+
 
