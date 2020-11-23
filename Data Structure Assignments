@@ -115,3 +115,1129 @@ int main()
 	printf("value : %d",*p);
 }
 ===================================================================================================================================
+
+Q.6 Create a stack of 5 characters and display all elements.
+
+Ans. #include<stdio.h>
+#include<stdlib.h>
+#define SIZE 7
+
+typedef struct st
+{
+	int top;
+	char elements[SIZE];
+}stack;
+
+void initialize(stack *sp)
+{
+	sp->top=-1;
+}
+
+void push(stack *sp,int item)
+{
+	if(is_full(sp))
+	printf("\nstack overflow");
+	
+	else 
+	sp->elements[++sp->top]=item;
+}
+
+int pop(stack *sp)
+{
+	int x;
+	if(is_empty(sp))
+	printf("\nstack underflow");
+	
+	else
+	x=sp->elements[sp->top--];
+	
+	return x;
+}
+
+int is_full(stack *sp)
+{
+	if(sp->top==SIZE-1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int is_empty(stack *sp)
+{
+	if(sp->top== -1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int main()
+{
+	stack s1;
+	
+	push(&s1,'v');
+	push(&s1,'i');
+	push(&s1,'s');
+	push(&s1,'h');
+	push(&s1,'a');
+	push(&s1,'l');
+	
+	int i;
+	
+	for(i=s1.top;i!=-1;i--)
+	{
+		printf("%c",s1.elements[i]);
+	}
+	
+	
+}
+===================================================================================================================
+
+Q.7 Create a stack of 5 names of employees and delete the last name and display it.
+
+Ans. #include<stdio.h>
+#include<stdlib.h>
+#define SIZE 10
+typedef struct st
+{
+    int top;
+    char elements[10][10];
+}stack;
+
+ 
+
+void initialize(stack *sp)
+{
+    sp->top=-1;
+}
+
+ 
+
+//FOR ADDING VALUES TO IT
+void push(stack *sp,char* item)
+{
+    if(sp->top == SIZE-1)
+    printf("\nstack overflow\n");
+    else
+    strcpy(sp->elements[++sp->top],item);   
+    
+}
+
+ 
+
+//OVERWRITTING
+int pop(stack *sp)
+{
+    int x;             //BECAUSE WE WANT TO RETURN BACK THE VALUE  
+    if(sp->top == -1)
+    printf("\nstack underflow");
+    else
+    x=sp->elements[sp->top--];
+    return x;
+}
+
+ 
+
+void display(stack *sp)
+{
+    int i;
+    
+    for(i=sp->top;i!=-1;i--)
+    {
+        printf("%s\n",*(sp->elements+i));
+    }
+}
+int main()
+{
+    stack e1;
+    
+    initialize(&e1);
+    push(&e1,"VISHAL");
+    push(&e1,"HEMANT");
+    push(&e1,"JOSEPHINE");
+    push(&e1,"ABHISHEK");
+    push(&e1,"NILESH");
+    
+    display(&e1);
+    
+    printf("\n\n");
+    pop(&e1);
+    
+    display(&e1);
+}
+========================================================================================================================
+
+Q.8 Create two stacks A and B . A contains 3 alphabets and B contains 3 numbers. Display Both stacks.
+
+Ans. #include<stdio.h>
+#include<stdlib.h>
+#define SIZE 3
+
+typedef struct a_st
+{
+	int Atop;
+	char Aelements[SIZE];
+}A;
+
+typedef struct b_st
+{
+	int Btop;
+	int Belements[SIZE];
+}B;
+
+void Ainitialize(A *sp)
+{
+	sp->Atop=-1;
+}
+
+void Binitialize(B *sp)
+{
+	sp->Btop=-1;
+}
+
+void Apush(A *sp,char item)
+{
+	if(A_is_full(sp))
+	printf("\nstack overflow\n");
+	
+	else
+	sp->Aelements[++sp->Atop]=item;
+}
+
+void Bpush(B *sp,int item)
+{
+	if(B_is_full(sp))
+	printf("\nstack overflow\n");
+	
+	else
+	sp->Belements[++sp->Btop]=item;
+}
+
+int Apop(A *sp)
+{
+	int x;
+	
+	if(A_is_empty(sp))
+	printf("\nstack underflow");
+	
+	else
+	x=sp->Aelements[sp->Atop--];
+	
+	return x;
+}
+
+int Bpop(B *sp)
+{
+	int x;
+	
+	if(B_is_empty(sp))
+	printf("\nstack underflow");
+	
+	else
+	x=sp->Belements[sp->Btop--];
+	
+	return x;
+}
+
+int A_is_full(A*sp)
+{
+	if(sp->Atop == SIZE-1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int B_is_full(B *sp)
+{
+	if(sp->Btop == SIZE-1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int A_is_empty(A *sp)
+{
+	if(sp->Atop == -1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int B_is_empty(B *sp)
+{
+	if(sp->Btop == -1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+void A_display(A *sp)
+{
+	int i;
+	
+	for(i=sp->Atop;i!=-1;i--)
+	{
+		printf("%c",sp->Aelements[i]);
+	}
+	
+	printf("\n\n");
+}
+
+void B_display(B *sp)
+{
+	int i;
+	
+	for(i=sp->Btop;i!=-1;i--)
+	{
+		printf("%d",sp->Belements[i]);
+	}
+	
+	printf("\n\n");
+}
+
+int main()
+{
+	 A a;
+	
+	Ainitialize(&a);
+	
+	Apush(&a,'a');
+	Apush(&a,'b');
+	Apush(&a,'c');
+	
+	A_display(&a);
+	
+	B b;
+	
+	Binitialize(&b);
+	
+	Bpush(&b,1);
+	Bpush(&b,2);
+	Bpush(&b,3);
+	
+	B_display(&b);
+	
+	
+}
+===========================================================================================================================================
+
+Q.9 Create a queue which contains 5 double values and print all values.
+
+Ans. #include<stdio.h>
+#define SIZE 7
+
+typedef struct queue
+{
+	int front;
+	int rear;
+	double elements[SIZE];
+}queue;
+
+void initialize(queue *qp)
+{
+	qp->front=-1;
+	qp->rear=-1;
+}
+
+void add(queue *qp,double item)
+{
+	if(qp->rear=-SIZE-1)
+	printf("\nqueue overflow");
+	
+	else
+	qp->elements[++qp->rear]=item;
+}
+
+int rem(queue *qp)
+{
+	double x;
+	if(qp->front==-1)
+	printf("\nqueue is empty");
+	
+	else
+	x=qp->elements[qp->front++];
+	return x;
+}
+
+void display(queue *qp)
+{
+	int i;
+	for(i=qp->front;i<qp->rear;i++)
+	{
+		printf("lf\t",qp->elements[i]);
+	}
+	
+}
+
+int main()
+{
+	queue q;
+	initialize(&q);
+	add(&q,1.4444);
+	add(&q,5.888);
+	add(&q,77.66);
+	add(&q,70);
+	add(&q,8.9);
+	
+	display(&q);
+}
+===================================================================================================================================
+
+Q.10 Create a queue which contains 5 numbers and print the square value of every element of the queue.
+
+Ans. #include<stdio.h>
+#define SIZE 7
+
+typedef struct queue
+{
+	int front;
+	int rear;
+	int elements[SIZE];
+}queue;
+
+void initialize(queue *sp)
+{
+	sp->front=-1;
+	sp->rear=-1;
+}
+
+void add(queue *sp,int item)
+{
+	if(sp->rear==SIZE-1)
+	printf("\nstack overflow");
+	
+	else
+	{
+		if(sp->front==-1)
+		sp->front=0;
+		sp->elements[++sp->rear]=item;
+    }
+
+}
+
+int rem(queue *sp)
+{
+	char x;
+	if(sp->front==-1)
+	printf("\nstack underflow");
+	
+	else
+	x=sp->elements[sp->front++];
+	
+	return x;
+}
+
+void display(queue *sp)
+{
+	int i;
+	for(i=sp->front;i<=sp->rear;i++)
+	{
+		printf("square values is : %d\n",(sp->elements[i])*(sp->elements[i]));
+	}
+}
+
+int main()
+{
+	queue v;
+	initialize(&v);
+	add(&v,1);
+	add(&v,2);
+	add(&v,3);
+	add(&v,4);
+	add(&v,5);
+
+    display(&v);	
+}
+============================================================================================================================================
+
+Q.11 Create a stack which contains ASCII values for alphabets and print Alphabets.
+
+Ans. #include<stdio.h>
+#include<stdlib.h>
+#define SIZE 27
+
+typedef struct st
+{
+	int top;
+	int elements[SIZE];
+}stack;
+
+void initialize(stack *sp)
+{
+	sp->top=-1;
+}
+
+void push(stack *sp,int item)
+{
+	if(is_full(sp))
+	printf("\nstack overflow");
+	
+	else
+	sp->elements[++sp->top]=item;
+}
+
+int pop(stack *sp)
+{
+	int x;
+	
+	if(is_empty(sp))
+	printf("\nstack underflow");
+	
+	else
+	x=sp->elements[sp->top--];
+	
+	return x;
+	
+}
+
+int is_full(stack *sp)
+{
+	if(sp->top==SIZE-1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int is_empty(stack *sp)
+{
+	if(sp->top==-1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+void display(stack *sp)
+{
+	int v;
+	
+	for(v=sp->top;v!=-1;v--)
+	{
+		printf("%c\t",sp->elements[v]);
+	}
+}
+
+int main()
+{
+	stack v1;
+	
+	initialize(&v1);
+	
+	int v;
+	
+	for(v=70;v<90;v++)
+	{
+		push(&v1,v);
+	}
+	
+	display(&v1);
+}
+=================================================================================================================================
+
+Q.12 Take 10 numbers from user, Make two stacks as Even & Odd, Even stack contains even numbers , Odd stack contains odd numbers.
+
+Ans. #include<stdio.h>
+#include<stdlib.h>
+#define SIZE 20
+
+ 
+
+typedef struct Odd_st
+{
+    int Atop;
+    int Aelements[SIZE];    
+}odd;
+typedef struct Even_st
+{
+    int Btop;
+    int Belements[SIZE];    
+}even;
+
+ 
+
+
+void Ainitialize(odd *sp)
+{
+    sp->Atop=-1;
+}
+void Binitialize(even *sp)
+{
+    sp->Btop=-1;
+}
+
+ 
+
+void Apush(odd *sp,char item)
+{
+        if(A_is_full(sp))    
+            printf("\nStack overflow\n");
+        else
+            sp->Aelements[++sp->Atop]=item;
+}
+void Bpush(even *sp,int item)
+{
+        if(B_is_full(sp))    
+            printf("\nStack overflow\n");
+        else
+            sp->Belements[++sp->Btop]=item;
+}
+
+ 
+
+int Apop(odd *sp)
+{
+    int x;
+    if(A_is_empty(sp))
+        printf("\nStack underflow");
+    else
+        x=sp->Aelements[sp->Atop--];
+    return x;    
+}
+int Bpop(even *sp)
+{
+    int x;
+    if(B_is_empty(sp))
+        printf("\nStack underflow");
+    else
+        x=sp->Belements[sp->Btop--];
+    return x;    
+}
+
+ 
+
+int A_is_full(odd*sp)   
+{
+    if(sp->Atop == SIZE-1)      
+        return 1;
+    else
+        return 0;
+}
+int B_is_full(even *sp)   
+{
+    if(sp->Btop == SIZE-1)      
+        return 1;
+    else
+        return 0;
+}
+
+ 
+
+int A_is_empty(odd *sp)   
+{
+    if(sp->Atop == -1)          
+        return 1;
+    else
+        return 0;    
+}
+int B_is_empty(even *sp)   
+{
+    if(sp->Btop == -1)          
+        return 1;
+    else
+        return 0;    
+}
+void A_display(odd *sp)
+{
+    int i;
+    
+    for(i=sp->Atop;i!=-1;i--)
+    {
+        printf("%d ",sp->Aelements[i]);    
+    }    
+    printf("\n");
+}
+
+ 
+
+void B_display(even *sp)
+{
+    int i;
+    
+    for(i=sp->Btop;i!=-1;i--)
+    {
+        printf("%d ",sp->Belements[i]);    
+    }    
+    printf("\n");
+}
+
+ 
+
+int main()
+{
+    odd a;
+    even b;
+    int *s;
+    Ainitialize(&a);
+    Binitialize(&b);
+    int i,v;
+    for(i=0;i<10;i++)
+    {
+        printf("Enter Number :");
+        scanf("%d",&v);
+        {
+          int val=v%2;
+              switch(val)
+         {
+           case 0:
+                Apush(&a,v);
+                break;
+           case 1:
+                Bpush(&b,v);
+                break;
+         }
+        }
+    }
+    A_display(&a);
+    B_display(&b);
+    
+    
+}
+===========================================================================================================================================
+
+Q.13 Make a program to copy elements of one stack to another.
+
+Ans. #include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define SIZE 10
+
+typedef struct a_st
+{
+	int Atop;
+	char Aelements[SIZE];
+}A;
+
+typedef struct b_st
+{
+	int Btop;
+	char Belements[SIZE];
+}B;
+
+void Ainitialize(A *sp)
+{
+	sp->Atop=-1;
+}
+
+void Binitialize(B *sp)
+{
+	sp->Btop=-1;
+}
+
+void A_push(A *sp,char item)
+{
+	if(A_is_full(sp))
+	printf("\nstack overflow");
+	
+	else
+	sp->Aelements[++sp->Atop]=item;
+}
+
+void Bpush(B *sp,char item)
+{
+	if(B_is_full(sp))
+	printf("\nstack overflow");
+	
+	else
+	sp->Belements[++sp->Btop]=item;
+}
+
+int Apop(A *sp)
+{
+	int x;
+	
+	if(A_is_empty(sp))
+	printf("\nstack underflow");
+	
+	else
+	x=sp->Aelements[sp->Atop--];
+	
+	return x;
+}
+
+int A_is_full(A*sp)
+{
+	if(sp->Atop == SIZE-1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int B_is_full(B*sp)
+{
+	if(sp->Btop == SIZE-1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int A_is_empty(A *sp)
+{
+	if(sp->Atop == -1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int B_is_empty(B *sp)
+{
+	if(sp->Btop == -1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+void A_display(A *sp)
+{
+	int i;
+	
+	for(i=sp->Atop;i!=-1;i--)
+	{
+		printf("%d",sp->Aelements[i]);
+	}
+	
+	printf("\n\n");
+}
+
+void B_display(B *sp)
+{
+	int i;
+	
+	for(i=sp->Btop;i!=-1;i--)
+	{
+		printf("%d",sp->Belements[i]);
+	}
+	
+	printf("\n\n");
+}
+
+int main()
+{
+	A a;
+	Ainitialize(&a);
+	
+	B b;
+	Binitialize(&b);
+	
+	int *p1;
+	
+	p1=&a;
+	
+	int i,j;
+	
+	for(i=0;i<SIZE;i++)
+	{
+		printf("enter the number : ");
+		scanf("%d",&j);
+		
+		Apush(&a,j);
+		Bpush(&b,j);
+	}
+	
+	A_display(&a);
+	printf("\n");
+	
+	B_display(&b);
+	
+}
+============================================================================================================================
+
+Q.14 Read 5 numbers from user and store it in a stack.
+
+Ans. #include<stdio.h>
+#include<stdlib.h>
+#define SIZE 7
+
+typedef struct st
+{
+	int top;
+	int elements[SIZE];
+}stack;
+
+void initialize(stack *sp)
+{
+	sp->top=-1;
+}
+
+void push(stack *sp,int item)
+{
+	if(is_full(sp))
+	printf("\nstack overflow");
+	
+	else
+	sp->elements[++sp->top]=item;
+}
+
+int pop(stack *sp)
+{
+	int x;
+	
+	if(is_empty(sp))
+	printf("\nstack underflow");
+	
+	else
+	x=sp->elements[sp->top--];
+	
+	return x;
+}
+
+int is_full(stack *sp)
+{
+	if(sp->top==SIZE-1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+int is_empty(stack *sp)
+{
+	if(sp->top==-1)
+	return 1;
+	
+	else
+	return 0;
+}
+
+void display(stack *sp)
+{
+	int i;
+	
+	for(i=sp->top;i!=-1;i++)
+	{
+		printf("%d",sp->elements[i]);
+	}
+	
+	printf("\n");
+}
+
+int main()
+{
+	stack s1;
+	initialize(&s1);
+	
+	int i,j;
+	for(i=s1.top;i<4;i++)
+	{
+		printf("enter the number : ");
+		scanf("%d",&j);
+		push(&s1,j);
+	}
+	
+	display(&s1);
+	
+}
+============================================================================================================================
+
+Q.15 Create a Link list of 5 nodes which stores information as a character.
+
+Ans. #include<stdio.h>
+#include<stdlib.h>
+
+ 
+
+typedef struct nd             
+{                           
+    char data;
+    struct nd *next;
+}node;
+
+ 
+
+typedef struct ls
+{
+    node *head,*tail;
+}list;
+
+ 
+
+node* createNode(char no)
+{
+    node *np;
+    
+    np=(node*)malloc(sizeof(node));  
+    
+    if(np == NULL)
+    {
+        printf("Memory not available");
+        exit(0);    
+    }
+    
+    np->data=no;
+    np->next=NULL;
+    
+    return np;
+}
+
+ 
+
+void initalize(list *p)
+{
+    p->head = NULL;
+    p->tail = NULL;
+}
+void insertAtail(list *p,char x)
+{
+    node *np;
+    np = createNode(x);
+    if(p->head==NULL)
+    p->head = np;
+    else
+    p->tail->next = np;
+    p->tail = np;
+}
+
+ 
+
+void traverse(list *p)
+{
+    node *sp;
+    sp = p->head;
+    
+    while(sp!=NULL)
+    {
+        printf("%c",sp->data);
+        sp=sp->next;
+    }
+}
+int main()
+{    
+    list *p;
+    
+    p = (list*) malloc(sizeof(list));
+    
+    if(p == NULL)
+    {
+        printf("MEMORY UNVAVAILABLE");
+        exit(0);
+    }
+    
+    initalize(p);
+    insertAtail(p,'A');
+    insertAtail(p,'B');
+    insertAtail(p,'C');
+    insertAtail(p,'D');
+    insertAtail(p,'E');
+    
+    traverse(p);
+    
+    free(p);
+}
+=======================================================================================================================================
+
+Q.16 Write a program to count the number of nodes in the link list.
+
+Ans. #include<stdio.h>
+#include<conio.h>
+
+typedef struct list
+{
+	int data;
+	struct list *next;
+}node;
+
+node *start=NULL;
+node *creat(node*);
+node *display(node*);
+int countnode(node*);
+
+void main()
+{
+	int option,c=0;
+	
+	do
+	{
+		printf("\n main menu");
+		printf("\n1:create list");
+		printf("\n2:display list");
+		printf("\n3:count node");
+		printf("\n0:exit\n");
+		printf("\nenter option:");
+		scanf("%d",&option);
+		switch(option)
+		{
+			case 1:start=creat(start);
+			printf("\nlinked list created");
+			break;
+			case 2:start=display(start);
+			break;
+			case 3:c=countnode(start);
+			printf("\nthese are %d node in list\n",c);
+			break;
+			case 0:
+			exit(0);
+		}
+		
+     }
+     
+     while(option!=0);
+     getch();
+}
+
+node *creat(node *start)
+{
+	node *ptr,*newnode;
+	int num;
+	printf("enter data,press 999 to exit:");
+	scanf("%d",&num);
+	while(num!=999)
+	{
+		newnode=(node*)malloc(sizeof(node));
+		newnode->data=num;
+		if(start==NULL)
+		{
+			newnode->next=NULL;
+			start=newnode;
+		}
+		else
+		{
+			ptr=start;
+			while(ptr->next!=NULL)
+			ptr=ptr->next;
+			ptr->next=newnode;
+			newnode->next=NULL;
+		}
+		
+		printf("enter another data : ");
+		scanf("%d",&num);
+	}
+	
+	return start;
+}
+
+node* display(node* start)
+{
+	node *ptr;
+	ptr=start;
+	while(ptr!=NULL)
+	{
+		printf("\%d->",ptr->data);
+		ptr=ptr->next;
+	}
+	return start;
+}
+
+int countnode(node* start)
+{
+	node *ptr;
+	int x=0;
+	ptr=start;
+	while(ptr!=NULL)
+	{
+		x++;
+		ptr=ptr->next;
+	}
+	return x;
+}
+======================================================================================================================================
+
+
