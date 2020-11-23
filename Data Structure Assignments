@@ -1695,7 +1695,7 @@ void displaynodelist()
 Q.21 Create an array of 5 integer values and search an element in the array using Linear Search.
 
 Ans. #include<stdio.h>
-#include<conio.h>
+     #include<conio.h>
 
 void main()
 {
@@ -1726,4 +1726,47 @@ void main()
 	getch();
 }
 ========================================================================================================================
+
+Q.23 Sort an array of 5 numbers using Insertion sort
+
+Ans. #include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	int n, array[1000], c, d, t;
+	
+	printf("enter number of elements\n");
+	scanf("%d",&n);
+	
+	printf("enter %d integers\n", n);
+	
+	for(c=0; c < n; c++)
+	{
+		scanf("%d", &array[c]);
+	}
+	
+	for(c = 1; c <= n-1; c++)
+	{
+		d = c;
+		
+		while (d > 0 && array[d] < array[d-1])
+		{
+			t=array[d];
+			array[d]=array[d-1];
+			array[d-1]=t;
+			
+			d--;
+		}
+	}
+	
+	printf("sorted list in accending order :\n");
+	
+	for(c=0;c<=n-1;c++)
+	{
+		printf("%d\n",array[c]);
+	}
+	getch();
+}
+==========================================================================================================================
 
