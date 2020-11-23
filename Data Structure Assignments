@@ -1692,4 +1692,38 @@ void displaynodelist()
 }
 ==========================================================================================================================================
 
+Q.21 Create an array of 5 integer values and search an element in the array using Linear Search.
+
+Ans. #include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	int a[50],n,i,j,v=0;
+	
+	printf("enter the number of elements to store:\n");
+	scanf("%d",&n);
+	
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+	printf("enter the element to search :\n");
+	scanf("%d",&j);
+	
+	for(i=0;i<n;i++)
+	{
+		if(a[i]==j)
+		{
+			printf("element found :");
+			v=1;
+			break;
+		}
+	}
+	
+	if(v==0)
+	printf("element not found :");
+	getch();
+}
+========================================================================================================================
 
