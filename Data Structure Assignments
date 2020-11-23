@@ -1240,4 +1240,138 @@ int countnode(node* start)
 }
 ======================================================================================================================================
 
+Q.18 Create a Link list of 5 nodes and print it in reverse order.
+
+Ans. #include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+	int data;
+	struct node*nextptr;
+};
+
+struct node*startnode;
+
+
+void createnodelist(int numberofnodes);
+
+void reversenodelist();
+
+void displaynodelist();
+
+int main()
+{
+	int numberofnodes;
+	
+	printf("input the number of nodes : ");
+	scanf("%d",&numberofnodes);
+	
+	createnodelist(numberofnodes);
+	
+	printf("\ndata entered in the list are : \n");
+	displaynodelist();
+	
+	printf("\nthe list in reverse are : \n");
+	reversenodelist();
+	displaynodelist();
+	return 0;
+}
+
+void createnodelist(int numberofnodes)
+{
+	struct node*newnode;
+	struct node*tempnode;
+	int userinput;
+	int nodeid;
+	
+	startnode = (struct node *)malloc(sizeof(struct node));
+	
+	if(startnode == NULL)
+	{
+		printf("memory can not be allocated");
+	}
+	
+	else
+	{
+		printf("input data for user 1 : ");
+		scanf("%d", &userinput);
+		
+		startnode->data = userinput;
+		startnode->nextptr = NULL;
+		
+		tempnode = startnode;
+		
+		for(nodeid = 2; nodeid <= numberofnodes; nodeid++)
+		{
+			newnode = (struct node *)malloc(sizeof(struct node));
+			
+			if(newnode == NULL)
+			{
+				printf("memory can not be allocated. ");
+				break;
+			}
+			else
+			{
+				printf("input data for node %d : ", nodeid);
+				scanf("%d",&userinput);
+				
+				newnode->data = userinput;
+				newnode->nextptr = NULL;
+				
+				tempnode->nextptr = newnode;
+				tempnode = tempnode->nextptr;
+			}
+		}
+	}
+	 
+}
+void reversenodelist()
+{
+	struct node *previousnode;
+	struct node *currentnode;
+	
+	if(startnode != NULL)
+	{
+		previousnode = startnode;
+		
+		currentnode = startnode->nextptr;
+		startnode = startnode->nextptr;
+		
+		previousnode->nextptr = NULL;
+		
+		while(startnode != NULL)
+		{
+			startnode = startnode->nextptr;
+			currentnode->nextptr = previousnode;
+			
+			previousnode = currentnode;
+			currentnode = startnode;
+		}
+		
+		startnode = previousnode;
+	}
+}
+
+void displaynodelist()
+{
+	struct node *tempnode;
+	
+	if(startnode == NULL)
+	{
+		printf("no data found in the list.");
+	}
+	else
+	{
+		tempnode = startnode;
+		
+		while(tempnode != NULL)
+		{
+			printf("data = %d\n", tempnode->data);
+			tempnode = tempnode->nextptr;
+		}
+	}
+}
+=====================================================================================================================================
+
 
