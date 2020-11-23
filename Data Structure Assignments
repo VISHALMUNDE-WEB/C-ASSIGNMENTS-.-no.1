@@ -1240,6 +1240,199 @@ int countnode(node* start)
 }
 ======================================================================================================================================
 
+Q.17 Create a Link list of 3 nodes containing 3 double values and print the average of 3 numbers.
+
+Ans. #include<stdio.h>
+
+#include<stdlib.h>
+
+ 
+
+typedef struct nd             
+
+{                           
+
+    double data;
+
+    struct nd *next;
+
+}node;
+
+ 
+
+typedef struct ls
+
+{
+
+ node *head,*tail;
+
+}list;
+
+ 
+
+node* createNode(double no)
+
+{
+
+    node *np;
+
+    
+
+    np=(node*)malloc(sizeof(node));  
+
+    
+
+    if(np == NULL)
+
+    {
+
+        printf("Memory not available");
+
+        exit(0);    
+
+    }
+
+    
+
+    np->data=no;
+
+    np->next=NULL;
+
+    
+
+    return np;
+
+}
+
+ 
+
+void initalize(list *p)
+
+{
+
+ p->head = NULL;
+
+ p->tail = NULL;
+
+}
+
+void insertAtail(list *p,double x)
+
+{
+
+ node *np;
+
+ np = createNode(x);
+
+ if(p->head==NULL)
+
+ p->head = np;
+
+ else
+
+ p->tail->next = np;
+
+ p->tail = np;
+
+}
+
+ 
+
+void traverse(list *p)
+
+{
+
+    node *sp;
+
+    sp = p->head;
+
+    
+
+    while(sp!=NULL)
+
+    {
+
+     printf("%lf\n",sp->data);
+
+     sp=sp->next; 
+
+     
+
+     printf("\n");
+
+ }
+
+ sp=p->head;
+
+ float sum=0;
+
+ while(sp!=NULL)
+
+ {
+
+ sum=(sum+sp->data);
+
+ sp=sp->next;
+
+ }
+
+ printf("\nSUM = %f",sum);
+
+ float avg=0;
+
+ avg=sum/3;
+
+ printf("\nAVERAGE = %f",avg);
+
+}
+
+ 
+
+int main()
+
+{    
+
+    list *p;
+
+    
+
+    p = (list*) malloc(sizeof(list));
+
+    
+
+    if(p == NULL)
+
+    {
+
+     printf("MEMORY UNVAVAILABLE");
+
+     exit(0);
+
+ }
+
+ 
+
+ initalize(p);
+
+ insertAtail(p,12.357);
+
+ insertAtail(p,14.2345);
+
+ insertAtail(p,17.234);
+
+ 
+
+ traverse(p);
+
+ 
+
+ free(p);
+
+    
+
+}
+===========================================================================================================================================
+
 Q.18 Create a Link list of 5 nodes and print it in reverse order.
 
 Ans. #include<stdio.h>
