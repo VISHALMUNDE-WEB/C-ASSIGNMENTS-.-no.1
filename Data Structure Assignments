@@ -1,6 +1,7 @@
 Q.1 Create a structure Student ( rollno, name), Create a structure variable and Access the members using structure variable.
 
 Ans. #include<stdio.h>
+     #include<conio.h>
 
 struct student
 {
@@ -44,7 +45,7 @@ int main()
 Q.3 Create an array of structure which is used to store 3 employee records.
 
 Ans. #include<stdio.h>
-#include<conio.h>
+     #include<conio.h>
 
 struct employee
 {
@@ -119,7 +120,7 @@ int main()
 Q.6 Create a stack of 5 characters and display all elements.
 
 Ans. #include<stdio.h>
-#include<stdlib.h>
+     #include<stdlib.h>
 #define SIZE 7
 
 typedef struct st
@@ -197,7 +198,7 @@ int main()
 Q.7 Create a stack of 5 names of employees and delete the last name and display it.
 
 Ans. #include<stdio.h>
-#include<stdlib.h>
+     #include<stdlib.h>
 #define SIZE 10
 typedef struct st
 {
@@ -271,7 +272,7 @@ int main()
 Q.8 Create two stacks A and B . A contains 3 alphabets and B contains 3 numbers. Display Both stacks.
 
 Ans. #include<stdio.h>
-#include<stdlib.h>
+     #include<stdlib.h>
 #define SIZE 3
 
 typedef struct a_st
@@ -558,7 +559,7 @@ int main()
 Q.11 Create a stack which contains ASCII values for alphabets and print Alphabets.
 
 Ans. #include<stdio.h>
-#include<stdlib.h>
+     #include<stdlib.h>
 #define SIZE 27
 
 typedef struct st
@@ -643,7 +644,7 @@ int main()
 Q.12 Take 10 numbers from user, Make two stacks as Even & Odd, Even stack contains even numbers , Odd stack contains odd numbers.
 
 Ans. #include<stdio.h>
-#include<stdlib.h>
+     #include<stdlib.h>
 #define SIZE 20
 
  
@@ -803,7 +804,7 @@ int main()
 Q.13 Make a program to copy elements of one stack to another.
 
 Ans. #include<stdio.h>
-#include<stdlib.h>
+     #include<stdlib.h>
 #include<string.h>
 #define SIZE 10
 
@@ -954,7 +955,7 @@ int main()
 Q.14 Read 5 numbers from user and store it in a stack.
 
 Ans. #include<stdio.h>
-#include<stdlib.h>
+     #include<stdlib.h>
 #define SIZE 7
 
 typedef struct st
@@ -1041,7 +1042,7 @@ int main()
 Q.15 Create a Link list of 5 nodes which stores information as a character.
 
 Ans. #include<stdio.h>
-#include<stdlib.h>
+     #include<stdlib.h>
 
  
 
@@ -1137,7 +1138,7 @@ int main()
 Q.16 Write a program to count the number of nodes in the link list.
 
 Ans. #include<stdio.h>
-#include<conio.h>
+     #include<conio.h>
 
 typedef struct list
 {
@@ -1243,11 +1244,8 @@ int countnode(node* start)
 Q.17 Create a Link list of 3 nodes containing 3 double values and print the average of 3 numbers.
 
 Ans. #include<stdio.h>
-
-#include<stdlib.h>
-
- 
-
+     #include<stdlib.h>
+     
 typedef struct nd             
 
 {                           
@@ -1436,7 +1434,7 @@ int main()
 Q.18 Create a Link list of 5 nodes and print it in reverse order.
 
 Ans. #include<stdio.h>
-#include<stdlib.h>
+     #include<stdlib.h>
 
 struct node
 {
@@ -1730,7 +1728,7 @@ void main()
 Q.23 Sort an array of 5 numbers using Insertion sort
 
 Ans. #include<stdio.h>
-#include<conio.h>
+     #include<conio.h>
 
 void main()
 {
