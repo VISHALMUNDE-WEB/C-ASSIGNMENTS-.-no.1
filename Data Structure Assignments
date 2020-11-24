@@ -1728,7 +1728,7 @@ void main()
 Q.22 Create an array of string and search a particular string using Linear Search.
 
 Ans. #include<stdio.h>
-#include<string.h>
+     #include<string.h>
 
 void main()
 {
