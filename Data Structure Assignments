@@ -1725,6 +1725,41 @@ void main()
 }
 ========================================================================================================================
 
+Q.22 Create an array of string and search a particular string using Linear Search.
+
+Ans. #include<stdio.h>
+#include<string.h>
+
+void main()
+{
+	char name[5][10], s[10];
+	int i;
+	for(i=0; i<5; i++)
+	{
+		printf("enter name : ");
+		gets(name[i]);
+	}
+	
+	printf("enter name to search : ");
+	gets(s);
+	
+	for(i=0;i<5;i++)
+	{
+		if(strcmpi(s,name[i])==0)
+		{
+			printf("found");
+			break;
+		}
+		
+		else(i==5);
+		
+	    printf("not found");
+	    break;
+    }
+	
+}
+=====================================================================================================================================
+
 Q.23 Sort an array of 5 numbers using Insertion sort
 
 Ans. #include<stdio.h>
