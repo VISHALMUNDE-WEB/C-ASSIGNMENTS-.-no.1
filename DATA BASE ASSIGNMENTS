@@ -2,20 +2,36 @@ Q.1 Create a table Result which stores the records of 5 students where the field
     rollno, name, percentage
     
 ANS. create table result(name varchar2(10),rollno varchar2(10),percentage number(3));
+
      insert into result values( 'vishal', '7', '99');
      insert into result values( 'arjun', '8', '90');
      insert into result values( 'sahil', '9', '80');
      insert into result values( 'dhiraj', '6', '70');
      insert into result values( 'raj', '5', '60');
+     
      select * from result; 
-========================================================================================
+====================================================================================================================================================================================================================================
 
 Q.2 Add a column in the Result table named as Grade
 
 ANS. alter table result add grade char(1);
-========================================================================================
+====================================================================================================================================================================================================================================
+
+Q.3 Create a table marks which stores the marks of 5 subjects(physics,chemistry,maths,computer,english) and display the percentage. 
+    Store record of 5 students.
+    
+ANS. create table percentages(NAME varchar2(10), physics number(3), chemistry number(3), maths number(3), computer number(3), english number(3), percentages  as (((physics + chemistry + maths + computer + english)/500)*100));
+
+     insert into percentages (NAME, physics, chemistry, maths, computer, english) values('VISHAL', '90', '80', '70', '98', '99');
+     insert into percentages (NAME, physics, chemistry, maths, computer, english) values('ARJUN',  '80', '90', '70', '78', '79');
+     insert into percentages (NAME, physics, chemistry, maths, computer, english) values('RAJ',    '70', '60', '80', '98', '89');
+     insert into percentages (NAME, physics, chemistry, maths, computer, english) values('DHIRAJ', '60', '50', '30', '68', '49');
+     insert into percentages (NAME, physics, chemistry, maths, computer, english) values('SAHIL',  '50', '80', '70', '68', '59');
+
+     select * from percentages;  
+=====================================================================================================================================================================================================================================     
 
 Q.4 Rename the table Result with StudentScore.
 
 ANS. alter table result rename to studentscore;
-========================================================================================
+======================================================================================================================================================================================================================================
