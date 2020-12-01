@@ -1,1 +1,21 @@
+Q.1 Create a table Result which stores the records of 5 students where the fields as 
+    rollno, name, percentage
+    
+ANS. create table result(name varchar2(10),rollno varchar2(10),percentage number(3));
+     insert into result values( 'vishal', '7', '99');
+     insert into result values( 'arjun', '8', '90');
+     insert into result values( 'sahil', '9', '80');
+     insert into result values( 'dhiraj', '6', '70');
+     insert into result values( 'raj', '5', '60');
+     select * from result; 
+========================================================================================
 
+Q.2 Add a column in the Result table named as Grade
+
+ANS. alter table result add grade char(1);
+========================================================================================
+
+Q.4 Rename the table Result with StudentScore.
+
+ANS. alter table result rename to studentscore;
+========================================================================================
