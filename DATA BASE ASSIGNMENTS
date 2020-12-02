@@ -35,3 +35,43 @@ Q.4 Rename the table Result with StudentScore.
 
 ANS. alter table result rename to studentscore;
 ======================================================================================================================================================================================================================================
+
+Q.5 Create two tables A and B where A has 3 columns and B has 2 columns , Copy last two columns from table A to Table B.
+
+ANS. create table a(col1 varchar2(10), col2 varchar2(10), col3 varchar2(10));
+
+     insert into a values('vishal', 'arjun', 'ganesh');
+
+     select * from  a;
+
+     create table b(col1 varchar2(10), col2 varchar2(10), col3 varchar2(10));
+
+     insert into b(col2, col3) select col2, col3 from a;
+
+     select * from b;
+==========================================================================================================================================================================
+
+Q.6 Create a table which stores the information about a product . Fields are pid,pname,pqty,pcost. 
+     a) Display records in ascending order of quantity.  
+     b) Display records in descending order of product cost.
+     c) Display record for the product where the cost is highest.
+     d) Display the pid and pname of those products where the pcost is same.
+     
+ ANS. create table products(pid number(10), pname varchar2(10), pqty number(10), pcost number(10));
+
+insert into products values('101', 'mobile', '1', '20000');
+insert into products values('102', 'tv',     '2', '30000');
+insert into products values('103', 'wifi',   '3', '40000');
+insert into products values('104', 'fan',    '4', '50000');
+insert into products values('105', 'coller', '5', '60000');
+insert into products values('106', 'led',    '6', '20000');
+
+select * from products;
+
+select * from products ORDER BY pqty ASC;
+
+select * from products ORDER BY pcost DESC;
+
+select * from products where pcost = '60000'
+====================================================================================================================================================
+    
