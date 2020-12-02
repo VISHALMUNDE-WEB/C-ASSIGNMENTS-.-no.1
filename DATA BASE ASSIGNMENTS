@@ -59,19 +59,21 @@ Q.6 Create a table which stores the information about a product . Fields are pid
      
  ANS. create table products(pid number(10), pname varchar2(10), pqty number(10), pcost number(10));
 
-insert into products values('101', 'mobile', '1', '20000');
-insert into products values('102', 'tv',     '2', '30000');
-insert into products values('103', 'wifi',   '3', '40000');
-insert into products values('104', 'fan',    '4', '50000');
-insert into products values('105', 'coller', '5', '60000');
-insert into products values('106', 'led',    '6', '20000');
+      insert into products values('101', 'mobile', '1', '20000');
+      insert into products values('102', 'tv',     '2', '30000');
+      insert into products values('103', 'wifi',   '3', '40000');
+      insert into products values('104', 'fan',    '4', '50000');
+      insert into products values('105', 'coller', '5', '60000');
+      insert into products values('106', 'led',    '6', '20000');
 
-select * from products;
+      select * from products;
 
-select * from products ORDER BY pqty ASC;
+     a) select * from products ORDER BY pqty ASC;
 
-select * from products ORDER BY pcost DESC;
+     b) select * from products ORDER BY pcost DESC;
 
-select * from products where pcost = '60000'
+     c) select * from products where pcost = '60000'
+
+     d) select pid, pname from products where pcost = '20000';
 ====================================================================================================================================================
     
