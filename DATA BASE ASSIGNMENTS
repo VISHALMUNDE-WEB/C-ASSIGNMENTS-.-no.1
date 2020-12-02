@@ -76,4 +76,21 @@ Q.6 Create a table which stores the information about a product . Fields are pid
 
      d) select pid, pname from products where pcost = '20000';
 ====================================================================================================================================================
+
+Q.7 Create a table where insert 5 records like name,dob and city of a customer using single insert query.
+
+ANS. create table record(name varchar2(10), dob varchar2(10), city varchar(10));
+
+     select * from record;
+
+     insert all
+       
+           into record(name, dob, city) values('vishal', '07-03-2002', 'pune')
+           into record(name, dob, city) values('arjun',  '08-04-2003', 'nashik')
+           into record(name, dob, city) values('dhiraj', '09-05-2004', 'banglore')
+           into record(name, dob, city) values('raj',    '10-06-2005', 'mumbai')
+           into record(name, dob, city) values('sahil',  '11-07-2006', 'solapur')
+                      
+           select * from dual;
+======================================================================================================================================================           
     
