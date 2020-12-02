@@ -94,3 +94,17 @@ ANS. create table record(name varchar2(10), dob varchar2(10), city varchar(10));
            select * from dual;
 ======================================================================================================================================================           
     
+Q.8 Create a table which stores the salary of 3 employees along with the name and display the names salary wise (highest first).
+
+ANS. create table employee(name varchar2(10), salary number(10));
+
+     insert into employee values('vishal', '90000');
+     insert into employee values('arjun',  '80000');
+     insert into employee values('dhiraj', '70000');
+     insert into employee values('sahil',  '95000');
+     insert into employee values('rahul',  '850000');
+
+     select * from employee;
+
+     select * from employee order by salary desc;
+=======================================================================================================================================================     
