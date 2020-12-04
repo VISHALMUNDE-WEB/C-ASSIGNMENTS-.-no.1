@@ -113,3 +113,18 @@ Q.9 Update the highest salary of the employee in above question to the minimum o
 
 ANS. update employee set salary='50000' where name='rahul';
 ==========================================================================================================================================
+
+Q.10 create a table employee: eid, age, dept, salary. Show name of dept with lowest salary using group by.
+
+ANS. create table employes(name varchar2(10),dept varchar2(20),eid number(10), age number(10), salary number(10));
+
+insert into employes values('VISHAL',  'IT',  '101', '21', '50000');
+insert into employes values('ABHISHEK','abc', '102', '22', '40000');
+insert into employes values('NILESH',  'cde', '103', '23', '30000');
+insert into employes values('NIMESH',  'efg', '104', '24', '35000');
+insert into employes values('HEMANT',  'IT',  '105', '25', '45000');
+
+select * from employes;
+   
+select dept,min(salary) AS "Total Salary" from employes group by dept having min(salary)<50000;		
+=================================================================================================================================================
