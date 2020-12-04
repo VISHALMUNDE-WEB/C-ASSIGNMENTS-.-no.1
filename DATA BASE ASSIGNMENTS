@@ -108,3 +108,8 @@ ANS. create table employee(name varchar2(10), salary number(10));
 
      select * from employee order by salary desc;
 =======================================================================================================================================================     
+
+Q.9 Update the highest salary of the employee in above question to the minimum of all.
+
+ANS. update employee set salary='50000' where name='rahul';
+==========================================================================================================================================
