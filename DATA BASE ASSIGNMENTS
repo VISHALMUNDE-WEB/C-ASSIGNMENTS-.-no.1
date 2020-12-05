@@ -128,3 +128,35 @@ select * from employes;
    
 select dept,min(salary) AS "Total Salary" from employes group by dept having min(salary)<50000;		
 =================================================================================================================================================
+
+Q.11 Write a query to perform following operations on the table :
+      a) Create a table as Population :  State, popoulation
+      b) Find minimum population
+      c) Find maximum population
+      d) find average population
+      e) Display name of state population wise in descending order
+      f) Display name of state population wise in ascending order
+      
+ANS. create table population(state varchar2(15), population number(10));
+
+insert all
+           into population (state,population) values('maharashtra', '100000')
+           into population (state,population) values('karnataka'  , '900000')
+           into population (state,population) values('haryana',     '800000')
+           into population (state,population) values('up',          '700000')
+           into population (state,population) values('gujrat',      '600000')
+           
+           select * from dual;
+           
+           select * from population;
+           
+           select min(population) AS Total_Records from population;
+          
+           select max(population) AS Total_Records from population;
+           
+           select avg(population) AS Total_Records from population;     
+    
+           select * from population ORDER BY population desc;
+           
+           select * from population ORDER BY population ASC;
+=======================================================================================================================================          
