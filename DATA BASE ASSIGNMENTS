@@ -159,4 +159,26 @@ insert all
            select * from population ORDER BY population desc;
            
            select * from population ORDER BY population ASC;
-=======================================================================================================================================          
+======================================================================================================================================= 
+
+Q.12 Create a table ItemSales : Itemname, Sales, city  
+     Display the following output (Create a query which displays the Total sales citywise)
+      Item           Sales
+      ----           -----
+      RAM             4
+      Hard Disk       3
+      Mouse           1
+      
+ANS. create table ITEMSALES(itemname varchar2(10), sales number(10), city varchar2(10));
+
+insert all
+            into ITEMSALES(itemname,sales,city) values('RAM',       '4', 'PUNE')
+            into ITEMSALES(itemname,sales,city) values('HARD DISK', '3', 'MUMBAI')
+            into ITEMSALES(itemname,sales,city) values('MOUSE',     '1', 'PARALI')
+            
+            select * from dual;
+            
+            select * from ITEMSALES;
+            
+            select city,sum(sales) as "total_sales" from ITEMSALES group by city;
+=================================================================================================================================      
