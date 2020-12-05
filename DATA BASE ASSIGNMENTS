@@ -182,3 +182,22 @@ insert all
             
             select city,sum(sales) as "total_sales" from ITEMSALES group by city;
 =================================================================================================================================      
+
+Q.14 Make a table which stores the name and mobile no of customers. where mobile no can not saved in database if the mobile no is less than 10 digits.
+
+ANS. create table Mycustomers(name varchar2(10),mobilenumber number,check (mobilenumber >=1000000000));
+
+
+insert all
+           into Mycustomers(name, mobilenumber) values('VISHAL', '9356464080')
+           into Mycustomers(name, mobilenumber) values('ARJUN',  '1020304050')
+           into Mycustomers(name, mobilenumber) values('DHIRAJ', '9356464080')
+           into Mycustomers(name, mobilenumber) values('SAHIL',  '9356464080')
+           into Mycustomers(name, mobilenumber) values('RAJ',    '9356464080')
+           
+           insert into Mycustomers(name, mobilenumber) values('suraj',  '123456789')
+           
+           select * from dual;
+           
+           select * from Mycustomers;
+===========================================================================================================================================================           
