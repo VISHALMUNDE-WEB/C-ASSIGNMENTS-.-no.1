@@ -201,3 +201,23 @@ insert all
            
            select * from Mycustomers;
 ===========================================================================================================================================================           
+
+Q.15 Create a table person which stores the ID,name,email where define ID as primary key.Create another table Birthday which stores date of birth and ID.
+     Join both tables and create Foreign key in Birthday.
+     
+ANS. create table person(ID number(10) primary key, name varchar2(10), email varchar2(20));
+
+insert into person values('101', 'VISHAL', 'VISHAL7GMAIL.COM');
+
+create table birthday(DOB number(10), ID number(10));
+
+alter table birthday modify DOB VARCHAR2(10);
+ 
+insert into birthday values('07-03-2002', '102');
+
+select p.ID,p.name,p.email,b.DOB from person p,birthday b where p.ID=b.ID;
+   
+select * from person;
+
+select * from birthday;
+=============================================================================================================================================
