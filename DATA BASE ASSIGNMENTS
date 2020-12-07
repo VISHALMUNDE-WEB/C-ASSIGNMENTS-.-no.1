@@ -181,7 +181,16 @@ insert all
             select * from ITEMSALES;
             
             select city,sum(sales) as "total_sales" from ITEMSALES group by city;
-=================================================================================================================================      
+=================================================================================================================================
+
+Q.13 Make a table which stores the email id and password where password should not be saved if the length is less than 8 character.
+
+ANS. create table tab1(EMAILID varchar2(20), PASSWORD varchar2(20) check(length(password)>8));
+
+insert into tab1 values('VISHAL7@GMAIL.COM', 'VISHALMUNDE');
+
+insert into tab1 values('VISHAL7@GMAIL.COM', 'VISHAL');
+=======================================================================================================================================
 
 Q.14 Make a table which stores the name and mobile no of customers. where mobile no can not saved in database if the mobile no is less than 10 digits.
 
