@@ -229,7 +229,31 @@ select p.ID,p.name,p.email,b.DOB from person p,birthday b where p.ID=b.ID;
 select * from person;
 
 select * from birthday;
-=============================================================================================================================================
+================================================================================================================================================================
+
+Q.16 Create a table where records of an employee is maintained . 
+     Fields are EID (primary key), Ename (NOT NULL), officeno (Unique), DateOfJoining(NOT NULL),CompanyName(Default),Salary(Check is : salary > 0)
+     Create PersonnelDetails : ID( Foreign Key ) , Addres (NOT NULL), contactno(NOT NULL , UNIQUE) 
+     Join Both tables and Display output
+     
+ANS. create table emprecord1(ENAME varchar2(10) not null, EID number(10) primary key, OFFICENO number(10) unique, 
+                    DATEOFJOINING varchar2(10) not null, COMPANYNAME varchar2(20) default 'GO-DIGIT',
+                    SALARY number(10) check (SALARY >=0));
+                     
+insert into emprecord1 values('VISHAL', '101', '1111', '01-01-2021', 'DIGIT', '50000');
+insert into emprecord1 values('NILESH', '102', '1122', '02-02-2022', 'DIGIT', '40000');                     
+insert into emprecord1 values('NIMESH', '103', '1133', '03-03-2023', 'DIGIT', '30000'); 
+
+select * from emprecord1;
+
+create table person1(ID number(10) constraint fk_ID references emprecord1 (EID), ADDRESS varchar2(20) not null, 
+                     CONTACTNO number not null unique); 
+select * from person1;
+
+insert into person1 values(101,'Pune','77237');
+
+select emprecord1.EID, person1.ADDRESS from emprecord1 inner join person1 on emprecord1.EID=person1.ID;
+====================================================================================================================================================================     
 
 Q.19 Create a PL/SQL Block which declares the radius of a circle and make a constant pi and assign values as 3.14 to it. Find the area of circle and Print area.
 
