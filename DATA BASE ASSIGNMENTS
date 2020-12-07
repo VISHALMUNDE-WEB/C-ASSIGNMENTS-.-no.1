@@ -230,3 +230,20 @@ select * from person;
 
 select * from birthday;
 =============================================================================================================================================
+
+Q.19 Create a PL/SQL Block which declares the radius of a circle and make a constant pi and assign values as 3.14 to it. Find the area of circle and Print area.
+
+ANS. set serveroutput on
+
+DECLARE 
+        radius real := 3.1;
+        pi constant real := 3.14;
+        v1 real;
+begin 
+
+       v1 := pi*radius*radius;
+       dbms_output.put_line('area is : '|| v1);
+     
+      end;
+      /
+=======================================================================================================================      
