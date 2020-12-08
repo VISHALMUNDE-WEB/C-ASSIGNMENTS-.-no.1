@@ -255,6 +255,45 @@ insert into person1 values(101,'Pune','77237');
 select emprecord1.EID, person1.ADDRESS from emprecord1 inner join person1 on emprecord1.EID=person1.ID;
 ==================================================================================================================================================================== 
 
+Q.17  Create a table Students ---- Rollno( Primary Key ), 
+                                   Name (NOT NULL)
+  
+      Create a table College ----- CollegeId ( Primary Key ),
+                                   EnrollId (Foreign Key ), 
+                                   College Name,
+                                   AdmissionDate,
+                                   ContactNo
+
+  a) Join these tables and show the output as
+                                            RollNo  , Name , College Name , Admission Date , Contact No 
+  b) Remove Primary Key constraint from college
+  c) Input the details of 5 students for a differnt college
+  d)  Group all the students based on collegeName
+  
+ANS. create table students(NAME varchar2(10) not null, ROLLNO number(10) primary key); 
+
+insert into students values('VISHAL', '101');
+
+create table colleges(NAME varchar2(10), COLLEGEID number(10) primary key, ENROLLID number(10) constraint fk_ROLLNO references students(ROLLNO),
+                      COLLEGENAME varchar2(10), ADDIMISSIONDATE varchar2(10), CONTACTNO number(10));
+                      
+insert into colleges values('ARJUN', '102', '101', 'MODERN', '01-01-2021', '123456789');
+insert into colleges values('VISHAL','103', '102', 'MODERN', '02-02-2022', '123444553');           
+insert into colleges values('DHIRAJ','104', '103', 'MODERN', '03-03-2023', '123223334');           
+                      
+select students.ROLLNO, colleges.NAME, COLLEGENAME, ADDIMISSIONDATE, CONTACTNO from students inner join colleges on students.ROLLNO=colleges.ENROLLID;
+
+alter table colleges drop primary key;
+
+create table college1(NAME varchar2(10), ROLLNO number(10));
+
+insert into college1 values('VISHAL', '21');
+insert into college1 values('ARJUN',  '22');
+insert into college1 values('DHIRAJ', '23');
+insert into college1 values('SAHIL',  '24');
+insert into college1 values('RAJ',    '25');
+====================================================================================================================================================================
+
 Q.18 Create a table which stores PersonName(Not Null),Mobile(Unique),Address.  Create two views v1 and v2 on the table. v1 is read only but v2 is updatable.
       v1 shows personName and Mobile while v2 shows PersonName and Address.
       
@@ -361,5 +400,23 @@ begin
         dbms_output.put_line(upper(ch));
         
         end;
-===================================================================================================================================================================        
+===================================================================================================================================================================    
+
+Q.29 create a procedure which accepts a single parameter as a integer and it is defined as IN OUT .Procedure returns the cube of the number.
+
+ANS. create or replace procedure proc_1(m1 in out integer)
+is
+begin m1 := m1 * m1 * m1;
+
+end;
+
+declare
+i integer;
+begin
+      i := 5;
+      proc_1(i);
+      dbms_output.put_line('cube is : '||i);
+      
+      end;
+======================================================================================================================================================================      
            
