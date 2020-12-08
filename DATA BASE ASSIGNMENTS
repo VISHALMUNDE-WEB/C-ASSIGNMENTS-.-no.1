@@ -402,6 +402,30 @@ begin
         end;
 ===================================================================================================================================================================    
 
+Q.28 Create a procedure which accepts one parameter as a radius of circle. Declare pi as constant in the procedure and calculate area of circle & print the area in 
+     other PLSQL Block.
+     
+ANS. set serveroutput on
+
+create or replace procedure demo_pr1(v1 in real, v2 out real)
+is
+    pi constant real := 5.15;
+    
+begin
+      v2 := pi * v1 * v1;
+end;
+
+declare
+
+v real;
+
+begin
+
+     demo_pr1(3.12,v);
+     dbms_output.put_line('AREA OF CIRCLE IS : '||v);
+end;
+=================================================================================================================================================================
+
 Q.29 create a procedure which accepts a single parameter as a integer and it is defined as IN OUT .Procedure returns the cube of the number.
 
 ANS. create or replace procedure proc_1(m1 in out integer)
