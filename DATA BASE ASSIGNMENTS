@@ -335,6 +335,78 @@ begin
       /
 ====================================================================================================================================================================
 
+q.20 PRINT ALL ALPHABETS IN UPPERCASE IN DESCENDING ORDER
+
+ANS. 
+DECLARE
+
+          i INTEGER := 90;
+          
+          j INTEGER := 65;
+          
+          a char;
+BEGIN
+
+          WHILE i>=j LOOP
+
+          a := CHR(i);
+
+          dbms_output.put_line(a);
+          
+          i := i-1;
+
+          END LOOP;
+END;
+=====================================================================================================================================================================
+
+Q.21 PRINT ALL APLHABETS FROM a to z IN ASCENDING
+
+ANS. SET SERVEROUTPUT ON
+
+DECLARE
+
+           I INTEGER := 97;
+           J INTEGER := 122;
+           a char;
+
+BEGIN
+
+           WHILE i<=j LOOP
+
+           a := CHR(i);
+
+           dbms_output.put_line(a);
+
+           i := i+1;
+           
+           END LOOP;
+END;
+=======================================================================================================================================================================
+
+Q.22 PRINT ALL EVEN NUMBERS BETWEEN 10 AND 30 USING WHILE LOOP.USE IF CONDITION TO CHECK.
+
+ANS. set serveroutput on
+
+DECLARE 
+
+        A NUMBER :=10;
+BEGIN
+
+    WHILE A<=30 LOOP  
+    
+    IF mod(A,2)=0 THEN
+    
+    dbms_output.put_line('EVEN NUMBER : '||A);
+    
+    END IF;
+    
+    A := A+1; 
+    
+    END LOOP;
+    
+END;
+==========================================================================================================================================================================
+
 Q.25 Create an array of 5 names and print all names in Capital case.
 
 ANS. set serveroutput on
