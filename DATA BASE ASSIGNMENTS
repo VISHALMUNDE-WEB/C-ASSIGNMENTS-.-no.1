@@ -407,6 +407,27 @@ BEGIN
 END;
 ==========================================================================================================================================================================
 
+Q.23 PRINT ALPHABETS IN REVERSE ORDER USING FOR LOOP.
+
+ANS. set serveroutput on
+
+DECLARE
+
+       V char;
+BEGIN
+
+       FOR M IN REVERSE 65..90 
+
+LOOP
+
+       V := CHR(M);
+
+      dbms_output.put_line(V);
+
+END LOOP;
+
+END;
+============================================================================================================================================
 Q.25 Create an array of 5 names and print all names in Capital case.
 
 ANS. set serveroutput on
@@ -516,3 +537,119 @@ begin
       end;
 ======================================================================================================================================================================      
            
+Q.30 Create following procedures :
+     Employee : eid (primary key),name (Not NULL), age (NOT NULL)
+     a) Pocedure 1 Creates a table
+     b) Pocedure 2 inserts 5 records where age of employee is greater than 18.
+     c) Procedure 3 updates a record based on the employee id.
+     d) Procedure 4 deletes a record based on employee id.
+     e) Procedure 5 shows all records.
+     f) Procedure 6 shows the record based on employee id.
+     g) Procedure 7 arranges all records age wise in ascending order.
+     
+ANS. 
+create table V1(EID number(5) primary key,NAME varchar(20) not null,AGE number(3) not null,check(AGE > 18));
+
+select * from V1;
+
+create or replace procedure PRO(EID in number,NAME in varchar2,AGE in number)
+IS
+BEGIN
+
+      insert into V1 values(EID,NAME,AGE);
+END;
+
+DECLARE
+
+BEGIN
+
+     PRO (111 ,'VISHAL', 19);
+     PRO (222 ,'ARJUN',  19);
+     PRO (333 ,'DHIRAJ', 20);
+     PRO (444 ,'SAHIL',  19);
+     PRO (555 ,'RAJ',    20);
+
+END;
+
+DECLARE 
+
+BEGIN
+
+      update V1 set NAME = 'GANESH', where EID = 555;
+END;
+
+DECLARE
+
+BEGIN
+
+      delete from V1 where EID = 444;
+
+END;
+
+
+select * from V1;
+
+CREATE OR REPLACE PROCEDURE showrec(no in number)
+IS
+           e number(5);
+           n varchar2(20);
+           a number(3);
+
+BEGIN
+
+select EID,NAME,AGE into i,n,a from V1 where EID = no;
+
+          dbms_output.put_line(i || ' ' || n || ' ' || a);
+
+END;
+
+           execute showrec(111);
+
+
+DECLARE
+
+BEGIN
+
+          select * from V1 ORDER BY AGE ASC;
+
+END;
+=========================================================================================================================================
+
+Q.31 Create a function which accepts your name as a parameter and age and returns the following string as an output :
+     Ex:  Input Name :  abcd 
+     
+ANS. SET SERVEROUTPUT ON
+
+CREATE OR REPLACE FUNCTION F1(NAME in varchar2, AGE in number) RETURN VARCHAR2
+IS
+
+BEGIN
+
+      return NAME;
+      
+END;
+
+CREATE OR REPLACE FUNCTION F2(name in varchar2,age in number) RETURN number
+IS
+
+BEGIN
+
+      return AGE;
+      
+END;
+
+DECLARE
+
+        VV varchar2(10);
+        MM varchar2(20);
+                
+BEGIN
+
+        VV := F1('VISHAL',19);
+        MM := F2('DHIRAJ',20);
+
+        dbms_output.put_line(UPPER(VV) || ' ' || MM);
+
+END;
+============================================================================================================================================
+          Output     :  ABCD 24
