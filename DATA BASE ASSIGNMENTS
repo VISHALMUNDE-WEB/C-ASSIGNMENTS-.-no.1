@@ -652,4 +652,40 @@ BEGIN
 
 END;
 ============================================================================================================================================
-          Output     :  ABCD 24
+  
+Q.32 Create a function which is applied on the following table : EMPLOYEE (ename , salary)
+     Function will return the avg salary of employees.
+     
+ANS. set serveroutput on
+
+create table employees(ENAME varchar2(20), SALARY number(10));
+
+create or replace procedure vm(ENAME in varchar2, SALARY in number)
+is
+begin
+insert into employees values(ENAME, SALARY);
+end;
+
+begin
+vm('vishal', 90000);
+vm('arjun',  80000);
+vm('dhiraj', 70000);
+vm('pavan',  60000);
+vm('sahil',  50000);
+end;
+
+create or replace function avge return number
+as
+v number;
+begin
+select avge(salary) into v from employee;
+return v;
+end;
+
+declare
+m number;
+begin
+a := avge;
+dbms_output.put_line('AVERAGE SALARY IS :' || m);
+end;_
+====================================================================================================================================================================
