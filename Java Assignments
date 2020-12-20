@@ -1,1 +1,245 @@
+Q.1 Create a program to Assign username & password in a method and display the username, password in a different function.
 
+ANS. package Assignments.Java;
+
+ class assi1
+ {
+	String username;
+	String password;
+	
+	 void getusername()
+	{
+	username = "VISHAL";
+	}
+	
+	public void getpassword()
+	{
+		password = "HELLOVISHAL";
+	}
+	
+	public void display()
+	{
+		System.out.println("USERNAME : "+username);
+		System.out.println("PASSWORD : "+password);
+	}
+	
+	public static void main(String[] args) {
+		assi1 a1 = new assi1();
+		
+		a1.getusername();
+		
+		a1.getpassword();
+		
+		a1.display();	
+	}
+
+}
+============================================================================================================================================================================
+
+Q.2 Write a program to Define employee Company as static and display the details of employee like eid,ename,salary with company name for 5 employees.
+
+ANS. package Assignments.Java;
+
+ class Assignment2 {
+	
+	private int eid;
+	private String name;
+	private int salary;
+	private String company;
+	
+	void setdata(int eid, String name, int salary, String company)
+	{
+		this.eid=eid;
+		this.name=name;
+		this.salary=salary;
+		this.company=company;
+	}
+	
+	void showdata()
+	{
+		System.out.println("eid : "+eid);
+		System.out.println("name : "+name);
+		System.out.println("salary : "+salary);
+		System.out.println("company : "+company);
+	}
+	
+ }
+
+     class myclass
+    {
+
+	public static void main(String[] args) {
+		
+       Assignment2 v1=new Assignment2();
+       Assignment2 v2=new Assignment2();
+       Assignment2 v3=new Assignment2();
+       Assignment2 v4=new Assignment2();
+       Assignment2 v5=new Assignment2();
+       
+       v1.setdata(111, "VISHAL", 90000, "DIGIT");
+       System.out.println("=============");
+       
+       v2.setdata(222, "NILESH", 80000, "DIGIT");
+       System.out.println("=============");
+       
+       v3.setdata(333, "NIMESH", 70000, "DIGIT");
+       System.out.println("=============");
+       
+       v4.setdata(444, "HEMANT", 60000, "DIGIT");
+       System.out.println("=============");
+       
+       v5.setdata(555, "ABHISHEK",50000, "DIGIT");
+       System.out.println("=============");
+       
+       v1.showdata();
+       v2.showdata();
+       v3.showdata();
+       v4.showdata();
+       v5.showdata();
+	}
+
+}
+=============================================================================================================================================================================
+
+Q.3 Create a method in a class which accepts a double and integer parameters and display the multiplication of passed values.
+
+ANS. package Assignments.Java;
+
+public class assignment3 {
+	
+	public static double gpro(double v, int m)
+	{
+		return v * m;
+	}
+	
+	public void gpro1(double j, int h)
+	{
+		System.out.println("MULTIPLICATION IS : "+(j*h));
+	}
+
+	public static void main(String[] args) {
+		
+		System.out.println("MULTIPLICATION : "+assignment3.gpro(12,70));
+		
+		assignment3 vm = new assignment3();
+		
+		vm.gpro1(14, 80);
+
+	}
+
+}
+=============================================================================================================================================================================
+
+Q.4 Write a program where a class is having a function as display() which declares a city code as a local variable in it and give some default city code value in it. 
+    Display () method display the city name which is passed to this method along with the city code.
+    
+ANS. package Assignments.Java;
+
+public class assignment4 {
+	
+	private String cityname;
+	public void display(String cityname)
+	{
+		int citycode = 417;
+		cityname = cityname;
+		
+		System.out.println("citycode : "+citycode);
+		System.out.println("cityname : "+cityname);
+		
+	}
+
+	public static void main(String[] args) {
+		
+		assignment4 v = new assignment4();
+		
+		v.display("PUNE");		
+	}
+
+}
+=============================================================================================================================================================================
+
+Q.5 Write a program to enter a year and check if the year is a leap year or not.
+
+ANS. package Assignments.Java;
+
+import java.util.Scanner;
+
+public class assignment5 {
+	
+	int year;
+	
+	public void leapyear(int vm)
+	{
+		if(vm%4==0)
+		{
+			System.out.println(vm+"IS LEAP YEAR ");
+		}
+		
+		else
+		{
+			System.out.println(vm+" IS NOT LEAP YEAR " );
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		assignment5 v1 = new assignment5();
+		
+		Scanner set = new Scanner(System.in);
+		
+		v1.leapyear(3000);
+		
+		System.out.println("ENTER YEAR : ");
+		
+		int year = set.nextInt();
+		
+		v1.leapyear(year);
+		
+		set.close();
+		
+	}
+
+}
+==============================================================================================================================================================================
+
+Q.6 Create a program to check for a number entered by user is Positive , negative or zero.
+
+ANS. package Assignments.Java;
+
+import java.util.Scanner;
+
+public class assignment6 {
+
+	public void operator(int v)
+	{
+		if(v>0)
+		{
+			System.out.println("NUMBER IS POSITIVE");
+		}
+		
+		else if(v==0)
+		{
+			System.out.println("NUMBER IS EQUAL TO 0");
+		}
+		
+		else
+		{
+			System.out.println("NUMBER IS NEGATIVE");
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		assignment6 v1 = new assignment6();
+		
+		Scanner sc = new Scanner(System.in);
+		int vm = sc.nextInt();
+		
+		v1.operator(vm);
+		
+		sc.close();
+		
+	}
+
+}
+============================================================================================================================================================================
