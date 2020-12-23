@@ -243,3 +243,38 @@ public class assignment6 {
 
 }
 ============================================================================================================================================================================
+
+Q.27 Display the following Pattern :
+       1
+       1 2
+       1 2 3
+       1 2 3 4
+       1 2 3 4 5
+       
+ANS.   package Assignments.Java;
+
+import java.util.Scanner;
+
+public class assignment27 {
+
+	public static void main(String[] args) {
+		int numrows;
+		System.out.println("ENTER THE NUMBER OF ROWS");
+		Scanner sc=new Scanner(System.in);
+		numrows = sc.nextInt();
+		
+		int num=1;
+		
+		for(int row=1; row <= numrows; row++) {
+		     for(int column = 1; column <= row; column++)
+		     {
+		    	 System.out.format("%-5d", num++);
+		     }
+		
+		     System.out.println();
+	}
+	
+ }
+
+ }
+===================================================================================================================================================================		          
