@@ -172,6 +172,52 @@ Limited users are supported.
 
 3) Discuss different Types of Computer Viruses
 
+What is a Computer Virus?
+
+A computer virus is a piece of code embedded in a legitimate program and is created with the ability to self-replicate infecting other programs on a computer. Just like how humans catch a cold or flu, it can remain dormant inside the system and gets activated when you least expect it.
+A computer virus is developed to spread from one host to another and there are numerous ways on how your computer catches it. It can be through email attachments, file downloads, software installations, or unsecured links.
+These viruses can steal your data such as passwords, hacked into your social media accounts or online banking accounts, and even wiped out all your data.
+
+Common Types Of Computer Viruses
+
+Cybercriminals are getting better and better at stealing our confidential data and viruses that are being created are evolving rapidly. There are millions of viruses around the world, but here are some common types you should be aware of:
+
+1. File-infecting Virus
+A virus that attached itself to an executable program. It is also called a parasitic virus which typically infects files with .exe or .com extensions. Some file infectors can overwrite host files and others can damage your hard drive’s formatting.
+
+2. Macro Virus
+This type of virus is commonly found in programs such as Microsoft Word or Excel. These viruses are usually stored as part of a document and can spread when the files are transmitted to other computers, often through email attachments.
+
+3. Browser Hijacker
+This virus targets and alters your browser setting. It is often called a browser redirect virus because it redirects your browser to other malicious websites that you don’t have any intention of visiting. This virus can pose other threats such as changing the default home page of your browser.
+
+4. Web Scripting Virus
+A very sneaky virus that targets popular websites. What this virus does is overwrite code on a website and insert links that can install malicious software on your device. Web scripting viruses can steal your cookies and use the information to post on your behalf on the infected website.
+
+5. Boot Sector Virus
+These viruses are once common back when computers are booted from floppy disks. Today, these viruses are found distributed in forms of physical media such as external hard drives or USB. If the computer is infected with a boot sector virus, it automatically loads into the memory enabling control of your computer.
+
+6. Polymorphic Virus
+This virus has the capability to evade anti-virus programs since it can change codes every time an infected file is performed.
+
+7. Resident Virus
+A resident virus stores itself on your computer’s memory which allows it to infect files on your computer. This virus can interfere with your operating system leading to file and program corruption.
+
+8. Multipartite Virus
+A type of virus that is very infectious and can easily spread on your computer system. It can infect multiple parts of a system including memory, files, and boot sector which makes it difficult to contain.
+
+
+Related Article: What To Do When Your Computer Is Hacked?
+
+Protection Against These Types Computer Viruses
+A virus left untreated can wreak havoc on your device but if detected early, and appropriate measures are done, then the recovery would be quick. Just like how we protect ourselves from catching a virus, here are a few notes to remember to help keep your devices safe.
+
+Avoid clicking on suspicious links.
+Scan email attachments before opening it.
+Avoid clicking on pop-up advertisements and get a pop-up blocker for your web browser.
+When routed to another website, don’t do anything, and immediately leave the site.
+Install a reliable anti-virus program and always keep it up to date.
+
 ==============================================================================================================================================================================
 
 4) Differentiate between Twisted pair, Coaxial cable & fibre optics?
@@ -287,4 +333,22 @@ Multimode mode fiber ( MMF )
 Larger in diameter Larger in diameter Small in diameter
 ==============================================================================================================================================================================
 
+5) What is Phishing?
+
+What is a phishing attack
+
+Phishing is a type of social engineering attack often used to steal user data, including login credentials and credit card numbers. It occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening an email, instant message, or text message. The recipient is then tricked into clicking a malicious link, which can lead to the installation of malware, the freezing of the system as part of a ransomware attack or the revealing of sensitive information.
+
+An attack can have devastating results. For individuals, this includes unauthorized purchases, the stealing of funds, or identify theft.
+
+Moreover, phishing is often used to gain a foothold in corporate or governmental networks as a part of a larger attack, such as an advanced persistent threat (APT) event. In this latter scenario, employees are compromised in order to bypass security perimeters, distribute malware inside a closed environment, or gain privileged access to secured data.
+
+An organization succumbing to such an attack typically sustains severe financial losses in addition to declining market share, reputation, and consumer trust. Depending on scope, a phishing attempt might escalate into a security incident from which a business will have a difficult time recovering.
+
+Phishing attack examples
+The following illustrates a common phishing scam attempt:
+
+A spoofed email ostensibly from myuniversity.edu is mass-distributed to as many faculty members as possible.
+The email claims that the user’s password is about to expire. Instructions are given to go to myuniversity.edu/renewal to renew their password within 24 hours.
+============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
