@@ -31,6 +31,121 @@ public class Ass1 extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+==============================================================================================================================================================================
+
+Q.2 Create a Servlet which accepts two numbers as parameters in the form of query string and prints the sum,multiplication,Division,Subtraction
+
+ANS. package org.Assignments;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Assi2
+ */
+public class Assi2 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Assi2() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	   
+		 PrintWriter out=response.getWriter();			
+			
+			  int num1=Integer.parseInt(request.getParameter("num1"));
+			  int num2=Integer.parseInt(request.getParameter("num2"));
+			  
+			 out.print("<br>Addition : ");
+			response.getWriter().print((num1+num2));
+			
+			out.print("<br>Multiplicaition : ");
+			response.getWriter().print((num1*num2));
+			
+			out.print("<br>Subtraction : ");
+			response.getWriter().print((num1-num2));
+			
+			out.print("<br>Division : ");
+			response.getWriter().print((num1/num2));
+			  
+		
+			
+			
+	}	
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+==============================================================================================================================================================================
+
+Q.3 Create a Servlet which accepts firstname & lastname from query string and display the fullname in Capital case along with length.
+
+ANS. package org.Assignments;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Ass3
+ */
+public class Ass3 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Ass3() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String firstname=request.getParameter("firstname");
+		String lastname=request.getParameter("lastname");
+		
+		response.getWriter().print(firstname.toUpperCase()+" "+lastname.toUpperCase());
+		
+		
+		response.getWriter().print(firstname.length()+" "+lastname.length());
+	}
+
+
+	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+==============================================================================================================================================================================
+
 
 		
 		
