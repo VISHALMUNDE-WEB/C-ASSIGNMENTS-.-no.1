@@ -142,13 +142,7 @@ public class Ass3 extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-}
-==============================================================================================================================================================================
-
-
-		
-		
+}	
 		PrintWriter pw=response.getWriter();
 		
 		
@@ -169,4 +163,70 @@ public class Ass3 extends HttpServlet {
 
 }
 ==============================================================================================================================================================================
+
+Q.11 Create a Login Page where Username & password is entered. If username is "abcd" and password is "1234" then Display a message "Welcome abcd" on the second HTML 
+     Page display.html .If Username or password is incorrect then Display the message "Invalid Username/password" in third webpage Invalid.html. Write code to validate
+     username & password in a servlet
+     
+ANS. package org.Web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Servlet8
+ */
+public class Servlet8 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Servlet8() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		String username=request.getParameter("user");
+		String password=request.getParameter("pass");
+		
+		if(username.equals("abcd")&&password.equals("1234"))
+		{
+		   out.print("WELCOME "+username);
+		   RequestDispatcher rd=request.getRequestDispatcher("login2.html");
+		   rd.include(request,  response);
+		}
+		   
+		else
+		{
+			out.print("<h5>Invalid Username/Password");
+			RequestDispatcher rd=request.getRequestDispatcher("login3.html");
+			rd.include(request, response);
+		}
+			
+	}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+=============================================================================================================================================================================     
 
