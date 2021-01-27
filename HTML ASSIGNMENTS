@@ -1,1 +1,187 @@
+1.Create a Table of 3 columns and 4 records . Headings are : Sno, Name, Photo.
 
+ANS. <html>
+
+<body>
+
+    <table border="3">
+    
+          <tr>
+        
+              <th>SNO</th>
+              <th>NAME</th>
+              <th>PHOTO</th>
+        
+          </tr>
+    
+           <tr>
+        
+               <td>1</td>
+               <td>ARIJIT SINGH</td>
+               <td><img src="https://images.indianexpress.com/2018/02/arijit-singh-12001.jpg" width="100" heigth="300" ></td>
+           </tr>
+        
+            <tr>
+        
+               <td>2</td>
+               <td>ATIF ASLAM</td>
+               <td><img src="https://static.toiimg.com/photo/msid-70583771/70583771.jpg?67590" width="100" heigth="300" ></td>
+           </tr>
+        
+            <tr>
+        
+               <td>3</td>
+               <td>HARSHDEEP KAUR</td>
+               <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Harshdeep_Kaur_-_IIFA_Award.jpg/220px-Harshdeep_Kaur_-_IIFA_Award.jpg" width="100" heigth="300" ></td>
+           </tr>
+        
+            <tr>
+        
+               <td>4</td>
+               <td>SHREYA GHOSHAL</td>
+               <td><img src="https://static.toiimg.com/thumb/msid-68343232,width-800,height-600,resizemode-75,imgsize-81671,pt-32,y_pad-40/68343232.jpg" width="100" heigth="300" ></td>
+           </tr>
+    
+    </table>
+    
+</body>
+
+</html>
+==============================================================================================================================================================================================
+
+2.Create a hyperlink on the web page and this link will switch to other webpage. In second page there is a link as "Back" which will display the first page.
+
+ANS. PAGE 1
+
+  <html>
+
+ <body>
+    
+         CLICK ON THIS LINK : <a href="ASSI-2b.html">CLICK</a>
+    
+       <br>
+    
+    
+       
+       <a href="ASSI-2b.html"></a>
+     
+       <h3>THIS IS FIRST PAGE</h3>
+        
+ </body>
+
+</html>
+
+   PAGE 2
+   
+   <html>
+
+<body>
+    
+        CLICK ON THIS LINK : <a href="ASSI-2.html">BACK</a>
+    
+     <h3>THIS IS SECOND PAGE</h3>
+    
+</body>
+
+</html>
+====================================================================================================================================================================
+
+3.Create a Paragraph and apply the tags on this paragraph : bold,italic,underline, Mark, strike ,superscript and subscript, emphasis,strong,big.
+
+ANS. <html>
+
+<body>
+    
+        <p style="font-style: italic" >
+            
+           
+             <b>
+             <u>         
+            <mark>
+            <strike> 
+            <sup>
+            <sub>  
+            <em> 
+            <strong> 
+            <big>  
+                
+     A paragraph contains a group of 
+    intertwined with each other todiscuss
+    or debate, or explain a central idea. It conventionally begins with an indented line.A beginner writer or a student usually starts writing a paragraph having seven sentences, while some professors of composition advise beginners to start with nine sentences, and some others ask them to start with eleven sentences. Some, however, teach all three paragraph types step by step.
+                
+            </big>      
+            </strong>       
+            </em>       
+            </sub>      
+            </sup>      
+            </strike>       
+            </mark> 
+            </u>     
+            </b>
+            
+                
+        </p>
+    
+</body>
+
+</html>
+============================================================================================================================================================================================================================================================================================================================================================================================
+
+4.Create an image in the web page which has the width as 300 and height as 400 and display the title as "MyImage". Create image as a hyperlink , clicking on the image will 
+  show the description about the image.
+  
+ ANS. PAGE 1
+ 
+      <html>
+    
+<head>
+    
+<body>
+        
+         <a href="ASSI-4B.html">
+         <img src="https://images.indianexpress.com/2018/02/arijit-singh-12001.jpg" title="My Image" width="300" border="5" heigth="400"/>
+         </a>     
+    
+         <a href src=https://images.indianexpress.com/2018/02/arijit-singh-12001.jpg></a>
+       
+</body> 
+    
+</head>
+    
+</html>
+
+   PAGE 2
+   
+   THIS PICTURE IS SHOWING YOU AN IMAGE OF THE GREAT INDIAN PLAYBACK SINGER ARIJIT SINGH, HE IS A VERY FAMOUS SINGER HE HAS WON MANY AWARDS FOR HIS SONGS.
+   ======================================================================================================================================================================
+   
+   5.Create a list of 3 website names and create every list item as a hyperlink.  
+   
+   ANS. <html>
+
+<head>
+    
+<body>
+     
+    <li>
+    <a href="https://www.google.com/">www.google.com</a>
+    </li>
+    
+     <li>
+    <a href="https://github.com/">www.github.com</a>
+    </li>
+    
+     <li>
+    <a href="https://www.youtube.com/">www.youtube.com</a>
+    </li>
+    
+    
+</body>
+    
+</head>
+
+
+</html>
+===================================================================================================================================================================
+   
+   
