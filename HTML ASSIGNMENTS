@@ -184,5 +184,159 @@ ANS. <html>
 
 </html>
 ===================================================================================================================================================================
+
+6.Create a HomePage where a unorderd list is created in which the list items are the hyperlinks . On clicking a hyperlink the respective page should open.
+
+ANS. 
+
+PAGE1.JSP
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<jsp:include page="header.jsp"></jsp:include>
+
+ 
+
+<pre>
+
+ 
+
+HI THIS IS PAGE 1.JSP
+ 
+
+</pre>
+<jsp:include page="footer.jsp"></jsp:include>
+</body>
+</html>
+ 
+PAGE1.JSP
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<jsp:include page="header.jsp"></jsp:include>
+
+ 
+
+<img alt="" src="https://newschant.com/wp-content/uploads/2020/03/1585689854_Kiara-Advani-Upcoming-Movies-Upcoming-Movies-2020-2021-2022-780x470.jpg">
+<jsp:include page="footer.jsp"></jsp:include>
+</body>
+</html>
+
+header.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<header>
+<p>
+THIS IS THE HEADER.JSP
+</p>
+</header>
+</body>
+</html>
+
+footer.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<footer>
+<p style="text=align: center;">
+created@Jan 2021
+
+ 
+
+</p>
+
+ 
+
+</footer>
+</body>
+</html>
+
+style.css
+
+@charset "ISO-8859-1";
+
+header
+        {
+            background-color: aquamarine;
+        }
+    
+        
+         footer
+        {
+            background-color: blue;
+        }
+        
+home.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+         <ul>
+         
+               <li>
+               
+                <a href="PAGE1.jsp">PAGE1 CLICK</a>
    
+               </li>
+               
+                <li>
+               
+                <a href="PAGE2.jsp">PAGE2 CLICK</a>
+   
+               </li>
+          
+                <li>
+               
+                <a href="header.jsp">header CLICK</a>
+   
+               </li>
+         
+                <li>
+               
+                <a href="footer.jsp">footer CLICK</a>
+   
+               </li>
+    
+         </ul>
+
+</body>
+</html>
+========================================================================================================================================================================
    
