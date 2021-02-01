@@ -340,3 +340,139 @@ home.jsp
 </html>
 ========================================================================================================================================================================
    
+7 Create a LoginPage in which background color of textbox should be skyblue. Placeholder should be applied and password length must be atleast 8 characters.
+
+ANS. <html>
+
+<head>
+</head>
+    
+<body>
+
+<form>
+        <b>
+
+            <label>ENTER NAME<input type="text" style="background-color:skyblue"></label><br>
+            <br>
+
+            <label >ENTER PASSWORD <input type="password" style="background-color:skyblue" placeholder="write your password here" min="8"></label><br>
+            <br>
+
+             <input type="submit" value="SUBMIT"><input type="reset" value="CLEAR">
+
+        </b>
+        
+            
+
+    </form>
+
+
+</body>
+
+
+
+</html>
+======================================================================================================================================================================
+
+9 Make an ordered list in reversed manner.
+
+ANS. <html>
+    
+<head>
+</head>    
+    
+<body>
+    
+<h1>NAME OF STUDENTS</h1>
+    
+<ol reversed>
+    
+<li>VISHAL</li>
+    
+<li>ARJUN</li>
+    
+<li>DHIRAJ</li>
+    
+<li>SAHIL</li>
+    
+<li>VISHWAS</li>
+    
+<li>GANESH</li>
+
+</ol>
+    
+</body>
+    
+</html>
+======================================================================================================================================================================
+
+12 Create 3 input text boxes and a submit button. Apply the background color for all text boxes as pink using class selector and change the font color of the submit button
+    using the id selector.
+    
+ANS. <html>
+    
+<head>
+    
+    <style>
+        
+      .c1
+    {
+       background-color:pink;
+    }
+    
+       
+    #id1
+        {
+            color:red;
+        }
+    
+    </style>
+    
+</head>
+    
+<body>
+         <b>
+         <label>ENTER NAME<input class="c1" type="text"></label><br> 
+         <br>
+        <label>ENTER AGE<input class="c1" type="text"></label><br> 
+          <br>    
+        <label>ENTER CITY<input class="c1" type="text"></label><br>  
+        <br>
+        
+          <input type="submit" id="id1" value="SUBMIT">     
+         </b>      
+<br> 
+</body>
+    
+</html>
+======================================================================================================================================================================
+
+13 Create a group selector to set the padding (25px) of a division and a paragraph text.
+
+ANS. <html>
+
+<head>
+    
+    <style>
+    
+        div,p
+        {
+            padding: "25px";
+        }
+    
+    </style>
+    
+</head>
+    
+<body>
+
+      <div>MY NAME IS VISHAL</div>
+    
+      <p>Arijit Singh (born 25 April 1987) is an Indian playback singer.[6][4][2] He sings predominantly in Hindi and Bengali but has 
+      also performed in various other Indian languages.[7][8] He is the recipient of a National Award and a record six Filmfare Awards.</p> 
+    
+</body>    
+</html>
+====================================================================================================================================================================
+
+
