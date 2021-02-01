@@ -406,6 +406,104 @@ ANS. <html>
 </html>
 ======================================================================================================================================================================
 
+10 Make a Page which includes contents of a text file in the middle of the page. Create two such pages and link them together using hyperlinks. Add some header and footer
+   in both pages where header background color should be pink and some text is displayed as heading. Footer will display the todays date in (dd-mm-yyyy) in red color in
+   center of the page.
+   
+ANS. PAGE 1
+     
+     <html>   
+<head>
+    
+<style>
+    
+    header
+        {
+            background-color: pink;
+              text-align: center;
+        }
+    
+        
+         footer
+        {
+            background-color: pink;
+            color: red;
+            text-align: center;
+        }
+    
+</style>
+    
+</head>
+     
+<body>
+        <a href="ASSI-10B.html">CLICK HERE</a>
+<header>
+    
+    <h1>HEADER 1</h1>
+    
+</header>
+  
+      
+<footer>
+    
+    <p>29/01/2021</p>
+    
+ </footer>  
+    
+</body>
+</html>
+
+    PAGE 2
+    
+    <html>
+<head>
+    
+    <style>
+        
+    header
+        {
+            background-color: pink;
+              text-align: center;
+        }
+    
+        
+         footer
+        {
+             background-color: pink;
+            color: red;
+            text-align: center;
+        }
+    
+    </style>
+    
+    </head>
+    
+<body>
+    
+     <a href="ASSI-10.html">CLICK HERE</a>
+    
+<header>
+    
+    <h1>Header2</h1>
+    
+</header>
+      
+      <b>
+      <marquee  behavior="slide" style="background-color: saddlebrown; " direction="center">THIS IS MY WEBPAGE</marquee>
+      </b>
+    
+<footer>
+      
+    <p>29/01/2021</p>
+      
+</footer> 
+    
+</body>
+</html>
+=======================================================================================================================================================================
+    
+     
+
 12 Create 3 input text boxes and a submit button. Apply the background color for all text boxes as pink using class selector and change the font color of the submit button
     using the id selector.
     
