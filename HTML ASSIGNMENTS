@@ -722,6 +722,248 @@ ANS. <html>
 </html>
 ======================================================================================================================================================================
 
+18 Display the image with the border 5px , Brown color and image should be displayed in the right of the page along with the Paragraph .Set the image width and heigth
+   to 150px and 150px.
+   
+ANS. <html>
+<head>
+
+<style>
+    
+    img
+    {
+        float: right;
+        border: 5px double;
+        border-color: brown;
+        width: 150px;
+        height: 150px;
+    }
+    
+</style>    
+</head>
+
+<body>
+
+<img src="https://content.tupaki.com//twdata/2020/1020/photos/actress/Kiara%20Advani%20Throwback%20
+Saree%20Looks/normal/Kiara%20Advani%20Throwback%20Saree%20Looks_8.
+jpg">   
+
+<p> The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, 
+accompanied by English versions from the 1914 translation by H. Rackham.</p>    
+          
+</body>
+</html>
+=======================================================================================================================================================================
+
+19 Create a JSP Home Page with a Menu bar in it. Create 3 web pages and make a menubar for these links as a vertical menu bar. When clicked on any link , the respective
+   webpage should be displayed and all web pages should be linked to each other.
+   
+ANS. ASSI-19_MENU.jsp
+
+     <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<style>
+
+        h1
+        {
+            color: saddlebrown;
+        }
+
+         h2
+        {
+            color: orange;
+        }
+        
+         h3
+        {
+            color: purple;
+        }
+        
+        
+        h5
+        {
+            color: white;
+            background-color: silver;
+        }
+        
+         h6
+        {
+            color: red;
+            background-color: silver; 
+        }
+        
+        h8
+        {
+           color:brown;
+        }
+</style>
+</head>
+<body>
+       
+       <b>
+       <h8>THIS IS MENU PAGE</h8>
+       </b>
+<ul>
+
+ <h1>
+<li><a href="PAGE1.jsp">ClICK ON PAGE1</a></li>
+</h1>
+
+<h2>
+<li><a href="PAGE2.jsp">ClICK ON PAGE2</a></li>
+</h2>
+
+<h3>
+<li><a href="style.css">ClICK ON PAGE3</a></li>
+</h3>
+
+<h4>
+<li><a href="home.jsp">ClICK ON PAGE4</a></li>
+</h4>
+
+<h5>
+<li><a href="header.jsp">ClICK ON PAGE5</a></li>
+</h5>
+    
+<h6>
+<li><a href="footer.jsp">ClICK ON PAGE6</a></li>
+</h6>    
+   
+<h7>
+<li><a href="ASSI-8.jsp">ClICK ON PAGE7</a></li>
+</h7> 
+    
+ <h7 style="color: brown"></h7>
+     
+</ul>
+
+</body>
+</html>
+
+   ASSI-19_A.jsp
+   
+   <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>THIS IS PAGE A</h1>
+<a style="color: orange "href="ASSI-19_MENU.jsp">BACK TO MENU PAGE</a>
+</body>
+</html>
+
+   ASSI-19_B.jsp
+   
+   <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>THIS IS PAGE B</h1>
+<a style="color: pink "href="ASSI-19_A.jsp">BACK TO PAGE A</a>
+</body>
+</html>
+
+   ASSI-19_C.jsp
+   
+   <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>THIS IS PAGE C</h1>
+<a style="color: BROWN "href="ASSI-19_B.jsp">BACK TO PAGE B</a>
+</body>
+</html>
+======================================================================================================================================================================
+
+20 Create a form with 2 fields and set the Autofocus property to the first field.
+
+ANS. <html>
+<head>
+<body>    
+
+
+
+<form>
+
+        <b>
+
+            <label style="color: black">ENTER NAME<input type="text" autofocus></label><br>
+            <br>
+
+            <label style="color: black">ENTER PASSWORD <input type="password"></label><br>
+            <br>
+
+
+            <input type="submit" value="SUBMIT">
+        </b>
+
+    </form>
+
+
+</body>
+
+</head>
+
+</html>
+=======================================================================================================================================================================
+
+21 Create a Hyperlink and apply the linkcolor accordingly : 
+   Activelink : yellow
+   visitedLink: Green
+   
+ANS. <html>
+<head>
+    
+<style>
+    
+        a:visited 
+    {
+        color: green;
+    }
+    
+   
+    
+       a:active 
+    {
+        color: yellow;
+    }
+    
+    
+</style> 
+    
+</head>    
+<body>
+    
+        <a href="Page1.html">CLICK 1</a>
+        <a href="Page2.html">CLICK 2</a>
+    
+</body>
+
+
+</html>
+=======================================================================================================================================================================
+   
 
 
 
