@@ -374,6 +374,114 @@ ANS. <html>
 </html>
 ======================================================================================================================================================================
 
+8 Make a page where create a selection box of cities and a textarea where the information about city is to be entered. Once click on submit button the data is to be 
+  stored in the database table as City along with description.
+  
+ANS. PAGE1.JSP
+
+     package ASSIGNMENTS;
+
+import java.beans.Statement;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.DriverManager;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sun.corba.se.pept.transport.Connection;
+
+/**
+ * Servlet implementation class ASSI_8
+ */
+public class ASSI_8 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ASSI_8() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		
+		PrintWriter pw = response.getWriter();
+	    
+		String city[] = request.getParameterValues("cy");
+		
+		String data = request.getParameter("dt");
+	    
+	    try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			Connection cn = (Connection) DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","jyotimunde");
+			
+			Statement st = (Statement) ((java.sql.Connection) cn).createStatement();
+			
+			if(city!=null)
+			{
+                 for(int i=0;i<city.length;i++)
+                 {
+                	 
+			     String query ="insert into assidata('"+city[i]+"','"+data+"')";
+			    
+			     int k = ((java.sql.Statement) st).executeUpdate(query);
+                 }
+			
+			}
+			else
+			{
+				pw.print("NOT SELECTED");
+			}
+			
+			pw.print("<br>INSERTED SUCCSSFULLY........");
+		}
+	    catch(Exception ea)
+	    {
+	    	ea.printStackTrace();
+	    }
+		
+	
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+
+   PAGE2.JSP
+   
+<html>
+<body>
+<form action="ASSI_8">
+<table border="4">
+<tr><td>CITY</td><td> 
+<select name="cy" autofocus multiple>
+<option selected>Select city...</option>
+<option>PUNE</option>    
+<option>MUMBAI</option>
+<option>SOLAPUR</option> 
+</select></td></tr>
+<tr><td>DESCRIPTION</td></tr>
+<tr><td><textarea rows="4" cols="4" style="resize:none;width: 300px;height: 300px" name="dt" ></textarea></td></tr>
+
+<tr><td><input type="submit"></td></tr>
+
+</table>
+</form>
+</body>
+</html>
+====================================================================================================================================================================
+   
 9 Make an ordered list in reversed manner.
 
 ANS. <html>
@@ -502,7 +610,108 @@ ANS. PAGE 1
 </html>
 =======================================================================================================================================================================
     
-     
+11 Make a form which accepts name and date of birth of a person and stores it in the database.Use date type to take date of birth.
+
+ANS. PAGE1.HTML
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="ASSI_11">
+<fieldset>
+<legend>DETAILS</legend>
+FULLNAME<input type="text" name="fn">
+DOB<input type="date" name="da">
+<input type="submit" value="SUBMIT">
+</fieldset>
+</form>
+</body>
+</html>
+
+   SERVLET.JSP
+   
+package ASSIGNMENTS;
+
+import java.beans.Statement;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.text.SimpleDateFormat;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sun.corba.se.pept.transport.Connection;
+
+/**
+ * Servlet implementation class ASSI_11
+ */
+public class ASSI_11 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ASSI_11() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		String fnm = request.getParameter("fn");
+		
+		Date der = null;
+		
+		String d = request.getParameter("da");
+		
+		SimpleDateFormat ft1 = new SimpleDateFormat("yyyy-MM-dd");
+
+		PrintWriter pw = response.getWriter();
+		
+		try {
+			
+			der = (Date) ft1.parse(d);
+			
+			String str = ft1.format(der);
+			
+			pw.print(str);
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			Connection cn = (Connection) DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","jyotimunde");
+			
+			java.sql.Statement st = ((java.sql.Connection) cn).createStatement();
+			
+			String query ="insert into ASSI11('"+fnm+"',date'"+d+"')";
+			
+			((java.sql.Statement) st).executeUpdate(query);
+			
+			pw.print("<br>INSERTED SUCCSSFULLY INTO THE TABLE........");
+		}
+	    catch(Exception ea)
+	    {
+	    	ea.printStackTrace();
+	    }
+		
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+===================================================================================================================================================================
 
 12 Create 3 input text boxes and a submit button. Apply the background color for all text boxes as pink using class selector and change the font color of the submit button
     using the id selector.
@@ -963,7 +1172,236 @@ ANS. <html>
 
 </html>
 =======================================================================================================================================================================
+  
+22 Create a Javascript file which is included in HTML Page.In this file Assign Name , age and City of a person and display these values as a heading in Red color.
+
+ANS. 
+===================================================================================================================================================================
+
+23 Create a Javascript function which accepts a number and returns the cube of the number and print the cube.
+
+ANS. <html>
+<head>
+
+</head>
+<body>
+    <script>
+        function fun(num)
+        {
+            document.write("Cube : "+(num*num*num));
+        }
+        fun(5);
+    </script>
+</body>
+</html>
+====================================================================================================================================================================
+
+24 Make a function expression which returns the area of circle where PI should be defined as constant.
+
+ANS. <html>
+<head>
+    
+    
+</head>
+<body>
+<script>
+    
+     
+       const PI=2.12;
+       
+    var myfunction=function()
+    {
+         var radius=7;
+        var Area=PI*7*7;
+    
+        document.write("Area of Circle : "+Area);
+ 
+        
+    }
+    
+    
+    myfunction();
+</script>    
+    
+</body>
+</html>
+===================================================================================================================================================================
+
+25 Make an integer array of 5 numbers in a function and print the average of array.
+
+ANS. <html>
+<head>
+    
+</head>
+<body>
+<script>
+ 
+
+ 
+   var num=[1,2,3,4,5];
+    
+    
+    
+      
+    var myfunction=function()
+    {
+          var avg=("Average : "+(num[0]+num[1]+num[2]+num[3]+num[4])/num.length)
+             
+            document.write(avg);
    
+        
+    }
+    
+   
+    
+    
+    myfunction();
+    
+</script>    
+ 
+</body>
+</html>
+====================================================================================================================================================================
+
+26 Create an array of 5 names and print the last two names on creating subarray. Add a name in the 2nd index of the array and print array in reverse order.
+
+ANS. <html>
+<head>
+     
+</head>
+<body>
+<script>
+ var Name=new Array("VISHAL","ARJUN","DHIRAJ","DADU");
+    
+        document.write("<ol>");
+     document.write("<li>"+Name[0]+"</li>");
+      document.write("<li>"+Name[1]+"</li>");
+      document.write("<li>"+Name[2]+"</li>");
+      document.write("<li>"+Name[3]+"</li>");
+        document.write("</ol>");
+    
+     var subarray=Name.slice(-2)
+    document.write("<br>"); 
+     document.write(subarray); 
+    
+   
+    
+      Name.splice(1,0,"OMKAR");
+    
+     
+        document.write("<ol>");
+        document.write("<li>"+Name[0]+"</li>");
+        document.write("<li>"+Name[1]+"</li>");
+        document.write("<li>"+Name[2]+"</li>");
+        document.write("<li>"+Name[3]+"</li>");
+        document.write("</ol>");
+    
+    
+    
+    document.write("<br>");
+    document.write(Name.reverse());
+</script>     
+     
+</body>
+</html>
+====================================================================================================================================================================
+
+27 Make an Object as person which has firstname and lastname and print the Full name in capital.
+
+ANS. <html>
+
+<body>
+<script>
+
+   
+      var person=
+      {
+          "firstname":"vishal",
+          "lastname":"munde",
+      }
+     
+     
+     document.write(person.firstname.toUpperCase()+" "+person.lastname.toUpperCase());
+    
+      
+          
+</script>    
+</body>
+
+</html>
+====================================================================================================================================================================
+
+28 Create an array of 5 cities and print the city names in reverse order.
+
+ANS. <html>
+    
+<head>
+</head>
+    
+<body>
+    
+      
+      <script>
+          
+          var city=new Array("Pune","Mumbai","Jaipur","benglore");
+          
+          document.write(city.reverse()); 
+          
+      </script>           
+    
+</body>
+
+</html>
+====================================================================================================================================================================
+
+29 Take two numbers as input in the dialogbox and calculate sum and print it.
+
+ANS. 
+====================================================================================================================================================================
+
+30 Create a confirm box on giving some message.If User clicks Ok button , then background color of the body should be green, If user clicks on cancel button then 
+    background color should be red.
+    
+ANS. <html>
+<head>
+    
+    
+</head>
+<body id="i1">
+    <h1 id="i1"></h1>
+<script>
+    var c=confirm("are you confirm?");
+   
+    if(c)
+        {
+          
+            var v=document.getElementById("i1");
+            v.style.backgroundColor="green";
+            
+            document.getElementById("i1").innerHTMl="Welcome";
+        }
+    
+    else
+    {
+           
+           var v=document.getElementById("i1");
+            v.style.backgroundColor="red";
+            
+            document.getElementById("i1").innerHTMl="Hi";
+    }
+    
+    
+</script>    
+    
+</body>
+
+</html>
+====================================================================================================================================================================
+
+31 Make a form in Javascript where 2 text boxes accept numbers. Create 4 buttons ADD,SUB,MUL,DIV. When clicked on a button display the Answer in Heading tag.
+
+ANS. 
+====================================================================================================================================================================
 
 
 
