@@ -1722,3 +1722,62 @@ ANS. <html>
     </body>
 </html>
 ====================================================================================================================================================================
+
+37 Create two buttons red and green .Change the font color of the first element of 2 unordered list according to button.
+
+ANS. <html>
+   
+    <head>
+      
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+       
+        <script>
+            $(document).ready(function(){
+          
+                  $(".red").click(function(){
+            
+                
+                   
+                $("ul li:first-child").css("color","red");
+           
+                 });
+               
+                  $(".green").click(function(){
+            
+                
+                   
+                $("ul li:first-child").css("color","green");
+           
+                 });
+                
+                
+             });
+            
+        </script>
+        </head>
+   
+    <body>
+        
+    <ul>
+        
+         <li>VISHAL</li>
+         <li>ARJUN</li>
+         <li>DHIRAJ</li>
+       
+        </ul>
+       
+        <ul>
+            
+         <li>OMKAR</li>
+         <li>DADU</li>
+         <li>SAHIL</li>
+       
+        </ul>
+        <button class="red">Red</button>
+          <button class="green">Green</button>
+         
+    </body>
+</html>
+====================================================================================================================================================================
