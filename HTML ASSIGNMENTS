@@ -1175,7 +1175,36 @@ ANS. <html>
   
 22 Create a Javascript file which is included in HTML Page.In this file Assign Name , age and City of a person and display these values as a heading in Red color.
 
-ANS. 
+ANS. HTML PAGE
+
+     <html>
+    <head>
+        <style>
+            h2
+            {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="id1"></h2>
+        <script src="ASSI-22.js">
+        </script>
+    </body>
+</html>
+
+    JAVA PAGE
+    
+    var name="VISHAL";
+var age=5.5;
+var city="pune";
+ var info="Name : "+name+" Age : "+age+" City : "+city; 
+
+
+document.getElementById('id1').innerHTML=info;
+===================================================================================================================================================================
+
+     
 ===================================================================================================================================================================
 
 23 Create a Javascript function which accepts a number and returns the cube of the number and print the cube.
@@ -1356,7 +1385,16 @@ ANS. <html>
 
 29 Take two numbers as input in the dialogbox and calculate sum and print it.
 
-ANS. 
+ANS. <html>
+    <body>
+        <script>
+            var num1=Number(prompt("Enter num1"));
+            var num2=Number(prompt("Enter  num2"));
+            var sum=num1+num2;
+            document.write("Sum of "+num1+" and "+num2+" is "+sum);   
+        </script>
+    </body>
+</html>
 ====================================================================================================================================================================
 
 30 Create a confirm box on giving some message.If User clicks Ok button , then background color of the body should be green, If user clicks on cancel button then 
