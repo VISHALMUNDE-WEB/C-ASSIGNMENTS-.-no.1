@@ -1554,4 +1554,30 @@ ANS. <html>
 </html>
 ====================================================================================================================================================================
 
+35 Create a Javascript object which has a property as StudentName,StudentSkills (Array) . Convert this object to JSON.
+  
+ANS. <html>
+<head>
+</head>
+<body>
+    
+    <h2 id="i1"> </h2>
+    <h2 id="i2"> </h2>
+<script>
 
+ 
+
+    var student = {name : "VISHAL",
+                   skills :["COADING","Hardworking","PLAYING CRICKET"] 
+                  };
+    
+    var jsonstud = JSON.stringify(student);
+    
+    
+ var element = document.getElementById("i1").innerHTML=jsonstud;
+    
+    
+</script>
+</body>
+</html>
+====================================================================================================================================================================
