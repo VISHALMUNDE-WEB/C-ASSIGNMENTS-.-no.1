@@ -1565,17 +1565,17 @@ ANS. <html>
     <h2 id="i2"> </h2>
 <script>
 
- 
-
     var student = {name : "VISHAL",
-                   skills :["COADING","Hardworking","PLAYING CRICKET"] 
+                   skills :["HARDWORKING","Drawing","Planner","Workholic","Patiency"] 
                   };
+    document.write(student.name+" IS"+"<br>");
+    
+    document.write(student.skills[0]);
     
     var jsonstud = JSON.stringify(student);
     
     
- var element = document.getElementById("i1").innerHTML=jsonstud;
-    
+ document.getElementById("i1").innerHTML=jsonstud;
     
 </script>
 </body>
