@@ -1670,3 +1670,55 @@ ANS. <html>
 </body>
 </html>
 ====================================================================================================================================================================
+
+36 Create 3 buttons named as Red, Green, Blue. When clicked on any button the page background should be changed according to the button.
+
+ANS. <html>
+   
+    <head>
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+       
+        <script>
+             $(document).ready(function(){
+          
+         
+                
+                
+                              
+                $("button.vm").click(function(){
+               $("body").css("backgroundColor","red");
+             
+                });
+                
+                                 
+                $("button.sm").click(function(){
+               $("body").css("backgroundColor","blue");
+             
+                });
+                
+            
+                
+                
+                   $("button.om").click(function(){
+               $("body").css("backgroundColor","green");
+             
+                });
+                
+                
+                
+             });
+            
+        </script>
+        </head>
+   
+    <body>
+   
+        <p></p>
+        <button class="vm">Red</button>
+          <button class="sm">Blue</button>
+          <button class="om">Green</button>
+    </body>
+</html>
+====================================================================================================================================================================
