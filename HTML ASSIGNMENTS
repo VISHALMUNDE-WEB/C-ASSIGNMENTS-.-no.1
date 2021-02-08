@@ -1505,5 +1505,53 @@ ANS. <html>
 
 ====================================================================================================================================================================
 
+34 Create a JSON data which contains book information for three books. Access all the details of every book like bookid,booktitle,bookprice.
+
+ANS. <html>
+
+    <head>
+    
+    
+    </head>
+
+    <body>
+    
+    <script>
+        
+           var p={
+               
+               "BOOKS":[
+                   
+                {"name":"java","info":["101","coading","500"]},
+                
+                    
+                {"name":"c++","info":["102","language","600"]},
+           
+                    
+                {"name":"html","info":["103","web disigning","600"]}
+               
+                   
+               ]
+               
+           }   
+           
+           document.write("<table border=1>");
+           document.write("<tr><th>NAME</th><th>DETAILS</th></tr>");
+        
+            for(var i=0;i<p.BOOKS.length;i++)
+                {
+                    document.write("<tr><td>"+p.BOOKS[i].name+"</td><td>"+p.BOOKS[i].info+"</td></tr>");
+                }
+        
+          document.write("</table>");
+        
+        
+    </script>
+        
+    </body>
+
+
+</html>
+====================================================================================================================================================================
 
 
