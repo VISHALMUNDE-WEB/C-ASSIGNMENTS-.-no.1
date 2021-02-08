@@ -1505,6 +1505,95 @@ ANS. <html>
 
 ====================================================================================================================================================================
 
+32 Create a Registration form where name,age,city(select box),email and a submit button. Form should not be submitted if age is less than 18.
+
+ANS. 
+<html>
+<head>
+<style>
+    table
+    {
+       background-color: saddlebrown;
+    }
+    h2
+    {
+        background-color: crimson;
+        color: antiquewhite;
+    }
+    #i5
+    {
+        background-color: purple;
+        color: aquamarine
+    }
+    #i6
+    {
+        background-color: orange;
+        color: deeppink;
+    }
+    #i7
+    {
+        background-color: dodgerblue;
+        color: darkred;
+    }
+    #i8
+    {
+        background-color: cyan;
+        color: firebrick;
+    }
+</style>
+</head>
+<body style="background-color: indianred">
+    <h2 id="i1"> </h2>
+    <h2 id="i2"> </h2>
+    <h2 id="i3"> </h2>
+    <h2 id="i4"> </h2>
+
+    
+    <form name="myform">
+    <center>
+    <table border="3">
+    <tr><td style="color: white">NAME</td><td><input type="text" id="i5" name="nm" required></td></tr>  
+    <tr><td style="color: cornsilk">AGE</td><td><input type="number" id="i6" name="ag" required></td></tr> 
+    <tr><td style="color: white">CITY</td><td>
+    <select name="cy" id="i7" multiple required>
+    <option selected>Select a city....</option>
+    <optgroup label="MAHARASHTRA">
+    <option value="PUNE">PUNE</option> 
+    <option value="MUMBAI">MUMBAI</option>
+    <option value="NAGPUR">NAGPUR</option>     
+    </optgroup>
+    </select></td></tr>
+    <tr><td style="color: beige">EMAIL</td><td><input type="email" name="em" id="i8" required></td></tr> 
+    <tr><td><input type="button" onclick="fun()" value="GO" style="background-color: darkgray"></td></tr>
+    </table>    
+    </center>
+    </form>
+    
+    <script>
+    function fun()
+        {
+            var nam = document.myform.nm.value;
+            var ag = document.myform.ag.value;
+            var city = document.myform.cy.value;
+            var ema = document.myform.em.value;
+            
+            if(ag >= 18)
+                {  
+                document.getElementById("i1").innerHTML=nam;         
+                document.getElementById("i2").innerHTML=ag;
+                document.getElementById("i3").innerHTML=city;
+                document.getElementById("i4").innerHTML=ema;
+                }
+            else
+            {
+               alert("FORM CANNOT BE SUBMITTED IF AGE IS LESS THAN 18");
+            }
+        }
+    
+    </script>
+</body>
+</html>
+====================================================================================================================================================================
 34 Create a JSON data which contains book information for three books. Access all the details of every book like bookid,booktitle,bookprice.
 
 ANS. <html>
