@@ -1781,3 +1781,88 @@ ANS. <html>
     </body>
 </html>
 ====================================================================================================================================================================
+
+39 Create an image on the web page width : 150px, height : 150px. Make a button where write a JQuery code to increse the width and height of image on Clicking the button 
+   and border width should be changed to 15px and color will be Red.
+   
+ANS. <html>
+    
+    <head>
+       
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    
+      <style>
+        img
+          
+                
+            {
+                background-color: yellow;
+                border-style: solid;
+                border-color: red;
+                margin-top: 30px;
+              
+                
+            }
+        
+        </style>
+        
+        <script>
+            $(document).ready(function(){
+
+                 $("button").click(function(){
+               
+                      $(".c1").animate({ width:"300px"}).animate({height:"350"}).animate({borderWidth:"15px"});
+                         
+               });
+              
+             });
+             
+        </script>
+        
+        </head>
+    
+    <body>
+    <img src="https://static.toiimg.com/thumb/msid-47048643/47048643.jpg?width=500&resizemode=4" class="c1" height="150px" width="150px">
+      <button>Click</button>    
+    </body>
+</html>
+====================================================================================================================================================================
+
+40 Make a paragraph and a button . When clicked on the button then paragraph color should be changed to red and then font size of the paragraph should be changed.
+
+ANS. <html>
+    
+    <head>
+       
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    
+      
+        
+        <script>
+            $(document).ready(function(){
+           
+
+                  
+                 $("button").click(function(){
+               
+                    $(".c1").css({"color":"red","font-size":"40px"});
+                       
+               });
+          
+             });
+             
+        </script>
+        </head>
+    
+    <body>
+    <b>    
+   <p class="c1">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+   The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', 
+   making it look like readable English.</p>
+    </b>        
+      <button>ClICK</button>    
+    </body>
+</html>
+======================================================================================================================================================================
