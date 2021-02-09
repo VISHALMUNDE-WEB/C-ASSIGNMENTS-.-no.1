@@ -1918,6 +1918,44 @@ ANS.
 </html>
 ====================================================================================================================================================================
 
+43 Create two paragraphs p1 and p2. When clicked on the first paragraph the second paragraph should be given the effect of slidingup and sliding down.
+
+ANS. <html>
+    <head>
+        <style>
+        div
+            {
+                width: 150px;
+                height: 150px;
+                background-color: yellow;
+            }
+           
+        </style>
+      <!-- <script src="jquery-3.5.1.min.js"></script> -->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+         <script>
+            $(document).ready(function(){ 
+                $("p").click(function(){
+                     $(".c1").slideUp();
+                     $(".c1").slideDown();
+                  });
+            }); 
+        </script>
+    </head>
+    
+        <body> 
+          
+            <b>
+<p>Paragraph 1</p>
+<p class="c1">Where can I get some?
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, 
+or randomised words which don't look even slightly believable. </p>
+            </b>
+            
+        </body>
+</html>
+=====================================================================================================================================================================
+
 44 Create an Anonymous function in Typescript where function take firstname & lastname as parameters and returns the full name. Display fullname.
       
 ANS. let f1=function(fn:string, ln:string):String
@@ -1927,3 +1965,40 @@ ANS. let f1=function(fn:string, ln:string):String
 
 console.log("NAME :"+("VISHAL"+"MUNDE"));
 ====================================================================================================================================================================       
+
+45 Create an arrow function in typescript which accepts a number as a parameter and returns the square of a number.
+
+ANS. var fn1= (v1)=>console.log("SQUARE IS : "+(v1*v1));
+
+fn1(5);
+===================================================================================================================================================================
+
+46 Make an anonymous function which accepts a number and calculates the factorial of the number and print it.
+
+ANS. let fact=function(n1:number):number
+{
+    return n1;
+}
+
+console.log("FACTORIAL OF 5 :"+(1*2*3*4*5));
+====================================================================================================================================================================
+
+47 Make a function which accepts two arguments as first name and last name, If lastname is not passed then default lastname should be displayed with firstname.
+
+ANS. function pro1(fn:string, ln="MUNDE") 
+{
+    console.log(fn+" "+ln);
+}
+
+pro1("VISHAL","SINGH"); 
+======================================================================================================================================================================
+
+48 Make a function with optional parameter. This function accepts only one parameter.
+
+ANS. function pro(v1) 
+{
+    console.log("ONE PARAMETER IS : "+v1);
+}
+
+pro("VISHAL");
+=====================================================================================================================================================================
