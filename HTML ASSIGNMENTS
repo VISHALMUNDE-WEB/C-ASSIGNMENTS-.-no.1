@@ -1917,3 +1917,13 @@ ANS.
     </body>
 </html>
 ====================================================================================================================================================================
+
+44 Create an Anonymous function in Typescript where function take firstname & lastname as parameters and returns the full name. Display fullname.
+      
+ANS. let f1=function(fn:string, ln:string):String
+{
+    return fn+ln;
+}
+
+console.log("NAME :"+("VISHAL"+"MUNDE"));
+====================================================================================================================================================================       
