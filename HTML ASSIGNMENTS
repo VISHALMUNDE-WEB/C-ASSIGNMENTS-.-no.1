@@ -1204,9 +1204,6 @@ var city="pune";
 document.getElementById('id1').innerHTML=info;
 ===================================================================================================================================================================
 
-     
-===================================================================================================================================================================
-
 23 Create a Javascript function which accepts a number and returns the cube of the number and print the cube.
 
 ANS. <html>
@@ -1782,6 +1779,45 @@ ANS. <html>
 </html>
 ====================================================================================================================================================================
 
+38 Display numbers from 1 to 10 sequencially. All Odd numbers should be printed in Red color and Even numbers should be displayed in Green Color.
+
+ANS. <html>
+<head>
+<style>
+    #s1
+    {
+    color: green;
+    }
+    
+    #s2
+    {
+    color: red;
+    }
+</style>   
+</head>
+<body>
+   <script>
+   for(var i=1;i<=10;i++)
+       {
+         document.write("<table border='2'");
+         
+         if(i%2==0)
+             {
+         document.write("<tr id='s1'><td>"+i+"</td></tr>");  
+             }
+         else
+               {
+         document.write("<tr id='s2'><td>"+i+"</td></tr>");  
+               } 
+         document.write("</table>");
+       }
+    
+   </script> 
+    <table style="border-style: solid"></table>
+</body>
+</html>
+====================================================================================================================================================================
+
 39 Create an image on the web page width : 150px, height : 150px. Make a button where write a JQuery code to increse the width and height of image on Clicking the button 
    and border width should be changed to 15px and color will be Red.
    
@@ -1917,6 +1953,57 @@ ANS.
     </body>
 </html>
 ====================================================================================================================================================================
+
+42 create div tag with predefined parameters : width :300px, height:300px ,backgroundcolor = red. When move the mouse over the division then height and width should be 
+   increased and color should be changed and when you leave the division area the original width , height and color should be displayed.
+   
+ANS. <html>
+    <head>
+        <style>
+             div
+            {
+                background-color: red;
+                width: 300px;
+                height: 300px;    
+            }
+            
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        <script>
+             $(document).ready(function(){
+               
+                 $("div").mouseenter(function(){
+                    $(".c1").animate(
+                        { 
+                            
+                            width:"+=40px",
+                            height:"+=140px",
+                
+           });
+                            
+                     $("div").mouseleave(function(){
+                    $(".c1").animate(
+                        { 
+                            
+                            width:"-=20px",
+                            height:"-=100px",
+                 
+           });
+                         
+                     $("div").hover(function(){
+                    $(this).css("backgroundColor","yellow")                       
+           });                    
+              });
+                 });
+                    });  
+        </script>
+        </head>
+    <body>
+        <hr>
+           <div class="c1"></div><br>      
+    </body>
+</html>
+=====================================================================================================================================================================
 
 43 Create two paragraphs p1 and p2. When clicked on the first paragraph the second paragraph should be given the effect of slidingup and sliding down.
 
