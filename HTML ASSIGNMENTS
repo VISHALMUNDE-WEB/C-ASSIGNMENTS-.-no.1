@@ -2089,3 +2089,45 @@ ANS. function pro(v1)
 
 pro("VISHAL");
 =====================================================================================================================================================================
+
+52 Create two textboxes as name and age of a person in a component as a child of Root component.Create a button as submit. Once clicked on this button , some handler
+    should be called which will display the name and age in the alert box.
+    
+ANS. assi52.component.html
+
+     <h1>ASSIGNMENT : 52</h1>
+<br>
+<hr>
+
+NAME : <input [(ngModel)]="name"><br>
+
+AGE :  <input [(ngModel)]="age"><br>
+
+<button (click)="getdetails()">SUBMIT</button>
+ 
+    assi52.component.ts
+    
+    import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-assi52',
+  templateUrl: './assi52.component.html',
+  styleUrls: ['./assi52.component.css']
+})
+export class ASSI52Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  name:string;
+  age:number;
+
+  getdetails()
+  {
+    alert("NAME : "+this.name+" "+"AGE : "+this.age);
+  }
+}
+=============================================================================================================================================================================
+    
