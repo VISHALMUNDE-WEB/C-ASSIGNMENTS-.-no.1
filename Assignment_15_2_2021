@@ -1,0 +1,248 @@
+Q.1 Write a program in C to create a linked list of 3 nodes which stores integer values. Add one more node in the begining of linked list & Display the list.
+
+ANS. #include<stdio.h>
+ #include<stdlib.h>
+
+
+typedef struct nd             
+{                           
+    char data;
+    struct nd *next;
+}node;
+
+ 
+
+typedef struct ls
+{
+    node *head,*tail;
+}list;
+
+ 
+
+node* createNode(char no)
+{
+    node *np;
+    
+    np=(node*)malloc(sizeof(node));  
+    
+    if(np == NULL)
+    {
+        printf("Memory not available");
+        exit(0);    
+    }
+    
+    np->data=no;
+    np->next=NULL;
+    
+    return np;
+}
+
+ 
+
+void initalize(list *p)
+{
+    p->head = NULL;
+    p->tail = NULL;
+}
+void insertAtail(list *p,char x)
+{
+    node *np;
+    np = createNode(x);
+    if(p->head==NULL)
+    p->head = np;
+    else
+    p->tail->next = np;
+    p->tail = np;
+}
+
+ 
+
+void traverse(list *p)
+{
+    node *sp;
+    sp = p->head;
+    
+    while(sp!=NULL)
+    {
+        printf("%c",sp->data);
+        sp=sp->next;
+    }
+}
+int main()
+{    
+    list *p;
+    
+    p = (list*) malloc(sizeof(list));
+    
+    if(p == NULL)
+    {
+        printf("MEMORY UNVAVAILABLE");
+        exit(0);
+    }
+    
+    initalize(p);
+    insertAtail(p,'1');
+    insertAtail(p,'2');
+    insertAtail(p,'3');
+    insertAtail(p,'4');
+    insertAtail(p,'5');
+    
+    traverse(p);
+    
+    free(p);
+}
+==============================================================================================================================================================================
+
+Q.2 Create a stack of 5 names in Java.
+
+ANS. package Package1;
+
+import java.util.Stack;
+
+public class assi1 {
+
+	public static void main(String[] args) {
+		
+		Stack<String> names= new Stack<>();
+
+	    names.push("VISHAL");
+	    names.push("ARJUN");
+	    names.push("DHIRAJ");
+	    names.push("DADU");
+	    names.push("RAJ");
+	    System.out.println("Stack: " + names);
+
+
+	}
+
+}
+==============================================================================================================================================================================
+
+Q.6 Create a procedure in the PLSQL which deletes a record from the database table.
+
+ANS. SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> create table assi8(name varchar2(10), rollno number(10));
+
+Table created.
+
+SQL> insert into assi8 values("vishal",101);
+insert into assi8 values("vishal",101)
+                         *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into assi8  values('vishal','7');
+
+1 row created.
+
+SQL> insert into assi8 values('arjun','8');
+
+1 row created.
+
+SQL> select * from assi8;
+
+NAME           ROLLNO
+---------- ----------
+vishal              7
+arjun               8
+
+SQL> delete from assi8 where name = 'arjun';
+
+1 row deleted.
+
+SQL> select * from assi8;
+
+NAME           ROLLNO
+---------- ----------
+vishal              7
+
+SQL>                         
+=========================================================================================================================================================================
+
+Q.14 Create an HTML page and make an image on it. Aplly the fadeIn, fadeOut,fadeToggle, hide, show, Toggle effect on the same image. For every effect a seperate button
+   should be defined.
+
+ANS. <html>
+   
+    <head>
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+       
+        <script>
+             $(document).ready(function(){
+              
+                 $(".fadeinbtn").click(function(){
+                    $("img").fadeIn(2000);
+                    
+                    
+                 });
+                
+                 $(".fadeoutbtn").click(function(){
+                    $("img").fadeOut(4000);
+                    
+                    
+                 });
+                
+                  $(".fadetoggle").click(function(){
+                    $("img").fadeToggle(4000);
+                    
+                    
+                 });
+                
+                
+                  $(".hideme").click(function(){
+                  $("img").hide('slow');
+             
+              
+                 });
+                
+                     
+                  $(".showme").click(function(){
+                  $("img").show();
+              
+              
+                 });
+                
+                 $(".toggle").click(function(){
+                    
+                     $("img").toggle();
+                    
+                 })
+                
+              
+                
+          });
+   
+            
+        </script>
+        </head>
+   
+    <body>
+         <button class="fadeinbtn">fade in button</button>
+    
+       
+        <button class="fadeoutbtn">fade out button</button>
+    
+     
+        <button class="fadetoggle">fade toggle</button>
+       
+         <button class="hideme">Hide</button>
+    
+        <button class="showme">Show</button>
+       
+      
+           <button class="toggle">toggle</button>
+       
+       
+       
+       <img src="https://images.news18.com/ibnlive/uploads/2020/03/Kiara-Advani-2.jpg" height="300px" width="300px">
+       
+    </body>
+</html>
+==============================================================================================================================================================================
+
