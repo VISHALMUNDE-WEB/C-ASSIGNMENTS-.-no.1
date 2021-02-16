@@ -118,6 +118,96 @@ public class assi1 {
 }
 ==============================================================================================================================================================================
 
+Q.3 Create an interface I1, Abstract class A1. Make a class Demo which inherit I1 & A1. I1 has a method getArea() and A1 has an absract method as getFactorial().
+   Demo class calculates the Area of circle & also factorial of the number which user enters.
+
+ANS. package Pacakage1;
+
+import java.util.Scanner;
+
+interface I1
+{
+	public void getArea();
+}
+
+abstract class A1 implements I1
+{
+	public abstract void getfac();
+	
+}
+
+public class assi3 extends A1{
+    public static double rad;
+	public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	
+	assi3 d = new assi3();
+	
+	System.out.println("ENTER NUMBER");
+	rad = sc.nextInt();	
+	
+	d.getArea();
+	d.getfac();
+	}
+
+	@Override
+	public void getArea() {
+		double PI = 3.14;
+		double area = PI*rad*rad;
+		
+		System.out.println("AREA OF CIRCLE : "+area);
+	}
+
+	@Override
+	public void getfac() {
+		int res = 1;
+		
+		for(int x=2;x<=rad;x++)
+		{
+			res *= x;
+		}
+		System.out.println("FACTORIAL IS : "+res);
+	}
+
+}
+==============================================================================================================================================================================
+
+Q.4 Create a Thread class on implementing Runnable interface . Also the same Thread class extends another class and displays info of that class also.
+
+ANS. package Pacakage1;
+
+class c1
+{
+	public void getinfo()
+	{
+		System.out.println("THIS IS XYZ CLASS");
+	}
+}
+
+class threadcl extends c1 implements Runnable
+{
+	@Override
+	public void run() 
+	{
+		getinfo();
+	}
+	
+}
+public class assi4 {
+
+	public static void main(String[] args) {
+		
+    threadcl t1 = new threadcl();
+    
+    Thread th1 = new Thread(t1);
+    
+    th1.start();
+    
+	}
+
+}
+=============================================================================================================================================================================
+
 Q.6 Create a procedure in the PLSQL which deletes a record from the database table.
 
 ANS. SQL> connect
@@ -162,6 +252,594 @@ vishal              7
 
 SQL>                         
 =========================================================================================================================================================================
+
+Q.7 Make two servlets and write the configuration details of database driver in the web.xml file. Both servlets get the same information from web.xml file .One of the
+   servlet is adding information of the employee in database and second servlet is displaying all information from the database. Information can be about any Product.
+
+ANS. assi7.jsp
+
+     <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="assi7">
+
+PRODUCT ID<input type="number" name="proid">
+
+PRODUCT NAME<input type="text" name="pronm">
+
+PRODUCT PRICE<input type="text" name="proct">
+
+<input type="submit" value="ENTER">
+
+</form>
+</body>
+</html>
+================================================================================
+
+  assi_7.java
+  
+  package Pacakage1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+/**
+ * Servlet implementation class assi_7
+ */
+public class assi_7 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public assi_7() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter pw = response.getWriter();
+		response.setContentType("text/html");
+		
+		int ID = Integer.parseInt(request.getParameter("proid"));
+		
+		String NM = request.getParameter("pronm");
+		
+		String CY = request.getParameter("proct");
+		
+		try 
+		{
+	       Class.forName("oracle.jdbc.driver.OracleDriver");
+	       
+	       Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","jyotimunde");
+	       
+	       PreparedStatement pmt = cn.prepareStatement("insert into assi7 values(?,?,?)");
+	       
+	       pmt.setInt(1,ID);
+	       pmt.setString(2,NM);
+	       pmt.setString(3,CY);
+	       
+	       int i = pmt.executeUpdate();
+	       
+	       System.out.println("RECORD INSERTED");			
+		}
+		catch(Exception ea)
+		{
+			ea.printStackTrace();
+		}
+		
+		response.sendRedirect("assi_7");
+		}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+==============================================================================================================================================================================
+
+=========================================================================================================================================================================
+
+Q.8 Create a table in the database which stores the records of 5 books like bookId, BookTitle, Author,Price.Make a servlet which access all the details of the books
+   from database and display on the web page created dynamically.
+
+ANS. DATABASE 
+
+     create table books(bid number(10),btitle varchar2(30),author varchar2(30),price number(30));
+
+insert all
+
+into books(bid,btitle,author,price) values(101, 'HOW TO BE FAMOUS','CAITLIN MORAN',20000)
+into books(bid,btitle,author,price) values(102, 'LIE OF PI','YANN MARTEL',1500)
+into books(bid,btitle,author,price) values(103, 'THE LORD OF THE RINGS','J.R.R.TOLKIEN',3000)
+into books(bid,btitle,author,price) values(104, 'THE HOBBIT', 'J.R.R.TOLKIEN', 2500)
+into books(bid,btitle,author,price) values(105, 'ULYSSES', 'JAMES JOYCE', 4000)
+
+select * from dual;
+
+select * from books;
+===============================================================================================
+
+    assi8.java
+    
+    package Pacakage1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+/**
+ * Servlet implementation class assi8
+ */
+public class assi8 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public assi8() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet1(HttpServletRequest request, HttpServletResponse response)
+	 */	
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			PrintWriter pw = response.getWriter();
+			response.setContentType("text/html");
+
+			try 
+			{
+		       Class.forName("oracle.jdbc.driver.OracleDriver");
+		       
+		       Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","jyotimunde");
+		       
+		       Statement smt = cn.createStatement();
+		       
+		       String query = "select bid,btitle,author,price from books";
+		       
+		       ResultSet rs = smt.executeQuery(query);
+		       
+		       while(rs.next())
+		       {
+		    	   pw.print("BOOK ID : "+rs.getInt(1)+"<br>BOOK NAME : "+rs.getString(2)+"<br>BOOK AUTHOR : "+rs.getString(3)+"<br>BOOK PRICE : "+rs.getInt(4));
+		       }
+		       
+		       pw.print("SUCCESSFULLY DISPLAYED");	
+		       
+		       rs.close();
+		       
+		       smt.close();
+		       
+		       cn.close();
+			}
+			catch(Exception ea)
+			{
+				ea.printStackTrace();
+			}
+			
+			}	
+		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+==========================================================================================================================================================================
+
+Q.9 Create a Class Customer where custId,Cname,Ccity should be declared as memebers . Define getter & setter method in this class which sets the values for customer.
+   Create a servlet and a JSP Page. In Jsp page make a form which takes custId, Cname and Ccity from user and these details should be submitted into the Customer 
+   class and through this class all data should be saved into the database. 
+
+ANS. assi9.jsp
+
+     <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="assi_9" method="get">
+
+<fieldset>
+
+<legend>CUSTOMER DETAILS</legend>
+
+CUSTOMER ID<input type="number" name="cusid">
+
+CUSTOMER NAME<input type="text" name="cusnm">
+
+CUSTOMER CITY<input type="text" name="cuscity">
+
+<input type="submit" value="SUBMIT">
+
+</fieldset>
+
+</body>
+</html>
+====================================================
+
+   assi_9.java
+   
+   package Pacakage1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sun.org.apache.bcel.internal.Const;
+
+/**
+ * Servlet implementation class assi_9
+ */
+public class assi_9 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public assi_9() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		PrintWriter pw = response.getWriter();
+		
+		int id = Integer.parseInt(request.getParameter("cusid"));
+		String nm = request.getParameter("cusnm");
+		String cy = request.getParameter("cuscity");
+			
+		Cust cd = new Cust();
+		
+		cd.setCusID(id);
+		cd.setcNAME(nm);
+		cd.setcCITY(cy);
+		
+		cd.sub();
+			
+		}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+=============================================================================================================================================================================
+ 
+
+Q.10 Create 4 text boxes and a submit button in Angular View. Take firstname,lastname,email and age as an input. When clicked on the submit button All entered details 
+   should be displayed in the same page. Use Two way binding.
+
+ANS. assi10.component.html
+
+     <h1>ASSIGNMENT 10</h1>
+
+FIRSTNAME <input [(ngModel)]="firstname"><br>
+
+LASTNAME<input [(ngModel)]="lastname"><br>
+
+EMAIL <input [(ngModel)]="email"><br>
+
+AGE <input [(ngModel)]="age"><br>
+
+<button (click)="getdetails()">SUBMIT</button>
+
+<h2>{{fn}}<br>
+
+{{ln}}<br>
+{{em}}<br>
+{{ag}}</h2>
+==============================================================
+
+   assi10.component.ts
+   
+   import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-assi10',
+  templateUrl: './assi10.component.html',
+  styleUrls: ['./assi10.component.sass']
+})
+export class Assi10Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  firstname:string;
+  lastname:string;
+  email:string;
+  age:number;
+
+  fn:string;
+  ln:string;
+  em:string;
+  ag:number;
+
+  getdetails()
+  {
+     this.fn = this.firstname;
+     this.ln = this.lastname;
+     this.em = this.email;
+     this.ag = this.age;
+  }
+}
+==============================================================================================================================================================================
+
+Q.11 Create two components Parent and child.In child component, create an array of 4 employee records as name,email,age,city . Make a button in the child view .Once 
+   clicked on the button, All records from the  the child should be displayed in the Parent view. Use child to Parent data transfer concept.
+
+ANS. child.component.html
+
+     h1>CHILD COMPONENT</h1>
+
+<button (click)="getarr()">GO</button>
+=========================================
+
+    child.component.ts
+    
+    import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.sass']
+})
+export class ChildComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  arr:any[];
+
+  @Output() eve = new EventEmitter<any>();
+  
+  getarr()
+  {
+  this.arr = ["VISHAL","vishalmmunde7@gmail.com",7,"PUNE"]; 
+
+  this.eve.emit(this.arr[0]+" "+this.arr[1]+" "+this.arr[2]+" "+this.arr[3]);
+  }
+}
+=================================================
+     parent.component.html
+     
+     <h1>PARENT COMPONENT</h1>
+
+<app-child2 (eve)="getarray($event)"></app-child2>
+<h2>{{arr}}</h2>
+===================================================
+
+    parent.component.ts
+    
+    import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-parent',
+  templateUrl: './parent.component.html',
+  styleUrls: ['./parent.component.sass']
+})
+export class ParentComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  arr:any;
+
+  getarray(mess:any)
+  {
+    this.arr = mess;
+  }
+  
+}
+========================================================================================================================================================================
+
+Q.12 Create a service which stores name,email and age of 5 students in the array of objects. Make 2 components Parent & child. Create a button in the child component
+   when button is clicked , all records from the service should be displayed in the Parent component.
+
+ANS. MY SERVICE
+
+     import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MyserviceService {
+
+  constructor() { }
+
+  arr1:any[] = ["VISHAL","vishal@gmail.com",19];
+  arr2:any[] = ["ARJUN","arjun@gmail.com",19];
+  arr3:any[] = ["SOHAM","soham@gmail.com",12];
+  arr4:any[] = ["OM","om@gmail.com",15];
+  arr5:any[] = ["PRIYA","priya@gmail.com",16];
+
+  getarray1()
+  {
+      return this.arr1[0]+" "+this.arr1[1]+" "+this.arr1[2];
+  }
+
+  getarray2()
+  {
+      return this.arr2[0]+" "+this.arr2[1]+" "+this.arr2[2];
+  }
+  
+  getarray3()
+  {
+      return this.arr3[0]+" "+this.arr3[1]+" "+this.arr3[2];
+  }
+  
+  getarray4()
+  {
+      return this.arr4[0]+" "+this.arr4[1]+" "+this.arr4[2];
+  }
+  
+  getarray5()
+  {
+      return this.arr5[0]+" "+this.arr5[1]+" "+this.arr5[2];
+  }
+}
+====================================================================
+
+     child1.component.html
+     
+     <h1>CHILD1 PAGE</h1>
+
+<button (click)="getarr()">GO</button>
+=======================================
+
+    child1.component.ts
+    
+    import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-child1',
+  templateUrl: './child1.component.html',
+  styleUrls: ['./child1.component.sass']
+})
+export class Child1Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  @Output() event = new EventEmitter<string>();
+  
+  getarr()
+  {
+    this.event.emit();
+  }
+  
+}
+===============================================================
+
+   parent1.component.html
+   
+   <h1>PARENT1 PAGE</h1>
+
+<app-child3 (event)="getarrays($event)"></app-child3>
+
+<h2>{{a1}}</h2>
+<h2>{{a2}}</h2>
+<h2>{{a3}}</h2>
+<h2>{{a4}}</h2>
+<h2>{{a5}}</h2>
+============================================================
+
+   parent1.component.ts
+   
+   import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-parent1',
+  templateUrl: './parent1.component.html',
+  styleUrls: ['./parent1.component.css']
+})
+export class Parent1Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  getarrays(fun:any)
+  {
+    this.a1 = this.ms.getarray1();
+    this.a2 = this.ms.getarray2();
+    this.a3 = this.ms.getarray3();
+    this.a4 = this.ms.getarray4();
+    this.a5 = this.ms.getarray5();
+  }
+
+}
+=======================================================================================================================================================================
+
+Q.13 Write a JQuery script which changes the default dimensions(width,height) of an image and background color to blue. Image should be in the center of the web Page.
+
+ANS. <html>
+<head>
+<style>
+img
+    {
+        width: 350px;
+        height: 200px;
+        padding: 50px;
+    }
+    
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+</head>
+    
+<body>
+<center>
+<img src="https://i.pinimg.com/originals/f9/ed/7e/f9ed7eccd1c575923cf890c5cc70807c.jpg">
+    
+    <script>
+    $(document).ready(function(){
+        $("img").click(function(){
+        $(this).animate({
+            width:"700px",
+            height:"400px"
+        },"fast"),
+        
+        $("body").css({backgroundColor:"darkblue"})
+            
+         });
+    });
+    
+    </script>
+</center>
+</body>
+</html>
+=============================================================================================================================================================================
 
 Q.14 Create an HTML page and make an image on it. Aplly the fadeIn, fadeOut,fadeToggle, hide, show, Toggle effect on the same image. For every effect a seperate button
    should be defined.
@@ -246,3 +924,137 @@ ANS. <html>
 </html>
 ==============================================================================================================================================================================
 
+Q.15 Make a Javascript function which changes the background color of the body. Make anoher function which takes a string as Input and apply all string related functions
+   on the string passed.
+ 
+ANS. <html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+</head>
+<form name="myform"> 
+    
+TEXT<input type="text" name="tx" onkeypress="style1()"><br>    
+    
+NUMBER<input type="text" name="num"><br>
+    
+TEXT<input type="text" name="em"><br>
+    
+<input type="button" onclick="style2()" value="enter">    
+    
+</form>
+    
+<h2 id="c1"> </h2>
+<h2 id="c2"> </h2>
+<h2 id="c3"> </h2>
+
+
+<body>
+
+    <script>
+        function style1()
+        {
+            document.body.style.backgroundColor="greenyellow";
+            document.body.style.Color="BLACK";
+        }
+        
+        function style2()
+        {
+            var txt = document.myform.tx.value;
+            var nm = document.myform.num.value;
+            var em = document.myform.em.value;
+            
+            document.getElementById ("c1").innerHTML=txt.toUpperCase();
+            document.getElementById ("c2").innerHTML=nm.split("-");
+            document.getElementById ("c3").innerHTML=em.toLowerCase();
+           
+        }
+    </script>
+============================================================================================================================================================================
+
+Q.16 Create an XML code and JSON code to store the following information about a city.
+   Store 5 cities records
+
+   Cities 
+         city--> name,population,area   
+	 
+ANS. xml.file
+
+     <?xml version="1.0" encoding="UTF-8"?>
+
+<cities>
+
+<city>
+<name>PUNE</name>
+<population>40000000</population>
+<area>500</area>  </city>
+
+<city>
+<name>MUMBAI</name>
+<population>1.84 crores</population>
+<area>500</area>  </city>
+
+<city>
+<name>BENGLORE</name>
+<population>8300000</population>
+<area>320</area>  </city>
+
+<city>
+<name>PATNA</name>
+<population>2000000</population>
+<area>401</area>  </city>
+
+<city>
+<name>BEED</name>
+<population>2600000</population>
+<area>200</area>  </city>
+</cities>
+===============================================================
+
+   AS16.html
+   
+   <html>
+<head>
+<style>
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+</head>
+
+
+<body>
+<script>
+    var json = {city : [{name:"PUNE",
+                        population:40000000,
+                        area:500},
+                       {name:"SATARA",
+                        population:12100000,
+                        area:400},
+                       {name:"NAGPUR",
+                        population:97700000,
+                        area:500},
+                       {name:"MUMBAI",
+                        population:23200000,
+                        area:328},
+                       {name:"SOLAPUR",
+                        population:401230000,
+                        area:350}]};
+    
+    document.write("<table border=3>");
+    document.write("<center>")
+    document.write("<caption><h2><u>CITIES</u></h2></caption>");
+    document.write("<tr><td><b>NAME</b></td><td><b>POPULATION</b></td><td><b>AREA</b></td></tr>");
+    
+    for(var val=0;val<json.city.length;val++)
+        {
+            
+        document.write("<tr><td>"+json.city[val].name+"</td><td>"+json.city[val].population+"</td><td>"+json.city[val].area+"</td></tr>");
+    
+        }
+    document.write("</center>")
+    document.write("</table>")
+</script>    
+</body>
+</html>
+=====================================================================================================================================================================
