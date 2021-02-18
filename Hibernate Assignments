@@ -1,0 +1,142 @@
+1. Create a class Student and make a mapping file to map this class. In Student class, Take studentRollno,name,age from user. Sno will be id by default. 
+   Create a table maually.
+   
+ANS. student.java
+
+package Package1;
+
+public class student {
+
+	private int rollno;
+	private String name;
+	private int age; 
+	private int id;
+	
+	public int getRollno() {
+		return rollno;
+	}
+	public void setRollno(int rollno) {
+		this.rollno = rollno;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+}
+==========================================================================
+
+student_test.java
+
+package Package1;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class student_test {
+
+	public static void main(String[] args) {
+		
+     SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+	 Session s=sf.openSession();
+		
+	 Transaction t=s.beginTransaction();
+		
+	 student s1=new student();
+	 
+	 s1.setName("VISHAL");
+	 
+	 s1.setAge(19);
+	 
+	 s1.setRollno(21);
+	 
+     student s2=new student();
+	 
+	 s2.setName("SOHAM");
+	 
+	 s2.setAge(12);
+	 
+	 s2.setRollno(22);
+	 
+	 s.save(s1);
+	 
+	 s.save(s2);
+	 
+	 t.commit();
+	 
+	 s.close();
+	 
+	 sf.close();
+	 
+	System.out.println("DONE");
+	
+	}
+		
+}
+======================================================================================
+
+hibernate.cfg.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <mapping resource="student.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+=============================================================================================================
+
+student.hbm.xml
+
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 Feb, 2021 10:50:01 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="Package1.student" table="studentdetails">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="rollno" type="int">
+            <column name="rollno" />
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+        <property name="age" type="int">
+            <column name="age" />
+        </property>
+    </class>
+</hibernate-mapping>
+======================================================================================================================================================================
+
+
+
+
+
