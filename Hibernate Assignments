@@ -284,8 +284,123 @@ hibernate.cfg.xml
 </hibernate-configuration>
 =======================================================================================================================================================================
 
+3. Make a class Account which has fields like accno,name & acctype. Acoount class will be Entity class. Take data from user and the table will be created automatically.
 
+ANS. account.java
 
+package Package1;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "accQ3")
+
+public class account {
+	
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	 @Column(name = "Account_No")
+	 private int accountno;
+	
+	 @Column(name = "Account_Name")
+	 private String accountname;
+	 
+	 @Column(name = "Account_Type")
+	 private String accounttype;
+
+	public String getAccountname() {
+		return accountname;
+	}
+
+	public void setAccountname(String accountname) {
+		this.accountname = accountname;
+	}
+
+	public String getAccounttype() {
+		return accounttype;
+	}
+
+	public void setAccounttype(String accounttype) {
+		this.accounttype = accounttype;
+	}
+
+	public int getAccountno() {
+		return accountno;
+	}
+
+	public void setAccountno(int accountno) {
+		this.accountno = accountno;
+	}
+	
+	
+}
+=====================================================================
+
+account_test.java
+
+package Package1;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class account_test {
+
+	public static void main(String[] args) {
+		
+		SessionFactory sf=new Configuration().configure().addAnnotatedClass(account.class).buildSessionFactory();
+
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		account a1=new account();
+		
+		a1.setAccountname("Ajay");
+		
+		a1.setAccounttype("Current");
+		
+		a1.setAccountno(454567);
+		
+		s.save(a1);
+		
+		//s.getTransaction().commit();
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+	
+		System.out.println("COMPLETED");
+		
+	}
+
+}
+=======================================================================================
+
+hibernate.cfg.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+    </session-factory>
+</hibernate-configuration>
+=======================================================================================================================================================================
 
 
 
