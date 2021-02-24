@@ -402,5 +402,385 @@ hibernate.cfg.xml
 </hibernate-configuration>
 =======================================================================================================================================================================
 
+ 5 Make a simple project in Maven using Hibernate to take the details about a Employee like EmpID,Name,Salary. Delete and Update the specific record.
+ 
+ ANS. Records.java
+ 
+      package Package1;
 
+public class Records 
 
+{
+	
+	private String ename;
+	
+	private int eid;
+	
+	private int salary;
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+
+	public int getEid() {
+		return eid;
+	}
+
+	public void setEid(int eid) {
+		this.eid = eid;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
+	public Records(String ename, int eid, int salary) {
+		super();
+		this.ename = ename;
+		this.eid = eid;
+		this.salary = salary;
+	}
+
+	public Records() {
+		super();
+	}
+}
+===========================================================================================================
+     Insert.java
+     
+     package Package1;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class Insert {
+
+	public static void main(String[] args) 
+	
+	{
+		
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+        Session s=sf.openSession();
+		
+		Transaction t=s.beginTransaction();
+		
+		Records r=new Records();
+		
+		r.setEname("ARJUN");
+		
+		r.setEid(24);
+		
+		r.setSalary(14000);
+		
+		s.saveOrUpdate(r);
+		
+		t.commit();
+		s.close();
+		sf.close();
+		
+		System.out.println("COMPLETED");
+		
+		
+	}
+
+}
+==========================================================================================================
+     RecordsUpdation.java
+     
+     package Package1;
+
+import javax.persistence.Query;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class RecordsUpdation {
+
+	public static void main(String[] args)
+	
+	{
+		
+        SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		// Updating The Specific Record 
+		//Query q=s.createQuery("update Records set ename='DHIRAJ' where ename='OM'");
+		
+		
+		// Deleting The Specific Record
+		Query q=s.createQuery("delete from Records where ename='DHIRAJ'");
+		
+		q.executeUpdate();
+		
+		s.getTransaction();
+		
+		s.close();
+		 
+		sf.close();
+		
+		System.out.println("RECORD UPDATED SUCCESSFULLY");
+		
+	}
+
+}
+===========================================================================================================
+    hibernate.cfg.xml
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <mapping resource="Records.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+==========================================================================================================
+   Records.hbm.xml
+   
+   <?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 Feb, 2021 6:28:35 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="Package1.Records" table="ASSIGNMENT5">
+        <id name="eid" type="int">
+            <column name="EID" />
+            <generator class="assigned" />
+        </id>
+        <property name="ename" type="java.lang.String">
+            <column name="ENAME" />
+        </property>
+        <property name="salary" type="int">
+            <column name="SALARY" />
+        </property>
+    </class>
+</hibernate-mapping>
+======================================================================================================================================================================
+
+7. Create 3 Bean classes named as SBI, IDBI, ICICI. In All classes the dependency is injected in the constructor.Dependency class is InterestRate which has one method
+   getRate() which returns the rate of interest according to the bank. Display BankName, Bank Rate.
+   
+ANS.  SBI.java
+
+      package Package1;
+
+public class SBI implements Banks
+
+{
+	
+	private GetRate gt;
+	
+	public SBI(GetRate gt) 
+	{
+		this.gt = gt;
+	}
+
+	@Override
+	public String getName() 
+	{
+		return "NAME : SBI BANK";
+	}
+
+	@Override
+	public int getRate() 
+	{
+		
+		return gt.getRate();
+	}
+   
+    
+}
+===================================================================================
+
+     IDBI.java
+     
+     package Package1;
+
+public class IDBI implements Banks
+
+{
+    private GetRate idbi;
+    
+    
+	public IDBI(GetRate idbi) 
+	{
+		this.idbi = idbi;
+	}
+
+	@Override
+	public String getName()
+	{
+		
+		return "NAME : IDBI BANK";
+	}
+
+	@Override
+	public int getRate() {
+		
+		return idbi.getRate();
+	}
+
+}
+===============================================================================================
+
+    ICICI.java
+    
+    package Package1;
+
+public class ICICI implements Banks
+
+{
+	private GetRate icici;
+	
+	public ICICI(GetRate icici) 
+	
+	{
+       this.icici = icici;
+	}
+
+	@Override
+	public String getName() 
+	{
+		return "NAME : ICICI BANK";
+	}
+
+	@Override
+	public int getRate() {
+		
+		return icici.getRate();
+	}
+
+}
+========================================================================================
+
+    GetRate_SBI.java
+    
+   package Package1;
+
+public class GetRate2 implements GetRate
+
+{
+
+	@Override
+	public int getRate() 
+	
+	{
+		
+		 return (7);
+	}
+	
+	
+
+}
+
+======================================================================================
+
+   GetRate_IDBI.java
+   
+   package Package1;
+
+public class GetRate_IDBI implements GetRate
+
+{
+
+	@Override
+	public int getRate() 
+	{
+		
+		return (6);
+	}
+   
+}
+========================================================================
+
+    GetRate_ICICI.java
+    
+    package Package1;
+
+public class GetRate_icici implements GetRate
+
+{
+
+	@Override
+	public int getRate() 
+	
+	{
+		
+		return (5);
+	}
+
+}
+==================================================================================
+
+    Banks.java (Interface)
+    
+    package Package1;
+
+public interface Banks 
+
+{
+	 public String getName();    
+	 
+	 public int getRate();
+}
+=================================================================================
+
+   GetRate.java (Interface)
+   
+   package Package1;
+
+public interface GetRate 
+
+{
+    public int getRate();
+}
+=================================================================================
+
+  application.Context.xml
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="myrate" class="Package1.GetRate_icici"></bean>
+    
+    <bean id="mybanks" class="Package1.ICICI">
+    
+    <constructor-arg ref="myrate"></constructor-arg>
+    
+    </bean>  
+   
+</beans>
+========================================================================================================================================================================
+   
+   
+    
+    
+     
