@@ -858,6 +858,428 @@ public class RecordsUpdation {
 </hibernate-mapping>
 ======================================================================================================================================================================
 
+6. Create a Maven project in hibernate to perform CRUD Operations. Create a web Application.
+
+ANS. Pro1.java
+
+     package Package1;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
+
+public class Pro1 
+
+{
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	
+	public int sno;
+	
+	public int id;
+	
+	public String name;
+
+	public int getSno() {
+		return sno;
+	}
+
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}
+===========================================================================
+
+    Create.jsp
+    
+    <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Create">
+ID <input type="number" name="id"><br>
+<br>
+NAME <input type="text" name="nm"><br>
+<br>
+<input type="submit" value="SUBMIT" >
+</form>
+</body>
+</html>
+==================================================================================
+
+   Create.java (Servlet)
+   
+   package Package1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+/**
+ * Servlet implementation class Create
+ */
+public class Create extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Create() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+        int num = Integer.parseInt(request.getParameter("id"));
+		
+		String nm = request.getParameter("nm");
+		
+		PrintWriter out = response.getWriter();
+		
+		 SessionFactory sf= new Configuration().configure().addAnnotatedClass(Pro1.class).buildSessionFactory();
+		
+		 Session s = sf.openSession();
+		
+		 s.beginTransaction();
+		 
+		 Pro1 p1=new Pro1();
+		 
+		 p1.setId(num);
+		 
+		 p1.setName(nm);
+		 
+		 s.save(p1);
+			
+	     s.getTransaction().commit();
+			
+		 s.close();
+			
+		 sf.close();
+			
+		System.out.print("RECORD INSERTED SUCCESFULLY");
+		
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+====================================================================================================================================
+
+     Read.jsp
+     
+     <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Read" >
+SNO RECORDS <input type="int"  name="sno"><br>
+<br>
+<input type="submit" value="ENTER">
+</form>
+</body>
+</html>
+=================================================================================
+
+    Read.java (Servlet)
+    
+    package Package1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+/**
+ * Servlet implementation class Read
+ */
+public class Read extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Read() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+        int sno = Integer.parseInt(request.getParameter("sno"));
+		
+		PrintWriter out = response.getWriter();
+		
+		SessionFactory sf = new Configuration().configure().addAnnotatedClass(Pro1.class).buildSessionFactory();
+		
+		Session s = sf.openSession();
+		
+		s.beginTransaction();
+		
+		Pro1 sp = s.get(Pro1.class, sno);
+		
+		out.print("SPORT NUMBER : "+sp.getId()+"   "+"SPORT NAME : "+sp.getName());
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();	
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+====================================================================================================================================
+
+    Update.jsp
+    
+    <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Update">
+SNO RECORD <input type="text" name="upd">
+<INPUT TYPE="SUBMIT" VALUE="ENTER">
+</form>
+</body>
+</html>
+=================================================================================
+
+   Update.java (Servlet)
+   
+   package Package1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+/**
+ * Servlet implementation class Update
+ */
+public class Update extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Update() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		int sno = Integer.parseInt(request.getParameter("upd"));
+		
+		PrintWriter out = response.getWriter();
+		
+		SessionFactory sf = new Configuration().configure().addAnnotatedClass(Pro1.class).buildSessionFactory();
+		
+		Session s = sf.openSession();
+		
+		s.beginTransaction();
+		
+		Pro1 sp = s.get(Pro1.class, sno);
+		
+		sp.setName("VISHAL");
+		
+		s.update(sp);
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+===================================================================================================================================
+
+     Delete.jsp
+     
+     <% page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Delete">
+ID RECORD <input type="text" name="del">
+<input type="submit" value="ENTER">
+</form>
+</body>
+</html>
+=================================================================================
+
+   Delete.java (Servlet)
+   
+   package Package1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+/**
+ * Servlet implementation class Delete
+ */
+public class Delete extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Delete() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+        int sno = Integer.parseInt(request.getParameter("del"));
+		
+		PrintWriter out = response.getWriter();
+		
+		SessionFactory sf = new Configuration().configure().addAnnotatedClass(Pro1.class).buildSessionFactory();
+		
+		Session s = sf.openSession();
+		
+		s.beginTransaction();
+		
+		Pro1 sp = new Pro1();
+		
+	    sp.setSno(sno);
+		
+		s.delete(sp);
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+====================================================================================================================================
+
+    hibernate.cfg.xml
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+         <property name="show_sql" >true</property>
+    </session-factory>
+</hibernate-configuration>
+========================================================================================================================================================================
+
 7. Create 3 Bean classes named as SBI, IDBI, ICICI. In All classes the dependency is injected in the constructor.Dependency class is InterestRate which has one method
    getRate() which returns the rate of interest according to the bank. Display BankName, Bank Rate.
    
@@ -1058,6 +1480,319 @@ public interface GetRate
    
 </beans>
 ========================================================================================================================================================================
+
+8. Create two bean classes as Student & Product. Make spring configuration file where configure the setter injection for the method which is saving the entered records 
+   for the student as rollno,name,percentage in the database and do the same for products.
+   
+ANS.  Student.java
+
+      package Package1;
+
+public class Student 
+{
+
+	public int rollno;
+	
+	public String name;
+	
+	public double percentage;
+	
+	public String i1;
+
+	public Student(String i1) 
+	
+	{
+		
+		this.i1 = i1;
+	}
+
+	public int getRollno() {
+		return rollno;
+	}
+
+	public void setRollno(int rollno) {
+		this.rollno = rollno;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(double percentage) {
+		this.percentage = percentage;
+	}
+	
+	public String mymethod()
+	
+	{
+		return i1.rec();
+	}
+	
+}
+================================================================================
+
+     Student1.java
+     
+     package Package1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class Student1 implements Details
+
+{
+
+	@Override
+	public String rec() 
+	
+	{
+		
+        Scanner sc = new Scanner(System.in);
+		
+		try 
+		
+		{
+			
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","jyotimunde");
+		
+		PreparedStatement pmt = cn.prepareStatement("insert into ASSI8 values(?,?,?)");
+		
+		System.out.println("ENTER ROLLNO OF THE STUDENT : ");
+		int roll = sc.nextInt();
+		
+		sc.nextLine();
+		
+		pmt.setInt(1,roll );
+		
+		System.out.println("ENTER NAME OF THE STUDENT : ");
+		String name= sc.nextLine();
+		
+		pmt.setString(2,name );
+		
+		System.out.println("ENTER PERCENTAGE OF THE STUDENT : ");
+		double per = sc.nextDouble();
+		
+		pmt.setDouble(3,per);
+		
+		pmt.execute();
+		
+		pmt.close();
+		
+		cn.close();
+		}
+		catch(Exception ea)
+		{
+			ea.printStackTrace();
+		}
+		
+		return "RECORD INSERTED SUCCESSFULLY";
+	}
+	
+
+	}
+==============================================================================================
+
+     Product.java
+     
+     package Package1;
+
+public class Product 
+
+{
+
+	public int pid;
+	
+	public String name;
+	
+	public int price;
+	
+	public String i2;
+
+	public Product(String i2) 
+	
+	{
+		this.i2 = i2;
+	}
+
+	public int getPid() {
+		return pid;
+	}
+
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public String mymethod2()
+	{
+		return i2.rec();
+	}
+	
+}
+========================================================================================
+
+     Product1.java
+     
+     package Package1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class Product1 implements Details
+
+{
+
+	@Override
+	public String rec() 
+	
+	{
+		
+        Scanner sc = new Scanner(System.in);
+		
+		try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","jyotimunde");
+		
+		PreparedStatement pmt = cn.prepareStatement("insert into ASSI_8 values(?,?,?)");
+		
+		System.out.println("ENTER ID OF THE PRODUCT : ");
+		int pid = sc.nextInt();
+		
+		sc.nextLine();
+		
+		pmt.setInt(1,pid );
+		
+		System.out.println("ENTER PRODUCT NAME : ");
+		String nm= sc.nextLine();
+		
+		pmt.setString(2,nm );
+		
+		System.out.println("ENTER PRODUCT PRICE : ");
+		int per = sc.nextInt();
+		
+		pmt.setDouble(3,per);
+		
+		pmt.execute();
+		
+		pmt.close();
+		
+		cn.close();
+		}
+		catch(Exception ea)
+		{
+			ea.printStackTrace();
+		}
+		
+		return "RECORD INSERTED SUCCESSFULLY";
+	}
+	
+	}
+=====================================================================================================
+
+      Details.java (Interface)
+      
+      package Package1;
+
+public interface Details 
+
+{
+
+	public String rec();
+	
+}
+=======================================
+
+    TestMain.java
+    
+    package Package1;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	
+	{
+	
+		    ClassP con = new ClassPathXmlApplicationContext("applicationContext.xml");
+		    
+		    Student s1 = con.getBean("s",Student.class);
+		    
+		    System.out.println(s1.mymethod());
+		    
+		    Product p1 = con.getBean("p",Product.class);
+		    
+		    System.out.println(p1.mymethod1());
+
+			}
+
+	}
+========================================================================================================
+
+     applicationContext.xml
+     
+     <?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="st" class="Student2" />
+    
+    <bean id="pr" class="Product2" />
+    
+    <bean id="s" class="Student" >
+    <property name="i1" ref="st" />
+    </bean>
+    
+    <bean id="p" class="Product">
+    <property name="i2" ref="pr" />
+    </bean>
+
+</beans>
+========================================================================================================================================================================
+
+
+
+
+
+	
+	
+
    
    
     
