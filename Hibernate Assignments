@@ -1786,6 +1786,461 @@ public class TestMain {
 </beans>
 ========================================================================================================================================================================
 
+9. Write a spring configuration file which injects the username, email and password to the Bean class User.
+
+ANS. file1.java
+
+     package Package1;
+
+public class file1 
+
+{
+	
+	public String username;
+	
+	public String email;
+	
+	public int password;
+	
+	public int i1;
+	
+	public int getI1() {
+		return i1;
+	}
+
+	public void setI1(int i1) {
+		this.i1 = i1;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getPassword() {
+		return password;
+	}
+
+	public void setPassword(int password) {
+		this.password = password;
+	}
+
+	public file1(String username, String email, int password) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
+
+	public file1() {
+		super();
+	}
+	
+	public String v1()
+	
+	{
+	
+		return i1.status();
+		
+	}
+}
+=======================================================================================================
+
+   Store.java
+   
+   package Package1;
+
+public class Store implements Interface
+
+{
+
+	@Override
+	public String status() 
+	
+	{
+		
+		return "COMPLETED";
+	}
+	
+	@Override
+	public String getusername() 
+	
+	{
+		
+		return "VISHAL";
+	}
+	
+	@Override
+	public String getemail() 
+	
+	{
+		
+		return "VishalMunde@Gmail.com";
+	}
+	
+	@Override
+	public String getpassword() 
+	
+	{
+		
+		return "VISHAL123";
+	}
+}
+=============================================================================================
+
+    Interface.java
+    
+    package Package1;
+
+public interface Interface 
+
+{
+
+	public String getusername;
+	
+	public String getemail;
+	
+	public int getpassword;
+	
+	public String status();
+	
+}
+===================================================
+
+    Test.java
+    
+    package Package1;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestFile {
+
+	public static void main(String[] args) 
+	
+	{
+		
+		ClassPathXmlApplicationContext cs = new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		file1 f1 = cs.getBean("f",file1.class);
+		
+		System.out.println(f1.getUsername());
+		
+		System.out.println(f1.getEmail());
+		
+		System.out.println(f1.getPassword());
+		
+		System.out.println(f1.status());
+		
+		cs.close();
+
+		}
+	
+	}
+========================================================================================================================================================================
+
+10. Write the configuration for 2 bean objects in the Spring Configuration file & Retrieve all the bean objects in the testApp using XmlBeanFactory.
+
+ANS.  C1.java
+
+      package Package1;
+
+public class C1 
+
+{
+
+	public String v1;
+
+	public String getV1() 
+	{
+		return v1;
+	}
+
+	public void setV1(String v1) 
+	{
+		this.v1 = v1;
+	}
+	
+	public void getmsg()
+	{
+		v1.getmsg();
+	}
+	
+}
+===============================================================================================
+
+     C2.java
+     
+     package Package1;
+
+public class C2 
+
+{
+
+	public String v2;
+
+	public String getV2() 
+	{
+		return v2;
+	}
+
+	public void setV2(String v2)
+	{
+		this.v2 = v2;
+	}
+	
+	public void getmsg()
+	{
+		v2.getmsg();
+	}
+	
+}
+============================================================================================
+
+    Class1.java
+    
+    package Package1;
+
+public class Class1 implements Interface
+
+{
+
+	@Override
+	public void getmsg() 
+	
+	{
+		
+		System.out.println("COMPLETED");
+		
+	}
+
+	
+	
+}
+===================================================================
+
+    TestMain.java
+    
+    package Package1;
+
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	
+	{
+		
+		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("ApplicationContext.xml"));
+		
+		C1 c1 = bf.getBean("C1",C1.class);
+		
+		c1.getmsg();
+		
+		C2 c2 = bf.getBean("C2",C2.class);
+		
+		c2.getmsg();
+		
+		System.out.println(c1);
+		
+		System.out.println(c2);
+
+		
+
+	}
+
+}
+================================================================================================
+
+    Interface.java
+    
+    package Package1;
+
+public interface Interface 
+
+{
+
+	public void getmsg();
+	
+}
+=========================================================
+
+    ApplicationContext.xml
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="class" class="Class1"  />
+    
+    <bean id="bean1" class="C1" >
+    <property name="v1" ref="class" />
+    </bean>
+    
+    <bean id="bean2" class ="C2" >
+    <property name="v2" ref="class" />
+    </bean>
+========================================================================================================================================================================
+
+11. Make a Bean class which has a method which accepts firstname & lastname as parameters and returns the Fullname. Inject this bean class object into a Class Person
+    Print the Details of a person as Fullname & age.
+    
+ANS. Pro1.java
+
+     package Package1;
+
+import java.util.Scanner;
+
+public class Pro1 
+
+{
+
+	public String FirstName;
+	
+	public String LastName;
+	
+	Scanner sc;
+
+	public String getFirstName() {
+		return FirstName;
+	}
+
+	public void setFirstName(String firstName) {
+		sc = new Scanner(System.in);
+		System.out.println("ENTER FIRST NAME : ");
+		String fm = sc.nextLine();
+		this.FirstName = fm;
+	}
+
+	public String getLastName() {
+		return LastName;
+	}
+
+	public void setLastName(String lastName) {
+		sc = new Scanner(System.in);
+		System.out.println("ENTER LAST NAME : ");
+		String lm = sc.nextLine();
+		this.LastName = lm;
+	}
+	
+	
+	
+}
+=================================================================================
+
+    Class1.java
+    
+    package Package1;
+
+public class Class1 
+
+{
+
+	public int age;
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+	FullName fn;
+	
+	public FullName getFn() {
+		return fn;
+	}
+
+	public void setFn(FullName fn) {
+		this.fn = fn;
+	}
+
+	public void setnames()
+	{
+		fn.setFnm();
+		fn.setLnm();
+	}
+	
+	public String getfname()
+	{
+		return fn.getFnm();
+	}
+	
+	public String getlname()
+	{
+		return fn.getLnm();
+	}
+	
+	
+}
+======================================================================================
+
+    TestMain.java
+    
+    package Package1;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	
+	{
+	
+		ApplicationContext ac = new ClassPathXmlApplicationContext("appcontext_ASS11.xml");
+		
+		Pro1 p = ac.getBean("p1",Pro1.class);
+		
+		p.setAge(18);
+		
+		System.out.println(p1.getAge());
+		
+		p.setnames();
+		
+		System.out.println("PERSON NAME : "+p.getfname()+" "+p.getlname());
+		
+	}
+
+}
+=============================================================================================================
+
+    ApplicationContext.xml
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="i2" class="Class1" >
+    </bean>
+    
+    <bean id="i1" class="Pro1" >
+    <property name="fn"  ref="i2"></property>
+    </bean>
+=====================================================================================================================================================================
 
 
 
