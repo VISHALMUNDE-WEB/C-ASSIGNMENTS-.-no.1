@@ -2240,8 +2240,211 @@ public class TestMain {
     <bean id="i1" class="Pro1" >
     <property name="fn"  ref="i2"></property>
     </bean>
-=====================================================================================================================================================================
+========================================================================================================================================================================
 
+12. Create a spring Project in Maven. Make two bean classes (Annotated) ,In First Bean define a method which is displaying some message .Apply the Injection on this method.
+     In second bean Apply the Constructor injection and a method in the bean is displaying fibbonacci series in it.
+     
+ANS.  Bean1.java
+
+      package Package1;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@component("1")
+public class Bean1 implements Interface
+
+{
+
+	public String vm;
+	
+	@Autowired
+	public Bean1(String vm)
+	{
+		this.vm = i;
+	}
+	public String getmsg() 
+	{
+		
+		return vm.getmsg();
+		
+	}
+
+	
+	
+}
+============================================================================================================
+
+     Bean2.java
+     
+     package Package1;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Bean2 implements Interface
+
+{
+
+	public String getmsg() 
+	
+	{
+		
+		return "COMPLETED";
+		
+	}
+
+	
+	
+}
+=======================================================================================================================
+
+     Interface.java
+     
+     package Package1;
+
+public interface Interface 
+
+{
+
+	public String getmsg();
+	
+}
+======================================================================================================================
+
+   Interface1.java
+   
+   package Package1;
+
+public interface Interface2 
+
+{
+
+	public void getFibonic();
+	
+}
+=======================================================================================================================
+
+    Bean_2.java
+    
+    package Package1;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("2")
+public class Bean_2 implements Interface2
+
+{
+
+	public String i2;
+	
+	
+	  @Autowired
+	   public 2(Interface2 i)
+	   
+	   {
+		  
+		  this.i2 = i;
+		  
+	   }
+
+    
+	public Interface2 getI2() {
+		return i2;
+	}
+
+
+	public void setI(Interface2 i2) {
+		this.i = i;
+	}
+
+
+	public void getFibonic() 
+	
+	{
+	
+		i2.getfibonic();
+		
+	}	
+}
+=====================================================================================================================
+
+     TestMain.java
+     
+     package Package1;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	
+	{
+		
+
+		ApplicationContext sc = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+		
+		Bean1 b1 = sc.getBean("Bean1",Interface.class);
+		
+		System.out.println(b1.getmesg());
+
+		Bean2 b2 = b2.getBean("Bean2",Interface1.class);
+		
+		b2.displayfibonacci();
+		}
+		
+	}
+
+}
+===============================================================================================================================
+
+    Fibonic.java
+    
+    package Package1;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Fibonic 
+
+{
+
+	int max = 10, prev= 0, next = 1;
+	
+    System.out.print("Fibonacci Series of "+max+" numbers:");
+
+    int i=1;
+    
+    while(i <= max)
+    {
+        System.out.print(prev+" ");
+        int sum = prev + next;
+        prev = next;
+        next = sum;
+        i++;
+    }
+	
+}
+=====================================================================================================
+
+    ApplicationContext.xml
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:component-scan base-package="Package1"></context:component-scan>
+</beans>
+========================================================================================================================================================================
 
 
 
