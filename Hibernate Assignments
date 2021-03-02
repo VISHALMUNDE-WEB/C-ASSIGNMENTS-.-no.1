@@ -2446,6 +2446,149 @@ public class Fibonic
 </beans>
 ========================================================================================================================================================================
 
+17  Create a Spring MVC form where two fields have to be taken as Username & Passord. Username & password can not be null & Password must be 8 characters long. If 
+    Username is "admin" and password is "abcd" then a success.jsp should display the Message as "Welcome admin". If any errors are there in the fields then show the errors
+    on the same page for the text fields.
+    
+ANS.  Assi17.java
+
+      package Package1;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+public class Assi17 
+
+{
+
+	public String username;
+	
+	@NotNull(message = "Password Is Required")
+	@Pattern(regexp = "^[a-zA-Z0-9]{8}",message = "MAX 8 DIGITS ALLOWED")
+	public String password;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Assi17() {
+		super();
+	}
+}
+====================================================================================================
+
+     Assi17Controller.java
+     
+     package Package1;
+
+import javax.validation.Valid;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/assi17")
+public class Assi17Controller 
+{
+
+	@RequestMapping("/Assign17")
+	public String Assignment17(Model m)
+	
+	{
+		Assi17 a7=new Assi17();
+		m.addAttribute("Assi17",a7);
+		return "Assi17form";
+	}
+	
+	@RequestMapping("/processform")
+	public String processform(@Valid @ModelAttribute("Assi17") Assi17 a7,BindingResult b)
+	
+	{
+		if(a7.username.equals("admin") && a7.password.equals("abcdefgh"))
+			
+		{
+			return "Assi17Success";
+		}
+		
+		else
+		{
+			return "Assi17Failed";
+		}
+	}
+	
+}
+=====================================================================================================================
+
+    Assi17.jsp
+    
+    <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>     
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form:form action="processform" modelAttribute="Assi17">
+Username <form:input path="username"/><br>
+Password <form:input path="password"/>
+<input type="submit" value="SUBMIT">
+</form:form>
+</body>
+</html>
+=====================================================================================================================
+
+    Assi17Success.jsp
+    
+    <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>WELCOME ADMIN</h1>
+</body>
+</html>
+======================================================================================================================
+
+   Assi17Failed.jsp
+   
+   <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>LOGIN FAILED USERNAME OR PASSWORS IS INCORRECT</h1>
+</body>
+</html>
+========================================================================================================================================================================
+
+
 
 
 	
