@@ -2446,6 +2446,221 @@ public class Fibonic
 </beans>
 ========================================================================================================================================================================
 
+13. Create an interface as Person. Make two classes Student and Manager which are implementing the Person interface.In person interface there are two methods as
+    getDetails() and showDetails(). Create a Bean class where Dependency injection should be applied on the field. Make a TestMain class where retrieve the details of 
+    Student and manager.
+    
+ANS.  Bean1.java
+
+      package Package1;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component("bean")
+public class Bean1 
+{
+
+	@Autowired
+	@Qualifier("student")
+	public void p1;
+
+	public void getpnm() 
+	{
+		
+		p1.getdetails();
+		p1.showdetails();
+		
+	}
+	
+	@Autowired
+	@Qualifier("manager")
+	public void p2;
+	
+	public void getmnm()
+	{
+		p2.getdetails();
+		p2.showdetails();
+	}
+}
+==========================================================================================
+
+     manager.java
+     
+     package Package1;
+
+import java.util.Scanner;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class manager 
+
+{
+
+	public String nm;
+	public int id;
+	
+	public String getNm() {
+		return nm;
+	}
+
+	public void setNm(String nm) {
+		this.nm = nm;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public void getdetails() {
+	Scanner sc = new  Scanner(System.in);
+	
+	System.out.println("ENTER MANAGER NAME : ");
+	String nam = sc.nextLine();
+	
+	System.out.println("ENTER MANAGER ID : ");
+	int i = sc.nextInt();
+	
+	setNm(nam);
+	setId(i);
+	
+	}
+
+	@Override
+	public void showdetails() {
+	System.out.println(getNm());
+    System.out.println(getId());
+	}
+	
+}
+================================================================================================
+
+     student.java
+     
+     package Package1;
+
+import java.util.Scanner;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class student implements Interface
+
+{
+
+	public String nm;
+	public int percent;
+	
+	public String getNm() {
+		return nm;
+	}
+
+	public void setNm(String nm) {
+		this.nm = nm;
+	}
+
+	public int getPercent() {
+		return percent;
+	}
+
+	public void setPercent(int percent) {
+		this.percent = percent;
+	}
+
+	@Override
+	public void getdetails() {
+	Scanner sc = new  Scanner(System.in);
+	
+	System.out.println("ENTER STUDENT NAME : ");
+	String nam = sc.nextLine();
+	
+	System.out.println("ENTER  PERCENTAGE : ");
+	int per = sc.nextInt();
+	
+	setNm(nam);
+	setPercent(per);
+	
+	}
+
+	@Override
+	public void showdetails() {
+	System.out.println(getNm()+" ");
+    System.out.println(getPercent());
+	}
+
+	
+}
+==============================================================================================
+     
+      TestMain.java
+      
+      package Package1;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestMain {
+
+	public static void main(String[] args)
+	
+	{
+	
+		
+			ApplicationContext ac = new ClassPathXmlApplicationContext("appcontext_ASS13.xml");
+			
+			Bean1 b1 = ac.getBean("bean",Bean1.class);
+			
+			Bean1 b2 = ac.getBean("bean",Bean1.class);
+			
+			b1.getpnm();
+			
+			b2.getmnm();
+			
+			}
+
+       }
+
+}
+====================================================================================================================
+
+     Interface.java
+     
+     package Package1;
+
+public interface Interface 
+{
+
+	public  void getdetails();
+	
+	public void showdetails();
+	
+}
+=====================================================
+
+    ApplicationContext.xml
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:component-scan base-package="Package1"></context:component-scan>
+</beans>
+     
+========================================================================================================================================================================
+
 17  Create a Spring MVC form where two fields have to be taken as Username & Passord. Username & password can not be null & Password must be 8 characters long. If 
     Username is "admin" and password is "abcd" then a success.jsp should display the Message as "Welcome admin". If any errors are there in the fields then show the errors
     on the same page for the text fields.
