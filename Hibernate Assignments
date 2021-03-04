@@ -2658,8 +2658,392 @@ public interface Interface
     
     <context:component-scan base-package="Package1"></context:component-scan>
 </beans>
+
+14. Make a Spring MVC Project in Maven, Create a registration page where customer Id, firstname, lastname and age is to be taken in the registration form and save data 
+    in the database .After submitting data , display the message "Registration Successful".
+    
+ANS.  Controller1.java
+
+     package Assi14;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+public class Controller1 
+
+{
+
+	@RequestMapping("/control1")
+	public String form1()
+	{
+		return "form1";
+	}
+	
+	@RequestMapping("/Assi14")
+	public String status(@RequestParam("cid") int id,@RequestParam("fnm") String fm,@RequestParam("lnm") String lm,@RequestParam("ag") int age)
+	{
+		try {
+			Class.forName("oracle.jbdc.driver.OracleDriver");
+			
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe");
+			
+			Statement smt = cn.createStatement();
+			
+			String query = "insert into TABLE14 values("+id+",'"+fm+"','"+lm+"',"+age+")";
+			
+			smt.executeUpdate(query);
+			
+			smt.close();
+			
+			cn.close();
+			
+			System.out.println("DONE !!!");
+			
+		}
+		catch(Exception ea)
+		{
+			ea.printStackTrace();
+			System.out.println("INVALID FORMAT");
+		}
+		
+		return "status";
+	
+}
+	
+}
+=============================================================================================================================================================
+
+     Assi14.jsp
      
+     <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Controller1">
+<table border=3>
+<center><caption>REGISTRATION FORM</caption></center>
+<tr><td>CUSTOMER ID</td><td><input type="number" name="cid" required></td></tr>
+<tr><td>CUSTOMER FIRSTNAME </td><td><input type="text" name="fnm"></td></tr>
+<tr><td>CUSTOMER LASTNAME </td><td><input type="text" name="lnm"></td></tr>
+<tr><td>AGE</td><td><input type="number" name="ag"></td></tr>
+<tr><td><input type="submit" value="ENTER"></td></tr>
+</table>
+</form>
+</body>
+</html>
+===================================================================================================
+
+     Assi14Display.jsp
+     
+     <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Registration Successfull</h1>
+</body>
+</html>
 ========================================================================================================================================================================
+
+15  Make a program to apply constructor injection using XML and Annotation.
+
+ANS. Fortuneservice.java
+
+package1 Assi15
+
+public interface Fortuneservice {
+
+ public String getFortune();
+
+}
+=======================================================================================
+
+HappyFortuneService.java
+
+package ass15;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class HappyFortuneService implements Fortuneservice{
+
+ @Override
+public String getFortune() 
+{
+
+   return "its Your lucky day";
+
+}
+
+}
+=========================================================================================
+
+Pen.java
+
+package ass15;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+
+public class Pen implements Stationery {
+
+ public Fortuneservice fs;
+// Constructor injection using @Autowired
+
+@Autowired
+public Pen(Fortuneservice fs) {
+super();
+this.fs = fs;
+}
+
+// Setter injection using @Autowired
+/*
+@Autowired
+
+public void setFs(FortuneService fs) {
+this.fs = fs;
+}
+*/
+@Override
+public String getDetails() {
+// TODO Auto-generated method stub
+return "Message from Pen";
+}
+
+
+ @Override
+public String getyourFortune() {
+// TODO Auto-generated method stub
+return fs.getFortune();
+}
+
+
+}
+=========================================================================================================================
+
+Scale.java
+
+package ass15;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Scale implements Stationery{
+
+ @Override
+public String getDetails() {
+// TODO Auto-generated method stub
+return "Message from Scale";
+}
+
+ @Override
+public String getyourFortune() {
+// TODO Auto-generated method stub
+return null;
+}
+
+}
+===================================================================================================================
+
+Stationery.java
+
+package ass15;
+
+public interface Stationery
+
+{
+	
+	public String getDetails();
+	public String getyourFortune();
+
+}
+==============================================================================================================
+
+TestApp.java
+
+package ass15;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestApp 
+
+{
+
+ public static void main(String[] args) 
+ 
+ {
+
+ ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("Ass15applicationContext2.xml");
+
+Stationery s=context.getBean("pen",Stationery.class);
+
+ System.out.println(s.getDetails());
+System.out.println(s.getyourFortune());
+context.close();
+}
+
+}
+============================================================================================================================================================================
+
+16  Make a program to apply Setter injection using XML and Annotation.
+
+ANS.  Fortuneservice.java
+
+package ass15;
+
+public interface Fortuneservice {
+
+ public String getFortune();
+
+}
+=======================================================================================================================
+
+HappyFortuneService.java
+
+package ass15;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class HappyFortuneService implements Fortuneservice{
+
+ @Override
+public String getFortune() {
+// TODO Auto-generated method stub
+return "its Your lucky day";
+}
+
+}
+=========================================================================================================================
+
+Pen.java
+
+package ass15;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+
+public class Pen implements Stationery {
+
+ public Fortuneservice fs;
+// Constructor injection using @Autowired
+/*
+@Autowired
+public Pen(Fortuneservice fs) {
+super();
+this.fs = fs;
+}
+*/
+// Setter injection using @Autowired
+
+@Autowired
+
+public void setFs(FortuneService fs) {
+this.fs = fs;
+}
+
+@Override
+public String getDetails() {
+// TODO Auto-generated method stub
+return "Message from Pen";
+}
+
+
+ @Override
+public String getyourFortune() {
+// TODO Auto-generated method stub
+return fs.getFortune();
+}
+
+
+}
+=====================================================================================
+
+Scale.java
+
+package ass15;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Scale implements Stationery{
+
+ @Override
+public String getDetails() 
+{
+
+   return "Message from Scale";
+
+}
+
+ @Override
+public String getyourFortune() 
+{
+
+return null;
+
+  }
+
+}
+=======================================================================================================
+
+Stationery.java
+
+package ass15;
+
+public interface Stationery 
+
+{
+	
+	public String getDetails();
+	public String getyourFortune();
+
+}
+=========================================================================================================
+
+TestApp.java
+
+package ass15;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestApp 
+
+{
+
+ public static void main(String[] args) 
+ 
+ {
+
+ ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("Ass15applicationContext2.xml");
+
+Stationery s=context.getBean("pen",Stationery.class);
+
+ System.out.println(s.getDetails());
+ System.out.println(s.getyourFortune());
+ context.close();
+ 
+   }
+
+}
+===========================================================================================================================================================================
 
 17  Create a Spring MVC form where two fields have to be taken as Username & Passord. Username & password can not be null & Password must be 8 characters long. If 
     Username is "admin" and password is "abcd" then a success.jsp should display the Message as "Welcome admin". If any errors are there in the fields then show the errors
@@ -2803,9 +3187,768 @@ Password <form:input path="password"/>
 </html>
 ========================================================================================================================================================================
 
+18  Create bean class Student and access the functionality in the Student class without using any XML configuration file. Use Java code to define configuration.
+
+ANS. Student.java
+
+Package1;
+
+public class student implements c1{
+
+	public String getmsg() 
+	
+	{
+	
+		return "THIS IS A MESSAGE";
+		
+	}
+
+}
+
+================================================================================================
+c1.java
+
+Package1;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class c1
+
+{
+
+	@Bean
+	public c1 student()
+	{
+		return new student();
+	}
+}
+
+====================================================================================================
+Interface1
+
+Package1;
+
+public interface Interface1
+
+{
+
+	public String getmsg();
+}
+==========================================================================================================
+
+TestMain.java
+
+Package1;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	{
+	
+	AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(myconfig.class);
+
+	classroom cl = ac.getBean("student",student.class);
+	
+	System.out.println(cl.getmsg());
+	
+	}
+
+}
+=============================================================================================================================================================================
+
+21. Create a simple hibernate project without Maven to define a POJO class Users (without using annotation). Take userid,username,city from user and print all details on the
+    Console.
+    
+ANS. Pojo.java
+
+     package Package1;
+
+public class Pojo 
+
+{
+
+	public int userid;
+	
+	public String username;
+	
+	public String usercity;
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsercity() {
+		return usercity;
+	}
+
+	public void setUsercity(String usercity) {
+		this.usercity = usercity;
+	}
+
+	public Pojo(int userid, String username, String usercity) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.usercity = usercity;
+	}
+
+	public Pojo() {
+		super();
+	}
+}
+============================================================================================
+
+     TestMain.java
+    package Package1;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	
+	{
+	
+	    SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Pojo p1=new Pojo();
+		
+		p1.setUserid(101);
+		
+		p1.setUsername("VISHAL");
+			
+		p1.setUsercity("PUNE");
+	
+        s.save(p1);
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("DATA IS :"+p1.getUserid()+" "+p1.getUsername()+" "+p1.getUsercity());
+	}
+
+}
+============================================================================================
+
+     hibernate.cfg.xml
+     
+     <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+          <mapping resource="Pojo.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+================================================================================================================
+
+   Pojo.hbm.xml
+   
+   <?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Mar, 2021 11:04:37 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="Package1.Pojo" table="POJO">
+        <id name="userid" type="int">
+            <column name="USERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="usercity" type="java.lang.String">
+            <column name="USERCITY" />
+        </property>
+    </class>
+</hibernate-mapping>
+==========================================================================================================================================================================
+
+22. Create a simple hibernate project with Maven to define a POJO class Users (without using annotation). Take userid,username,city from user and print all details on the
+    Console.
+    
+ANS. Pojo.java
+
+     package Package1;
+
+public class Pojo 
+
+{
+
+	public int userid;
+	
+	public String username;
+	
+	public String usercity;
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsercity() {
+		return usercity;
+	}
+
+	public void setUsercity(String usercity) {
+		this.usercity = usercity;
+	}
+
+	public Pojo(int userid, String username, String usercity) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.usercity = usercity;
+	}
+
+	public Pojo() {
+		super();
+	}
+}
+===================================================================================================================
+
+    TestMain.java
+    
+    package Package1;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	
+	{
+	
+	    SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Pojo p1=new Pojo();
+		
+		p1.setUserid(101);
+		
+		p1.setUsername("VISHAL");
+		
+		p1.setUsercity("PUNE");
+		
+        s.save(p1);
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("DATA IS :"+p1.getUserid()+" "+p1.getUsername()+" "+p1.getUsercity());
+	}
+
+}
+=====================================================================================================================================
+
+     Pojo.hbm.xml
+     
+     <?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Mar, 2021 12:21:03 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="Package1.Pojo" table="POJO2">
+        <id name="userid" type="int">
+            <column name="USERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="usercity" type="java.lang.String">
+            <column name="USERCITY" />
+        </property>
+    </class>
+</hibernate-mapping>
+==================================================================================================
+
+   hibernate.cfg.xml
+   
+   <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <mapping resource="Pojo.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+
+========================================================================================================================================================================
+
+23. Create a simple hibernate project without Maven to define a POJO class Users (using annotation). Take userid,username,city from user and print all details on the
+    Console.
+    
+ANS.  Pojo.java
+
+      package Package2;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Assign23")
+public class Pojo 
+
+{
+
+	@Id
+	@Column(name = "UserId")
+	public int userid;
+	
+	@Column(name = "UserName")
+	public String username;
+	
+	@Column(name = "UserCity")
+	public String usercity;
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsercity() {
+		return usercity;
+	}
+
+	public void setUsercity(String usercity) {
+		this.usercity = usercity;
+	}
+
+	public Pojo(int userid, String username, String usercity) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.usercity = usercity;
+	}
+
+	public Pojo() {
+		super();
+	}
+}
+===========================================================================================
+
+    TestMain.java
+    
+    package Package2;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	
+	{
+	
+		SessionFactory sf=new Configuration().configure().addAnnotatedClass(Pojo.class).buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Pojo p1=new Pojo();
+		
+		p1.setUserid(101);
+		p1.setUsername("VISHAL");
+		p1.setUsercity("PUNE");
+		
+		s.save(p1);
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		sf.close();
+		
+		System.out.println("DATA IS :"+p1.getUserid()+" "+p1.getUsername()+" "+p1.getUsercity());
+	}
+
+}
+=================================================================================================================================
+
+     hibernate.cfg.xml
+     
+     <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    </session-factory>
+</hibernate-configuration>
+==========================================================================================================================================================================
+
+24. Create a simple hibernate project with Maven to define a POJO class Users (using annotation). Take userid,username,city from user and print all details on the
+    Console.
+    
+ANS.  POJO.java
+
+      package Assi24;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ASSI23")
+public class POJO 
+
+{
+
+	@Id
+	@Column(name = "UserId")
+	public int userid;
+	
+	@Column(name = "UserName")
+	public String username;
+	
+	@Column(name = "UserCity")
+	public String usercity;
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsercity() {
+		return usercity;
+	}
+
+	public void setUsercity(String usercity) {
+		this.usercity = usercity;
+	}
+
+	public POJO(int userid, String username, String usercity) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.usercity = usercity;
+	}
+
+	public POJO() {
+		super();
+	}
+}
+================================================================================================================
+
+     TestMain.java
+     
+     package Assi24;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	
+	{
+	
+		SessionFactory sf=new Configuration().configure().addAnnotatedClass(POJO.class).buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		POJO p1=new POJO();
+		
+		p1.setUserid(101);
+		p1.setUsername("VISHAL");
+		p1.setUsercity("PUNE");
+		
+		s.save(p1);
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		sf.close();
+		
+		System.out.println("DATA IS :"+p1.getUserid()+" "+p1.getUsername()+" "+p1.getUsercity());
+	}
+
+}
+====================================================================================================================================
+
+     hibernate.cfg.xml
+     
+     <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <mapping resource="Pojo.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+=========================================================================================================================================================================
+
+25. Create a dynamic hibernate project without Maven to define a POJO class Users (without annotation). Take userid,username,city from user and print all details on the
+    Console.
+    
+ANS. Users.java
+
+     package Package1;
+
+public class Users 
+
+{
+
+    public int userid;
+	
+	public String username;
+	
+	public String usercity;
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsercity() {
+		return usercity;
+	}
+
+	public void setUsercity(String usercity) {
+		this.usercity = usercity;
+	}
+
+	public Users(int userid, String username, String usercity) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.usercity = usercity;
+	}
+
+	public Users() {
+		super();
+	}	
+}
+=========================================================================================================================
+
+    TestMain.java
+    
+    package Package1;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class TestMain {
+
+	public static void main(String[] args) 
+	
+	{
+	
+		   SessionFactory sf=new Configuration().configure().buildSessionFactory();
+			
+			Session s=sf.openSession();
+			
+			s.beginTransaction();
+			
+			Users u1=new Users();
+			
+			u1.setUserid(101);
+			
+			u1.setUsername("VISHAL");
+				
+			u1.setUsercity("PUNE");
+		
+	        s.save(u1);
+			
+			s.getTransaction().commit();
+			
+			s.close();
+			
+			sf.close();
+			
+			System.out.println("DATA IS :"+u1.getUserid()+" "+u1.getUsername()+" "+u1.getUsercity());
+				
+	}
+
+}
+===================================================================================================================================
+
+      Users.hbm.xml
+      
+      <?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Mar, 2021 3:19:56 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="Package1.Users" table="TABLE25">
+        <id name="userid" type="int">
+            <column name="USERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="usercity" type="java.lang.String">
+            <column name="USERCITY" />
+        </property>
+    </class>
+</hibernate-mapping>
+=====================================================================================================
+
+    hibernate.cfg.xml
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <mapping resource = "Users.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+========================================================================================================================================================================
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 	
 	
 
