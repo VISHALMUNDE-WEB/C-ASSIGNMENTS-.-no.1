@@ -3921,6 +3921,612 @@ public class TestMain {
 </hibernate-configuration>
 ========================================================================================================================================================================
 
+26. Create a dynamic hibernate project with Maven to define a POJO class Users (without annotation). Take userid,username,city from user and print all details on the
+    Web Page.
+    
+ANS.  Users.java
+
+      package Assi26;
+
+public class Users 
+
+{
+
+    public int userid;
+	
+	public String username;
+	
+	public String usercity;
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsercity() {
+		return usercity;
+	}
+
+	public void setUsercity(String usercity) {
+		this.usercity = usercity;
+	}
+
+	public Users(int userid, String username, String usercity) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.usercity = usercity;
+	}
+
+	public Users() {
+		super();
+	}
+}
+=============================================================================================
+
+     TestApp.java
+     
+     package Assi26;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import Package1.Pro1;
+
+/**
+ * Servlet implementation class TestApp
+ */
+public class TestApp extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TestApp() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		PrintWriter out=response.getWriter();
+		
+		int ui=Integer.parseInt(request.getParameter("ui"));
+		
+		String un=request.getParameter("un");
+		
+		String uc=request.getParameter("uc");
+		
+	    Users u1=new Users();
+	    
+	    u1.setUserid(ui);
+	    
+	    u1.setUsername(un);
+	    
+	    u1.setUsercity(uc);
+			
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		s.save(u1);
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		out.print("DATA IS :"+u1.getUserid()+" "+u1.getUsername()+" "+u1.getUsercity());
+		
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+=========================================================================================================================================
+
+      Users.jsp
+      
+      <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="TestApp" method="get">
+
+USERID <input type="number" name="ui"><br>
+<br>
+
+USERNAME <input type="text" name="un"><br>
+<br>
+
+USERCITY <input type="text" name="uc"><br>
+<br>
+
+<input type="submit" value="SUBMIT DETAILS">
+
+</body>
+</html>
+==============================================================================================
+
+    Users.hbm.xml
+    
+    <?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Mar, 2021 4:03:28 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="Assi26.Users" table="TABLE26">
+        <id name="userid" type="int">
+            <column name="USERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="usercity" type="java.lang.String">
+            <column name="USERCITY" />
+        </property>
+    </class>
+</hibernate-mapping>
+==================================================================================================
+
+   hibernate.cfg.xml
+   
+   <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory> 
+    <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <mapping resource="Users.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+==========================================================================================================================================================================
+
+27. Create a dynamic hibernate project with Maven to define a POJO class Users (with annotation). Take userid,username,city from user and print all details on the
+    Web Page.
+    
+ANS.   Users_27.java
+
+       package Assi27;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TABLE27")
+public class Users_27 
+
+{
+
+	@Id
+	@Column(name = "UserId")
+	public int userid;
+	
+	@Column(name = "UserName")
+	public String username;
+	
+	@Column(name = "UserCity")
+	public String usercity;
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsercity() {
+		return usercity;
+	}
+
+	public void setUsercity(String usercity) {
+		this.usercity = usercity;
+	}
+
+	public Users_27(int userid, String username, String usercity) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.usercity = usercity;
+	}
+
+	public Users_27() {
+		super();
+	}	
+}
+=====================================================================================================================================
+
+     TestUsers.java
+     
+     package Assi27;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import Assi26.Users;
+
+/**
+ * Servlet implementation class TestUsers
+ */
+public class TestUsers extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TestUsers() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+PrintWriter out=response.getWriter();
+		
+		int ui=Integer.parseInt(request.getParameter("ui"));
+		
+		String un=request.getParameter("un");
+		
+		String uc=request.getParameter("uc");
+		
+	    Users_27 u1=new Users_27();
+	    
+	    u1.setUserid(ui);
+	    
+	    u1.setUsername(un);
+	    
+	    u1.setUsercity(uc);
+			
+		SessionFactory sf=new Configuration().configure().addAnnotatedClass(Users_27.class).buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		s.save(u1);
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		out.print("DATA IS :"+u1.getUserid()+" "+u1.getUsername()+" "+u1.getUsercity());
+			
+		
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+==================================================================================================================================================
+
+      hibernate.cfg.xml
+      
+      <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">jyotimunde</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property> 
+    </session-factory>
+</hibernate-configuration>
+=========================================================================================================================================================================
+
+30. Create a JDBC project in spring to insert employee record like eid,ename,salary,city in the database table. Save 5 employee records and Display all records from the 
+    table.
+    
+ANS.  EmpRecords.java
+
+      package Assi30;
+
+public class EmpRecords 
+
+{
+
+	public int eid;
+	
+	public String ename;
+	
+	public int esalary;
+	
+	public String ecity;
+
+	public int getEid() {
+		return eid;
+	}
+
+	public void setEid(int eid) {
+		this.eid = eid;
+	}
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+
+	public int getEsalary() {
+		return esalary;
+	}
+
+	public void setEsalary(int esalary) {
+		this.esalary = esalary;
+	}
+
+	public String getEcity() {
+		return ecity;
+	}
+
+	public void setEcity(String ecity) {
+		this.ecity = ecity;
+	}
+
+	public EmpRecords(int eid, String ename, int esalary, String ecity) {
+		super();
+		this.eid = eid;
+		this.ename = ename;
+		this.esalary = esalary;
+		this.ecity = ecity;
+	}
+
+	public EmpRecords() {
+		super();
+	}	
+}
+====================================================================================================================================
+
+     EmpDao.java
+     
+     package Assi30;
+
+import java.util.List;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+
+public class EmpDao 
+
+{
+
+	private JdbcTemplate jdbctemplate;
+
+	public void setJdbctemplate(JdbcTemplate jdbctemplate) {
+		this.jdbctemplate = jdbctemplate;
+	}
+	
+	public int saveEmpRecords(EmpRecords e)
+	
+	{
+		
+		String q="insert into TABLE30 values("+e.getEid()+",'"+e.getEname()+"', "+e.getEsalary()+",'" +e.getEcity()+"')";
+		
+		return jdbctemplate.update(q);
+	}
+
+	 public List<EmpRecords> getEmpRecords() 
+	 
+	 {
+		    String query="select * from TABLE30";
+			List<EmpRecords> l=jdbctemplate.query(query,new EmpMapper());
+			return l;
+	 }
+	
+}
+=============================================================================================================================================
+
+    EmpMapper.java
+    
+    package Assi30;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+public class EmpMapper implements RowMapper<EmpRecords>
+
+{
+
+	@Override
+	public EmpRecords mapRow(ResultSet rs, int rownm) throws SQLException 
+	
+	{
+		
+		EmpRecords er=new EmpRecords();
+		er.setEid(rs.getInt("eid"));
+		er.setEname(rs.getString("ename"));
+		er.setEsalary(rs.getInt("esalary"));
+		er.setEcity(rs.getString("ecity"));
+		return er;
+		
+	}
+
+}
+===================================================================================================================================
+
+     TestMain.java
+     
+     package Assi30;
+
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+
+public class TestEmp {
+
+	public static void main(String[] args) 
+	
+	{
+	
+        ApplicationContext ctx=new ClassPathXmlApplicationContext("JdbcApplicationContext.xml");
+		
+		EmpDao dao=(EmpDao)ctx.getBean("edao1");
+		
+        int status=dao.saveEmpRecords(new EmpRecords(101,"VISHAL",10000,"PUNE"));
+		
+		System.out.println(status);
+		
+        List<EmpRecords> l=dao.getEmpRecords();
+		
+		for (EmpRecords emprecords : l)
+			
+		{
+			
+			System.out.println(emprecords.getEid()+" "+emprecords.getEname()+" "+emprecords.getEsalary()+" "+emprecords.getEcity());
+			
+		}
+		
+	}
+
+}
+========================================================================================================================================================
+
+     JdbcApplicationContext.xml
+     
+     <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Define your beans here -->
+    
+  <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />  
+<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />  
+<property name="username" value="system" />  
+<property name="password" value="jyotimunde" />  
+</bean>  
+  
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+<property name="dataSource" ref="ds"></property>  
+</bean>  
+  
+<bean id="edao" class="Package1.EmployeeDao">  
+<property name="jdbctemplate" ref="jdbcTemplate"></property>  
+</bean>  
+
+<bean id="edao1" class="Assi30.EmpDao">  
+<property name="jdbctemplate" ref="jdbcTemplate"></property>  
+</bean>  
+</beans>
+=======================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+     
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
