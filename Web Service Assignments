@@ -1,0 +1,62 @@
+1. Create a Web service where a method is returning the sum of digits of a number. Print Sum on the web Page .
+
+ANS.  Assign1.java
+
+      package MyApp1.MyApp1.pro;
+
+public class Assign1 
+
+{
+	
+	public int getSum(int a, int b)
+
+	{
+		
+		return (a + b);
+		
+	}
+		
+}
+======================================================================================================================
+
+   Assi1_Resource.java
+   
+   package MyApp1.MyApp1.pro;
+
+import java.util.Scanner;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+
+@Path("/Assignment")
+public class Assi1_Resource 
+
+{
+
+    Assign1 a1=new Assign1();
+    
+    @GET
+    @Path("/Assign1")
+    @Produces("text/plain")
+    public String display()
+    
+    { 
+        int a,b;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter Fisrt Number :");
+        a=sc.nextInt();
+        System.out.println("Enter Second Number :");
+        b=sc.nextInt();
+        
+        int sum=a1.getSum(a, b);
+        
+        sc.close();
+        
+        return "Sum of "+a+" and "+b+" is "+sum;
+        
+    }
+    	
+}
+=============================================================================================================================================================================
