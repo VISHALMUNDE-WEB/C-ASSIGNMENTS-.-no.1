@@ -2172,3 +2172,293 @@ public class ASSI50 {
 
 }
 =====================================================================================================================================================================================
+
+ Q.51 Write a JDBC Program to do the following operations on the table given :
+      Employee : eid (primary key) , name (varchar2 not null), city varchar2, salary number
+     a) Insert 5 employee records using a stored Procedure.
+     b) Update the salary of the last record.
+     c) Delete the 3rd record.
+     d) Display name and salary for all employees.
+     e) Add 1000/- to the salary of all employees.
+     f) Count Total number of records having salary more than 10000.
+     g) Show all records in descending order of salary.
+     h) Show all records in Alphabetical order of names of employees.
+     
+ANS.  package Assignmets;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+
+public class assign51 {
+
+	public static void main(String[] args) {
+    try {
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+    
+    Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","jyotimunde");
+    
+   A)    
+   
+    /*CallableStatement ps = cn.prepareCall("{call emp230(?,?,?,?)}");
+    
+    ps.setInt(1, 101);
+    ps.setString(2, "ABHISHEK");
+    ps.setString(3, "PUNE");
+    ps.setInt(4, 35000);
+    ps.execute();
+    System.out.println("SUCCESSFULLY INSERTED....");
+    
+    ps.setInt(1, 102);
+    ps.setString(2, "ABHINAV");
+    ps.setString(3, "MUMBAI");
+    ps.setInt(4, 40000);
+    ps.execute();
+    System.out.println("SUCCESSFULLY INSERTED....");
+    
+    ps.setInt(1, 103);
+    ps.setString(2, "ABHINAND");
+    ps.setString(3, "SOLAPUR");
+    ps.setInt(4, 45000);
+    ps.execute();
+    System.out.println("SUCCESSFULLY INSERTED....");
+    
+    ps.setInt(1, 104);
+    ps.setString(2, "SANTHOSH");
+    ps.setString(3, "HIMALAYAS");
+    ps.setInt(4, 47500);
+    ps.execute();
+    System.out.println("SUCCESSFULLY INSERTED....");
+    
+    ps.setInt(1, 105);
+    ps.setString(2, "SANDESH");
+    ps.setString(3, "SINHGAD");
+    ps.setInt(4, 42000);
+    ps.execute();
+    System.out.println("SUCCESSFULLY INSERTED....");
+    
+    ps.close();*/
+    ================================================================================================
+    
+    B) 
+    
+    /*PreparedStatement pst = cn.prepareStatement("update emp200 set salary=? where eid=?");
+    
+    pst.setInt(1,50000);
+    pst.setInt(2,105);
+    
+    int i = pst.executeUpdate();
+    System.out.println("UPDATED SUCCESSSFULLY....");
+    
+    pst.close();*/
+    ==================================================================================================
+    
+    C)
+   
+    /*PreparedStatement pst2 = cn.prepareStatement("delete from emp200 where eid = ?");
+    
+    pst2.setInt(1, 103);
+    
+    int i = pst2.executeUpdate();
+    System.out.println("SUCCESSFULLY DELETED......");
+    
+    pst2.close();*/
+    ===================================================================================================
+    
+    D) 
+    
+    /*PreparedStatement pst3 = cn.prepareStatement("select * from emp200");
+    
+    ResultSet rst = pst3.executeQuery();
+    
+    while(rst.next())
+    {
+    	System.out.println("NAME : "+rst.getString(2)+" SALARY : "+rst.getInt(4));
+    }
+    
+    rst.close();
+    pst3.close();*/
+    ====================================================================================================
+     
+    E)
+    
+    Statement st = cn.createStatement();
+    
+    String query = "update emp200 set salary = salary+1000";
+    
+    //int i = st.executeUpdate(query);
+    //System.out.println("SUCCESSFULLY ADDED....");
+    
+    query = "select * from emp200 where salary>10000";
+
+    ResultSet rst = st.executeQuery(query);
+    
+    int in = 0;
+    while(rst.next())
+    {
+    	in++;
+    }
+    System.out.println("NUMBER POF RECORDS WITH THAT SALARY IS : "+in );
+    
+    System.out.println("SUCCESSFULLY DISPLAYED....");
+    ===========================================================================================================
+    
+    F)
+    
+    query = "select * from emp200 order by salary desc";
+    
+    rst = st.executeQuery(query);
+    
+    while(rst.next())
+    {
+    	System.out.println(rst.getInt(1)+" "+rst.getString(2)+" "+rst.getString(3)+" "+rst.getInt(4));
+    }
+    
+    System.out.println("SUCCESSFULLY DISPLAYED....");
+
+    query = "select * from emp200 order by name asc";
+    
+    rst = st.executeQuery(query);
+    
+    while(rst.next())
+    {
+    	System.out.println(rst.getInt(1)+" "+rst.getString(2)+" "+rst.getString(3)+" "+rst.getInt(4));
+  	}
+    System.out.println("SUCCESSFULLY DISPLAYED.....................");
+    
+    rst.close();
+    
+    cn.close();
+	}
+	catch(Exception ae)
+	{
+		ae.printStackTrace();
+	}
+	
+  }
+}
+===========================================================================================================================================================================
+
+ Q.52 Write a program to record the birth dates of 5 persons along with the names and do following : 
+     a) Show all records.
+     b) Use PreparedStatement to insert the records at run time.
+     
+ANS.  package Assignments;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class class2 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+	
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","jyotimunde");
+			
+			PreparedStatement pmt = cn.prepareStatement("insert into per_dob values(?,Date?)");
+			for(int i=0;i<5;i++)
+			{
+			System.out.println("ENTER PERSON SERIAL NO : ");
+			String pnm = sc.nextLine();	
+			
+			System.out.println("ENTER DOB : ");
+			String dat = sc.nextLine();
+			
+			pmt.setString(1,pnm);
+			pmt.setString(2, dat);
+			
+			pmt.executeUpdate();
+			
+			System.out.println(".....INSERTED SUCCESSFULLY.....");
+		   }
+		}
+		catch(Exception ea)
+		{
+			ea.printStackTrace();
+		}
+	}
+
+}
+============================================================================================================================================================================
+          
+Q.54 Create a Singleton class which has a method as fibbonaci() which prints fibbonacci series
+    0 1 1 2 3 5  of 8 terms
+    
+ANS. Assign2.java
+
+     package Assignments_Revision;
+
+class SingleTon
+
+{
+	
+    private static SingleTon s;
+	
+	private SingleTon()
+	{
+		
+	}
+	
+	public static SingleTon getFibbonic()
+	{
+		 s=new SingleTon();
+		 return s;
+	}
+	
+}
+
+public class Assign2 {
+
+	public static void main(String[] args) 
+	
+	{
+	
+		int max = 8, prev= 0, next = 1;
+		
+	    System.out.println("Fibonacci Series of "+max+" numbers:");
+
+	    int i=1;
+	    
+	    while(i <= max)
+	    	
+	    {
+	        System.out.print(prev+" ");
+	        int sum = prev + next;
+	        prev = next;
+	        next = sum;
+	        i++;
+	    }
+
+	}
+
+}
+==============================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
