@@ -689,3 +689,181 @@ a := avge;
 dbms_output.put_line('AVERAGE SALARY IS :' || m);
 end;_
 ====================================================================================================================================================================
+
+Q.33 Create a procedure to see a record of an employee in Q.30 . Make a record variable in the same procedure . Using the record variable show the name and age.
+
+ANS.  select * from tabl12;
+
+CREATE OR REPLACE PROCEDURE showrecords(no in number)
+IS
+record table2%rowtype;
+BEGIN
+select * into record from table2 where eid = no;
+dbms_output.put_line('RECORD : '||record.name || ' ' || record.age);
+END;
+
+EXECUTE showrecrds(101);
+====================================================================================================================================================================
+
+Q.34 Create a function which accepts one argument as an integer. The function is dividing a number by the argument passed. If the passed number is zero then
+     handle zero divide exception.
+     
+ANS.  CREATE OR REPLACE FUNCTION demo_thy(x1 in integer) RETURN INTEGER
+AS
+a integer;
+BEGIN
+a := x1;
+RETURN a;
+END;
+
+DECLARE
+i integer := 35;
+x2 integer := 0;
+b integer;
+BEGIN
+b := demo_thy(i);
+
+dbms_output.put_line(b / x2);
+
+EXCEPTION
+
+WHEN NO_DATA_FOUND then
+dbms_output.put_line('NO DATA FOUND');
+WHEN TOO_MANY_ROWS then
+dbms_output.put_line('DATABASE GIVES TOO MANY ROWS');
+WHEN ZERO_DIVIDE then
+dbms_output.put_line('NUMBER CANNOT BE DIVIDED BY ZERO');
+WHEN OTHERS THEN
+dbms_output.put_line('UNKNOWN EXCEPTIONS');
+END;
+
+COMMIT;     
+======================================================================================================================================================================
+
+Q.35 Create a procedure which is inserting a record in a table named as IDCard (name,age,city). IF AGE is less than insertion will not be possible and will generate
+     an exception message "Age is less than 18" otherwise insert record in the table and print as "Data saved successfully".
+     
+ANS.  create table IDCARD(name varchar2(30),age number(3),city varchar2(20));
+
+CREATE OR REPLACE PROCEDURE INSERT_REC(name in varchar2, age in number, city in varchar2)
+IS
+myexception exception;
+BEGIN
+IF age <= 22 then
+RAISE myexception;
+ELSE
+INSERT INTO IDCARD values(name,age,city);
+END IF;
+
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+dbms_output.put_line('NO DATA TO BE ENTERED');
+WHEN myexception then
+dbms_output.put_line('AGE MUST BE GREATER THAN 22');
+END;
+
+BEGIN
+INSERT_REC('VISHAL',20,'PUNE');
+INSERT_REC('SOHAM',10,'PARALI');
+INSERT_REC('ARJUN',20,'PUNE');
+INSERT_REC('DHIRAJ',21,'PUNE');
+
+dbms_output.put_line('DATA SUCCESSFULLY SAVED');
+END;
+
+SELECT * FROM IDCARD;
+DROP TABLE IDCARD;
+COMMIT;     
+=========================================================================================================================================================================
+
+Q.36 Create a table Movie which contains the movie name,release year,rating (1-5). Create a Statement level trigger which is executed after insertion of records.
+     Create a Row level trigger on this table which is executed before updating the movie name when movie rating is greater than 0.
+     
+ANS.   create table MOVIEs(mname varchar2(40),relyr number(4),rating number(2));
+drop table MOVIES;
+create or replace TRIGGER trg_MOVIEs
+AFTER INSERT on MOVIEs
+DECLARE
+BEGIN
+dbms_output.put_line('RECORD IS BEEN INSERTED IN THE TABLE');
+END;
+
+insert into movies values('FAULT IN OURS STARS', 2014, 4.5);
+insert into movies values('FIVE FEET APART', 2019, 4.7);
+
+CREATE OR REPLACE TRIGGER trg_upd_MOVIEs
+BEFORE UPDATE ON MOVIEs
+FOR EACH ROW
+WHEN (NEW.rating>0)
+DECLARE
+BEGIN
+       DBMS_OUTPUT.PUT_LINE('Old NAME : '|| :OLD.mname);
+       DBMS_OUTPUT.PUT_LINE('New NAME : '|| :NEW.mname);
+END; 
+
+update MOVIEs set mname = 'NEW' where relyr = 2019; 
+========================================================================================================================================================================
+
+ Q.37 Create a cursor on the Movie table which displays only those records where Movie rating is more than 3.
+ 
+ ANS.  SET SERVEROUTPUT ON
+DECLARE
+
+nm MOVIEs.mname%type;
+r MOVIEs.relyr%type;
+rat MOVIEs.rating%type;
+
+CURSOR cur_mov IS SELECT mname,relyr,rating from MOVIEs where rating > 3;
+
+BEGIN
+
+OPEN cur_mov;
+
+LOOP
+
+FETCH cur_mov into nm,r,rat;
+EXIT WHEN cur_mov%notfound;
+dbms_output.put_line('MOVIE NAME==>'|| nm || 'RELEASE YEAR==>'|| r || 'RATING==>' || rat);
+
+END LOOP;
+CLOSE cur_mov;
+
+END;
+=========================================================================================================================================================================
+
+Q.38 Create an Associative Array which maintains the population citywise.
+
+ANS.  declare
+
+TYPE pop is TABLE of number(20) INDEX BY varchar2(30);
+population pop;
+city varchar2(30);
+
+BEGIN
+
+population('PUNE') := 1100000;
+population('MUMBAI') := 30000000;
+population('AURANGABAD') := 4300000;
+population('DELHI') := 11410000;
+population('NASHIK') := 1200650;
+
+city := population.first;
+--dbms_output.put_line(city);
+--dbms_output.put_line(population(city));
+
+WHILE city is NOT NULL LOOP 
+dbms_output.put_line(city || '=======>' || population(city));
+city := population.next(city);
+END LOOP;
+END;
+========================================================================================================================================================================
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
