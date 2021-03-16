@@ -93,4 +93,194 @@ public class Assign2
 	 
 	
 }
-=========================================================================================================================================================================
+=============================================================================================================================================================================
+
+3. Create a Class as Customers. Cid, cname and qty are the members of this class. Create a resource which saves records of 5 products. Make a method which displays
+   all records in the tabular form. Make a method which displays all records in XML form. Make a method which displays the record on the basis of quantity.
+   
+ANS.  A3Cusyomers.java
+
+      package Package1;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class A3Customers 
+
+{
+
+	public int cid;
+	
+	public String cname;
+	
+	public int qty;
+
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+
+	public String getCname() {
+		return cname;
+	}
+
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
+	public A3Customers(int cid, String cname, int qty) {
+		super();
+		this.cid = cid;
+		this.cname = cname;
+		this.qty = qty;
+	}
+
+	public A3Customers() {
+		super();
+	}
+		
+}
+=================================================================================================================================
+
+    A3Resource.java
+    
+    package Package1;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+
+@Path("A3Customers")
+public class A3Resource 
+
+{
+
+	
+	List<A3Customers> list=new ArrayList<A3Customers>();
+
+	public A3Resource() 
+	
+	{
+		
+		list.add(new A3Customers(101,"Laptop",20));
+		list.add(new A3Customers(102,"Charger",20));
+		list.add(new A3Customers(103,"Monitor",20));
+		list.add(new A3Customers(104,"Headphone",50));
+		list.add(new A3Customers(105,"Usb",70));
+		
+	}
+	
+	@GET
+	@Path("getproducts")
+	@Produces(MediaType.APPLICATION_XML)
+	public List<A3Customers> getPro()
+	{
+		return list;
+	}
+	
+	@GET
+	@Path("getproductsHtml")
+	@Produces(MediaType.TEXT_HTML)
+	public List<A3Customers> getPrhtmlo()
+	{
+		return list;
+	}
+	
+	
+	public String getPro(@PathParam("cid") int cid)
+	
+	{
+		
+		System.out.println(cid);
+		
+		Iterator<A3Customers> l=list.iterator();
+		
+		for (A3Customers pro : list)
+		{
+			if(pro.getCid()==cid)
+			{
+				System.out.println(pro.getCid()+" "+pro.getCname()+" "+pro.getQty());
+				
+				return "<table border=1><tr><td>"+pro.getCid()+"</td><td>"+pro.getCname()+"</td><td>"+pro.getQty()+"</td></tr></table>";
+				
+			}
+		}
+		
+		return "<h1>RECORD NOT FOUND</h1>";
+	}
+	
+	@GET
+	@Path("{qty}")
+	@Produces(MediaType.TEXT_HTML)
+	public String getProd(@PathParam("qty") int qty)
+	
+	{
+		
+		System.out.println(qty);
+		
+		Iterator<A3Customers> l=list.iterator();
+		
+		for (A3Customers pro : list)
+		{
+			if(pro.getQty()==qty)
+			{
+				
+				System.out.println(pro.getCid()+" "+pro.getCname()+" "+pro.getQty());
+					
+			}
+		}
+		
+		return "<h1>RECORD NOT FOUND</h1>";
+	}
+		
+}
+==============================================================================================================================================================================
+
+5. Create a web service which takes name and salary of an employee and print name and salary on the console, Use MatrixParam annotation.
+
+ANS.  A5Pro.java
+      
+      package Package1;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.MatrixParam;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("Assi5")
+public class A5Pro 
+
+{
+
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getData(@MatrixParam("name") String name,@MatrixParam("salary") int salary)
+	
+	{
+	    
+	    System.out.println(name+" "+salary);
+	    return name+" "+salary;
+	    
+	}
+	
+}
+==============================================================================================================================================================================
