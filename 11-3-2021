@@ -1,0 +1,1360 @@
+Q.1 Create a Spring core Project using Maven where Calculate the Factorial of any Entered number by the user.
+       Create SpringContainer, SetterInjection, AppConfiguration and FactorialService Classes where FactorialService class 
+       is returning the factorial of the entered number. Use Setter Dependency Injection concept. Use Annotation Based 
+      configuration.   
+      
+ANS.  FactSer.java
+
+      package A1;
+
+import org.springframework.stereotype.Component;
+
+@Component("fact")
+public class FactSer 
+
+{
+
+	public  int fv(int n)
+	
+	{
+		int res = 1;
+		int num = n;
+		
+		for(int i=1;i<=num;i++)
+			
+		{
+			res *= i;
+		}
+		
+		return res;
+	}
+	
+}
+================================================================================================================================================
+
+    SetInj.java
+    
+    package A1;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("set")
+public class SetInj 
+
+{
+
+	FactSer fs;
+
+	@Autowired
+	public void setFs(FactSer fs) {
+		this.fs = fs;
+	}
+	
+	public int getfac(int num)
+	{
+		return fs.fv(num);
+	}
+	
+}
+====================================================================================================================================================
+
+Servlet1.java
+
+package P1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class test_ser extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+     
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter out = response.getWriter();
+	int numb = Integer.parseInt(request.getParameter("num"));
+	
+	ApplicationContext ap = new ClassPathXmlApplicationContext("Appconfig.xml");
+	
+	Setter_inj si = ap.getBean("setter",Setter_inj.class);
+	
+	out.print("FACTORIAL OF THE NUMBER : "+si.getfac(numb));
+	
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+====================================================================================================================================
+
+Jsp1.java
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="test_ser">
+ENTER NUMBER <input type="number" name="num">
+<input type="submit" value="SUBMIT">
+</form>
+</body>
+</html>
+
+=======================================================================================
+
+ApplicationConfig.xml
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xsi:schemaLocation="
+   http://www.springframework.org/schema/beans    
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+   
+   <context:component-scan base-package="P1"></context:component-scan>
+   </beans>
+==========================================================================================================================================================================
+   
+Q.2 Create a Spring core Project using Maven where create 5 classes and 1 interface. Make an interface named as operation
+       Create AppConfiguaration Class, Create Addition and StringLength classes. Addition Class returns the addition as a 
+       result and StringLength class returns the length of the defined string. Create a ConstructorInjection class which injects
+       the dependency in the constructor. Create a SpringContainer class which is executed first to get the desired result. 
+       Calculate Addition of two numbers and String length of the defined string based on the dependency.
+   
+=>
+//appconfiguration.java
+
+package P2;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class app_config {
+
+	@Bean
+	public addition getA()
+	{
+		return new addition();
+	}
+
+	@Bean
+	public strlength getS()
+	{
+		return new strlength();
+	}
+	
+	@Bean
+	public con_inj getcon()
+	{
+		return new con_inj(getA(),getS());
+	}
+}
+================================================================================================================================
+
+//ass2.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="test_ser2">
+NUMBER 1 <input type="number" name="n1">
+NUMBER 2 <input type="number" name="n2">
+<input type="SUBMIT" value="ENTER">
+</form>
+</body>
+</html>
+==================================================================================================================================
+
+//test_ser2.java
+package P2;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class test_ser2 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+     
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter out = response.getWriter();	
+		
+	int n1 = Integer.parseInt(request.getParameter("n1"));
+	
+	int n2 = Integer.parseInt(request.getParameter("n2"));
+	
+    AnnotationConfigApplicationContext af = new AnnotationConfigApplicationContext(app_config.class);
+    
+    con_inj con = af.getBean("getcon",con_inj.class);
+    out.print("ADDITION OF THE NUMBERS : "+con.getadd(n1, n2));
+    
+    out.print("&nbsp &nbsp &nbsp LENGTH OF THE STRING : "+con.getstr());
+    
+    af.close();
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+=====================================================================================================================================
+
+//addition.java
+
+package P2;
+
+public class addition {
+    public int num1,num2;
+    
+	public int getNum1() {
+		return num1;
+	}
+
+	public void setNum1(int num1) {
+		this.num1 = num1;
+	}
+
+	public int getNum2() {
+		return num2;
+	}
+
+	public void setNum2(int num2) {
+		this.num2 = num2;
+	}
+
+	public int sum()
+	{
+		return num1+num2;
+	}
+}
+=========================================================================================================================================
+
+//strlength.java
+
+package P2;
+
+import java.util.Scanner;
+
+public class strlength {
+
+	public int getstringlen()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("ENTER THE STRING VALUE : ");
+		String st = sc.nextLine();
+		sc.close();
+		return st.length();
+	}
+}
+=============================================================================================================================
+
+//con_inj.java
+
+package P2;
+
+public class con_inj {
+    addition add;
+    strlength str;
+	public con_inj(addition ad,strlength st)
+	{
+		this.add = ad;
+		this.str = st;
+	}
+	
+	public int getadd(int n1,int n2)
+	{
+		add.setNum1(n1);
+		add.setNum2(n2);
+		return add.sum();
+	}
+	
+	public int getstr()
+	{
+		return str.getstringlen();
+	}
+}   
+==========================================================================================================================================================================
+
+Q.3 Create a Spring core Project using Maven where create a Bean class named as Employee which has two member 
+        variables firstName and lastName and getter, setter methods. Create applicationContext.xml file which sets the
+        values for firstName and lastName. Create a SpringContainer class which concatenates the firstName and lastName 
+        and displays the full name. 
+        
+ANS.  employee.java
+
+package P3;
+
+public class employee {
+
+	public String firstname;
+	
+	public String lastname;
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	
+	
+}
+
+===================================================================================================================
+
+appconfig.xml
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xsi:schemaLocation="
+   http://www.springframework.org/schema/beans    
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc">
+   <bean id="emp" class="P3.employee">
+   <property name="firstname" value="ABHISHEK"></property>
+   <property name="lastname" value="PILLAI"></property>
+   </bean>
+   </beans>
+=========================================================================================================================
+
+test_main.java
+
+package P3;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class test_main {
+
+	public static void main(String[] args) {
+   ClassPathXmlApplicationContext ca = new ClassPathXmlApplicationContext("appconfig3.xml");
+   
+   employee em = ca.getBean("emp",employee.class);
+   System.out.println("MY NAME IS : "+em.getFirstname()+" "+em.getLastname());
+   
+   ca.close();
+	}
+
+}
+=========================================================================================================================================================================
+
+Q.4  Create a Dynamic web Project using Maven and Create the following forms:
+        a) Make a User.jsp which takes the details of students like rollno, name and city(Dropdown List).
+        b) Make a UserCtl servlet class which gets the details from User.jsp and creates a session and sets the values of 
+            rollno ,name and city in session object.
+        c) Make Details.jsp which gets the values for rollno, name and city from session object and prints All details.
+     Note : If roll number is 101, 102 or 103 then Details.jsp Prints all Details otherwise prints a message "Not a valid User"
+
+
+Ans.
+
+User.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="UserCtl">
+ENTER ROLLNO <input type="number" name="rollno"><br>
+ENTER NAME <input type="text" name="nm"><br>
+ENTER CITY <select name="cy"><br>
+
+<optgroup label="MAHARASHTRA">
+<option  value="Pune">PUNE</option>
+<option  value="Mumbai">MUMBAI</option></optgroup>
+<optgroup label="KERALA">
+<option  value="Kollam">KOLLAM</option>
+<option  value="Kannur">KANNUR</option></optgroup>
+
+</select>
+
+<input type="submit" value="SUBMIT">
+</form>
+</body>
+</html>
+
+=========================================================================================================================================
+
+UserCtl.java
+
+package P4;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class UserCtl extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+     
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    PrintWriter out = response.getWriter();
+		
+	int rollno = Integer.parseInt(request.getParameter("rollno"));
+	
+	String name = request.getParameter("nm");
+		
+	String city = request.getParameter("cy");
+	
+	HttpSession session = request.getSession();
+	
+	if(rollno !=0)
+	{
+	session.setAttribute("roll", rollno);
+	session.setAttribute("nm",name);
+	session.setAttribute("cy",city);
+	
+	response.sendRedirect("details.jsp");
+	}
+	
+	else
+	{
+		out.print("Not a valid user");
+	}
+}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+
+================================================================================================================================
+
+Details.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+
+Integer rn=(Integer) session.getAttribute("roll");
+int rollno = rn.intValue();
+
+String nm =(String) session.getAttribute("nm");
+String city= (String)session.getAttribute("cy");
+
+out.print("ROLLNO : "+rollno+"<br>");
+out.print("NAME : "+nm+"<br>");
+out.print("CITY : "+city+"<br>");
+
+%>
+</body>
+</html>
+==========================================================================================================================================================================
+
+
+Q.5 Create a Dynamic Web Project using JSTL in which make two JSP Pages .Form1.jsp and Display.jsp
+       Form1.jsp has one text box and a submit button. When clicked on submit button, Display.jsp page is called .Display.jsp Page 
+       displays the result according to entered number. For example ,If number entered is 5 then result will be 5 6 7 8 9.....
+
+ANS.  Form1.jsp
+
+      <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Display.jsp">
+ENTER NUMBER <input type="number" name="nm">
+<input type="submit" value="SUBMIT">
+</form>
+</body>
+</html>
+========================================================================================
+
+   Display.jsp
+   
+   <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<%
+int num= Integer.parseInt(request.getParameter("nm"));
+
+for(int n=num;n<=num+4;n++)
+	
+{
+	out.print(n+" ");
+}
+
+%>
+
+</body>
+</html>
+=========================================================================================================================================================================
+
+Q.6 Write a Program to create an ArrayList of 3 numbers and find the minimum of the these numbers and display it.
+
+=>
+
+package P6;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class ass6 {
+
+	public static void main(String[] args) {
+	ArrayList<Integer> arr = new ArrayList<Integer>();
+	
+	arr.add(40);
+	arr.add(20);
+	arr.add(70);
+	arr.add(80);
+	arr.add(10);
+	
+	System.out.println(arr);
+	int index = arr.indexOf(Collections.min(arr));
+	arr.remove(index);
+	
+	System.out.println(arr);
+	}
+
+}
+==========================================================================================================================================================================
+
+Q.7 Create a class Result which implements Runnable interface.This class has a method getMarks() which takes 5 marks as arguments and returns the percentage value.The method getMarks() should be called inside run() method.Create two Thread objects of the Result class .Set the names of these objects as "student1" and "student2". Display percentage of two students in run() method.
+
+ANS. package P7;
+
+import java.util.Scanner;
+
+class result implements Runnable{
+
+	public synchronized void run() {
+		
+	System.out.println("PERCENTAGE OF "+Thread.currentThread().getName()+"===>"+getmarks());
+	
+	}
+	public float getmarks()
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("ENTER MARK 1 : ");
+		float m1 = sc.nextFloat();
+		
+		sc.nextLine();
+		
+		System.out.println("ENTER MARK 2 : ");
+		float m2 = sc.nextFloat();
+
+		sc.nextLine();
+		
+		System.out.println("ENTER MARK 3 : ");
+		float m3 = sc.nextFloat();
+
+		sc.nextLine();
+		
+		System.out.println("ENTER MARK 4 : ");
+		float m4 = sc.nextFloat();
+
+		sc.nextLine();
+		
+		System.out.println("ENTER MARK 5 : ");
+		float m5 = sc.nextFloat();
+		
+		sc.close();
+		
+		float sum = m1+m2+m3+m4+m5;
+		float per = sum / 5;
+		
+		return per;
+	}
+}
+public class mythread extends result{
+
+	public static void main(String[] args) {    
+		
+    result st1 = new result();
+    Thread t1 = new Thread(st1);
+    t1.setName("student1");
+    t1.start();
+    
+    try {
+    	t1.join();
+    }
+    catch(Exception e)
+    {
+    	e.printStackTrace();
+    }
+    
+    Thread t2 = new Thread(st1);
+    t2.setName("student2");
+    t2.start();
+    
+    try {
+    	t2.join();
+    }
+    catch(Exception e)
+    {
+    	e.printStackTrace();
+    }
+  }
+}
+==========================================================================================================================================================================
+
+Q.8 Create a custom Exception class named as EmailException. Throw an exception of EmailException if email length is zero.
+
+ANS.  EmailException.java
+
+package A8;
+
+import java.util.Scanner;
+
+class Email extends Exception
+{
+	public Email()
+	{
+		System.out.println("EMAIL CANNOT BE EMPTY ");
+	}
+	
+}	
+public class EmailException 
+{
+	
+	
+	public String ema;
+	public void method(String email){
+		this.ema = email;
+		 
+	try {
+    	  if(ema.equals("") || ema.equals(null))
+    	  {
+    		  throw new Email();
+    	  }
+    	  else
+    	  {
+        	  System.out.println("EMAIL ADDRESS : "+ema);
+    	  }
+      }
+	catch(Email em)
+	{
+		em.printStackTrace();
+	}
+
+	}
+	public static void main(String[] args) 
+	{
+	
+		 EmailException ex = new EmailException();
+		    Scanner sc = new Scanner(System.in);
+		    
+		    System.out.println("ENTER EMAIL ADDRESS : ");
+		    String em = sc.nextLine();
+		    
+		    ex.method(em);
+			sc.close();
+
+	}
+
+	}
+	========================================================================================================================================================================
+
+	Q.9 Make an interface Area. Make two classes Radius and Circle.In Area , Take a method show(), In Class Radius ,define a method getRadius() which takes radius and returns the area of circle as a value. Class Circle inherits Radius and implements the Area. Display the area of circle returned by getRadius().
+
+ ANS.  Area.java
+ 
+       package A9;
+
+import java.util.Scanner;
+
+public interface Area 
+
+{
+
+	public float show(float f);
+	}
+
+	class radius {
+		public float getradius(float rad)
+		{
+			float pi = (float) 3.14;
+			float area =  pi * rad * rad;
+			return area;
+		}
+	}
+
+	class circle extends radius implements Area{
+		radius r = new radius();
+		
+		public float show(float rad) {
+			return r.getradius(rad);
+		}
+	}
+	===========================================================================================================
+  
+  ATest.java
+  
+  package A9;
+
+import java.util.Scanner;
+
+public class ATest {
+
+	public static void main(String[] args) 
+	
+	{
+	
+		circle c = new circle();
+	    Scanner sc = new Scanner(System.in);
+	    
+	    System.out.println("ENTER THE RADIUS : ");
+	    float radius = sc.nextFloat();
+	    
+	    System.out.println("AREA OF THE CIRCLE IS : "+c.show(radius));
+	    sc.close();
+		
+		
+	}
+
+}
+==========================================================================================================================================================================
+     
+Q.10 Create a TreeSet object in which add 3 color names. Display all color names in Descending order and Remove any one color from the set.
+
+ANS.  Tree.java
+
+      package A10;
+
+import java.util.Iterator;
+import java.util.TreeSet;
+
+public class Tree {
+
+	public static void main(String[] args)
+	
+	{
+	
+        TreeSet<String> ts=new TreeSet<String>();
+        
+        ts.add("Purple");
+        ts.add("Blue");
+        ts.add("Orange");
+        
+        System.out.println(ts);
+        
+        
+        
+        Iterator<String> it=ts.descendingIterator();
+        
+        while(it.hasNext())
+        {
+            System.out.print(it.next()+" ");
+        }
+        
+        System.out.println();
+        ts.pollFirst();  
+        System.out.println(ts);
+
+	}
+
+}
+==========================================================================================================================================================================
+
+Q.11 Write a program to create an interface Sports in which methods are getGameName(), getNoOfPlayers(),showPlayerDetails() . One interface
+member variable is country1="India", country2="SA". Make classes Cricket, football which implements this interface. In showPlayerDetails() , display details of player like CountryName,GameName PlayerName,TotalPlayers.
+ 
+ANS.  package P11;
+
+import java.util.Scanner;
+
+interface sports {
+	public String getGameName();
+	public void showPlayerDetails(String nm);
+	
+	public String country1="INDIA"; 
+    public String country2="SA";
+}
+
+class cricket implements sports{
+    public static int cnt=0;
+    Scanner sc = new Scanner(System.in);
+    
+	public String getGameName() {
+		return "CRICKET";
+	}
+	
+	public static int getNoOfPlayers() {
+		return ++cnt;
+	}
+
+	public String getcountry() {
+		sc = new Scanner(System.in);
+		System.out.println("ENTER COUNTRY NAME : ");
+    	String con = sc.nextLine();
+    	
+    	if(con.equalsIgnoreCase("INDIA"))
+    	{
+    		return country1;
+    	}
+    	else if(con.equalsIgnoreCase("SA"))
+    	{
+    		return country2;
+    	}
+    	else
+    	{
+    		return "NOT PERMITTED FOR THE TOURNAMENT";
+    	}
+	}
+	public void showPlayerDetails(String plnm) {
+   System.out.println("COUNTRY NAME : "+getcountry());
+   System.out.println("GAME NAME : "+getGameName());
+   System.out.println("PLAYER NAME : "+plnm);
+   System.out.println("NUMBER OF PLAYERS : "+getNoOfPlayers());
+   System.out.println("/////////////////////////////////////////////////////////////");
+
+	}
+}
+
+class football implements sports{
+    Scanner sc = new Scanner(System.in);
+   public static int cnt2 = 0;
+
+	public String getGameName() {
+		return "FOOTBALL";
+	}
+
+	public static int getNoOfPlayers() {
+		return ++cnt2;
+	}
+	
+	public String getcountry() {
+		sc = new Scanner(System.in);
+		System.out.println("ENTER COUNTRY NAME : ");
+    	String con = sc.nextLine();
+    	
+    	if(con.equalsIgnoreCase("INDIA"))
+    	{
+    		return country1;
+    	}
+    	else if(con.equalsIgnoreCase("SA"))
+    	{
+    		return country2;
+    	}
+    	else
+    	{
+    		return "NOT PERMITTED FOR THE TOURNAMENT";
+    	}
+	}
+	
+	public void showPlayerDetails(String pnm) {
+		   System.out.println("COUNTRY NAME : "+getcountry());
+		   System.out.println("GAME NAME : "+getGameName());
+		   System.out.println("PLAYER NAME : "+pnm);
+		   System.out.println("NUMBER OF PLAYERS : "+getNoOfPlayers());
+		   System.out.println("/////////////////////////////////////////////////////////////");
+	}
+	
+}
+
+public class main {
+	
+	public static void main(String[] args) {
+	cricket crr[] = new cricket[4];
+	Scanner sc = new Scanner(System.in);
+
+    for(int i=0;i<4;i++)
+    {
+    	crr[i] = new cricket();
+       
+    	System.out.println("ENTER NAME OF THE PLAYER : ");
+    	String nm = sc.nextLine();
+        crr[i].showPlayerDetails(nm);
+    }
+    sc.close();
+  }
+}
+========================================================================================================================================================================= 
+
+Q.12 Make a Class Student ,In this Class create one Inner Class as Percentage.In Percentage class a method which returns the percentage of a student.Marks of 5 subjects should be taken in the method of student.Make a method showDetails in the Student Class which shows the Percentage of the student.
+
+ANS.  Student.java
+
+      package A12;
+
+import java.util.Scanner;
+
+public class Student {
+	
+
+	public int sum;
+	public float addition()
+	
+	{
+	Scanner sc = new Scanner(System.in);
+	System.out.println("ENTER MARK 1  :  ");
+	int m1 = sc.nextInt();
+	
+	sc.nextLine();
+	
+	System.out.println("ENTER MARK 2  :  ");
+	int m2 = sc.nextInt();
+	
+	sc.nextLine();
+	
+	System.out.println("ENTER MARK 3  :  ");
+	int m3 = sc.nextInt();
+	
+	sc.nextLine();
+	
+	System.out.println("ENTER MARK 4  :  ");
+	int m4 = sc.nextInt();
+	
+	sc.nextLine();
+	
+	System.out.println("ENTER MARK 5  :  ");
+	int m5 = sc.nextInt();
+	sc.close();
+	
+	sum = m1+m2+m3+m4+m5;
+	float per =sum/5;
+	
+	return per;
+	
+	}
+	
+	class percentage{
+		public float percent()
+		{
+			return addition();
+		}
+	}
+	
+	public static void main(String[] args)
+	
+    {
+			
+		Student st = new Student();
+	    
+	    Student.percentage p1 = st.new  percentage();
+	    
+	    System.out.println("PERCENTAGE OF STDUENT IS : "+p1.percent());
+
+	}
+
+
+}	
+=========================================================================================================================================================================
+
+Q.13 Create a class EmpDetails . Member variables of this class are EmpID, EmpName, EmpAge,EmpSalary. Create a method getDetails() which takes the details for an employee. Throw an exception if the EmpName is null ,If age is less then 18 using multi catch block.
+
+ANS.  EmpDetails.java
+
+      package A13;
+
+class Invalidage extends Exception{
+	public Invalidage()
+	{
+		System.err.println("INVALID AGE");
+	}
+}
+
+public class EmpDetails {
+	
+    public int EmpID;
+	
+	public String EmpName;
+	
+	public int EmpAge;
+	
+	public int EmpSalary;
+	
+	public void getdetails(int id,String nm,int age,int sal)
+	{
+		this.EmpID = id;
+		
+		try {
+			if(nm.equals(""))
+				throw new NullPointerException();
+			else
+			this.EmpName = nm;
+		}
+		catch(NullPointerException ne)
+		{
+			ne.printStackTrace();
+		}
+		
+		try {
+		if(age <= 18) {
+			throw new Invalidage();
+		}
+			else {
+			this.EmpAge = age;
+		}
+}
+		catch(Invalidage in)
+		{
+			in.getMessage();
+		}
+		catch(ArithmeticException ar)
+		{
+			ar.printStackTrace();
+		}
+	    catch(Exception e)
+		{
+	    	e.printStackTrace();
+		}
+		
+		this.EmpSalary = sal;
+		
+		System.out.println("EMPLOYEE ID   :  "+EmpID);
+		System.out.println("EMPLOYEE NAME   :  "+EmpName);
+		System.out.println("EMPLOYEE AGE   :  "+EmpAge);
+		System.out.println("EMPLOYEE  SALARY   :  "+EmpSalary);
+	}
+
+	public static void main(String[] args) 
+	
+	{
+	
+		    EmpDetails em = new EmpDetails();
+		    em.getdetails(101,"",17, 35000);
+		    em.getdetails(102,"VISHAL",22, 50000);
+
+
+	}
+
+}
+========================================================================================================================================================================
+
+Q.14 Create a class which takes a string as a parameter in Parameterised constructor and perform the following operations using stringBuffer class: 
+       a) Print the reverse of the string
+       b) concatenate a string Hello to the string taken in the constructor
+       c) Compare the taken string with any string.
+       d) Find substring "llo" from "Hello"
+       
+ANS.  A14.java
+
+      package A14;
+
+public class A14 {
+
+	 public StringBuffer sbf;
+		
+	    public A14(String st)
+		{
+	    sbf = new StringBuffer(st);
+		}
+	    
+	    public void operations()
+	    {
+	    	sbf.reverse();
+	    	System.out.println(sbf);
+	    }
+	    public void concat()
+	    {
+	    	System.out.println(sbf.append(" HELLO"));
+	    }
+	    @SuppressWarnings("unlikely-arg-type")
+		public void compare()
+	    {
+	    	if(sbf.equals("STRINGBUFFER"))
+	    	{
+	    		System.out.println("NOT MATCHED");
+	    	}
+	    	else
+	    	{
+	    		System.out.println(" MATCHED  !!!");
+	    	}
+	    }
+	    public String partial()
+	    {
+	    	return sbf.substring(10,13);
+	    }
+	    
+	public static void main(String[] args) 
+	
+	{
+		
+		    A14 a14 = new A14("HII");
+		    a14.operations();
+		    a14.concat();
+		    a14.compare();
+		    System.out.println(a14.partial());
+			
+
+	}
+
+}
+========================================================================================================================================================================
+
+Q.15  Create a Class Addition where a parameterised constructor takes a double and an integer value. Create a child class of Addition which has a constructor which passes two numbers to the constructor of the Addition class . Define a method showSum() in the child class which displays the addition of two numbers.
+
+ANS.  Addition.java
+
+      package A15;
+
+class addition
+
+{
+	
+	public double dnum;
+	
+	public int inum;
+	
+	public addition(double d,int num)
+	
+	{
+		this.dnum = d;
+		this.inum = num;
+	}
+	
+}
+
+public class Addition extends addition
+
+{ 
+	public Addition(double db,int n)
+{
+	super(db,n);
+}
+	
+public void showSum()
+
+{
+	System.out.println("ADDITION OF NUMBERS : "+(dnum+inum));
+}
+	
+
+	public static void main(String[] args) 
+	
+	{
+
+		Addition ad = new Addition(25,25);
+	    ad.showSum();
+		
+	}
+
+}
+=========================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
